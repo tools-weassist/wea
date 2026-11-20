@@ -209,10 +209,22 @@ function providerDescription(provider: ModelProvider) {
       return 'Models through your Cloudflare gateway';
     case 'compatible':
       return 'Ollama, LM Studio, vLLM or any other server';
+    case 'xai':
+      return 'Grok models with an xAI API key';
     default:
       return `Models with a ${modelProviderNames[provider]} API key`;
   }
 }
+
+/** Wea: the providers pilot users connect most, listed first. Ollama connects as a model server. */
+const weaFeaturedProviders: readonly ModelProvider[] = [
+  'openrouter',
+  'openai',
+  'anthropic',
+  'google',
+  'xai',
+  'compatible',
+];
 
 function connectionName(connection: ModelConnection, short = false) {
   if (!connection.keyEnding) return connection.label;
@@ -549,7 +561,10 @@ export function ModelSettings({ onDirtyChange }: { onDirtyChange?(dirty: boolean
   const available = connections.some(
     (connection) => connection.status === 'connected' && connection.models.length > 0,
   );
-  const listedProviders = modelProviders.filter((provider) =>
+  const listedProviders = [
+    ...weaFeaturedProviders,
+    ...modelProviders.filter((provider) => !weaFeaturedProviders.includes(provider)),
+  ].filter((provider) =>
     `${modelProviderNames[provider]} ${providerDescription(provider)} ${provider}`
       .toLowerCase()
       .includes(providerSearch.trim().toLowerCase()),
@@ -710,15 +725,17 @@ export function ModelSettings({ onDirtyChange }: { onDirtyChange?(dirty: boolean
                           <span
                             className={`model-connection-meta ${connection.issue ? 'reconnect' : connection.status}`}
                           >
-                            {connection.managed
-                              ? 'Server settings'
-                              : connection.method === 'subscription'
-                                ? 'ChatGPT plan'
-                                : connection.method === 'oauth'
-                                  ? 'Connected with sign-in'
-                                  : connection.provider === 'compatible'
-                                    ? 'Model server'
-                                    : 'API key'}
+                            {connection.hosted
+                              ? 'Hosted by WeAssist for testing'
+                              : connection.managed
+                                ? 'Server settings'
+                                : connection.method === 'subscription'
+                                  ? 'ChatGPT plan'
+                                  : connection.method === 'oauth'
+                                    ? 'Connected with sign-in'
+                                    : connection.provider === 'compatible'
+                                      ? 'Model server'
+                                      : 'API key'}
                             {connection.status === 'reconnect'
                               ? ' · Needs attention'
                               : connection.issue

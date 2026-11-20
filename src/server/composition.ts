@@ -114,6 +114,7 @@ import { registerSpeechSettings } from './speech-settings.ts';
 import { createImageAnalysis } from './images.ts';
 import { createPiModelBackend } from '../providers/pi/models.ts';
 import { createModelService, endpointAddress, modelKeyCredential } from './models.ts';
+import { weassistDefault, weassistLimits } from './weassist-default.ts';
 import { createIntegrationBrowser } from './integration-browser.ts';
 import { createIntegrationIdentityCheckpoint } from './integration-identity.ts';
 import { createPiAgent } from '../providers/pi/index.ts';
@@ -288,7 +289,10 @@ export interface ApplicationAdapters {
 export function modelEnvironment(
   env: Record<string, string | undefined>,
 ): NonNullable<Parameters<typeof createModelService>[0]['bootstrap']> {
-  const provider = z.enum(modelProviders).parse(env.LLM_PROVIDER || 'openai');
+  const weassist = weassistDefault(env);
+  const provider = z
+    .enum(modelProviders)
+    .parse(env.LLM_PROVIDER || (weassist ? 'openrouter' : 'openai'));
   const endpoint =
     env.OPENAI_COMPATIBLE_BASE_URL && endpointAddress(env.OPENAI_COMPATIBLE_BASE_URL);
   if (env.OPENAI_COMPATIBLE_BASE_URL && !endpoint)
@@ -297,7 +301,8 @@ export function modelEnvironment(
     );
   return {
     provider,
-    model: env.LLM_MODEL || undefined,
+    model: env.LLM_MODEL || (weassist && provider === 'openrouter' ? weassist.model : undefined),
+    ...(weassist && { weassistDefault: 'openrouter' as const }),
     credentials: {
       ...Object.fromEntries(
         apiKeyConnectionProviders.flatMap((id) => {
@@ -334,6 +339,7 @@ export function modelEnvironment(
           ...(env.OPENAI_COMPATIBLE_API_KEY && { key: env.OPENAI_COMPATIBLE_API_KEY }),
         },
       }),
+      ...(weassist && { openrouter: modelKeyCredential('openrouter', weassist.key, {}) }),
     },
   };
 }
@@ -893,6 +899,7 @@ async function initializeApplication(
     analytics: captureAnalytics,
     telemetry: adapters.telemetry,
     pricingThresholds: () => adapters.models?.pricingThresholds() ?? [],
+    newOwnerLimits: weassistLimits(process.env),
   });
   await ledger.initialize();
   adapters.models?.setRequestBudget?.(ledger.reserve);

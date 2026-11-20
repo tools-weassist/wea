@@ -241,9 +241,14 @@ export interface ModelConnection {
   status: 'connected' | 'loading' | 'reconnect';
   models: ModelChoice[];
   managed: boolean;
+  /** Wea: the server-side WeAssist test connection, whose key never leaves the server. */
+  hosted?: boolean;
   keyEnding?: string;
   issue?: ModelIssue;
 }
+
+/** Wea: label for the OpenRouter connection WeAssist hosts for the pilot. */
+export const weassistConnectionLabel = 'WeAssist test connection (pilot only)';
 
 export interface ModelIssue {
   reason: string;

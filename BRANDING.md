@@ -20,11 +20,12 @@ Tagline: **Breathe, the busywork is handled.**
 Notes for Brandi:
 
 - The clear-space and minimum-size rules are not enforced in code yet (not approved as hard rules).
-- Primary buttons use white text on Teal `#0698B2` (about 3.4:1 contrast). Ink Navy text would pass
-  WCAG AA for small text if you prefer it.
-- The teal tints for hover, soft and dark accents (`--pink-10/20/30/70/80`) are derived from Teal;
-  please confirm or replace them.
-- The macOS icon has no extra padding grid; check that it looks right next to other dock icons.
+- UI tokens follow Brandi's final spec. Light: accent Teal `#0698B2` for the logo, icons, focus rings
+  and large accents only; buttons `#067A8F` with white text, hover `#05616F`. Dark: accent and
+  buttons Glow Teal `#07C2E4` with Ink Navy `#142134` text (never white on Glow Teal), hover
+  `#38D3EE`. Soft tints are the accent at 10–12% opacity, not new hex values.
+- The macOS icon is a 1024px canvas with an 824px rounded square (radius about 185px, 100px
+  transparent margin) and a soft shadow, built from `wea-app-icon-square.svg`.
 
 Still upstream (needed before any client-facing release): WeAssist Terms of Use and Privacy links
 (`legalLinks` in `src/shared/onboarding.ts` still point to n8n), the update-email consent text in the

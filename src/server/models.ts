@@ -42,6 +42,7 @@ import {
   openAIRegions,
   routeModel,
   supportsLongCacheWrites,
+  weassistConnectionLabel,
 } from '../shared/models.ts';
 import { signInPage } from '../shared/sign-in-page.ts';
 import { appPages } from '../shared/app-links.ts';
@@ -324,10 +325,19 @@ export function createModelService(options: {
     provider: ModelProvider;
     model?: string;
     credentials: Partial<Record<ModelProvider, ModelCredential>>;
+    /** Wea: provider whose managed credential is the WeAssist-hosted pilot key. */
+    weassistDefault?: ModelProvider;
   };
   changed?(): void;
 }) {
   const { backend } = options;
+  /** Wea: true while the selection still points at the WeAssist-hosted pilot connection. */
+  const selectedWeassistDefault = (state: ModelState) => {
+    const hosted = options.bootstrap?.weassistDefault;
+    if (!hosted) return false;
+    const selected = state.connections.find((row) => row.id === state.selection?.connectionId);
+    return Boolean(selected?.managed && selected.provider === hosted);
+  };
   const store = createDatabaseModelStore({
     database: options.database,
     ownerId: options.ownerId,
@@ -444,11 +454,13 @@ export function createModelService(options: {
     rows = state.connections.map(({ credential: saved, ...row }) => {
       const value = row.managed ? options.bootstrap?.credentials[row.provider] : saved;
       const tag = credentialTag(value);
+      const weassistHosted = row.managed && options.bootstrap?.weassistDefault === row.provider;
       const failed = failures(row, tag).sort(([, a], [, b]) => b.retryAt - a.retryAt);
       return {
         ...row,
         credentialTag: tag,
-        ...(value &&
+        ...(!weassistHosted &&
+        value &&
         typeof value === 'object' &&
         'key' in value &&
         typeof value.key === 'string' &&
@@ -962,7 +974,8 @@ export function createModelService(options: {
       preferred &&
       status === 'connected' &&
       (!managed || options.bootstrap?.provider === provider) &&
-      (!state.selectionSet || (!managed && !selectedConnectionWorks(state)))
+      (!state.selectionSet ||
+        (!managed && (!selectedConnectionWorks(state) || selectedWeassistDefault(state))))
     ) {
       state.selection = {
         connectionId: id,
@@ -1348,7 +1361,9 @@ export function createModelService(options: {
             id,
             provider,
             method,
-            label,
+            ...(managed && options.bootstrap?.weassistDefault === provider
+              ? { label: weassistConnectionLabel, hosted: true }
+              : { label }),
             status,
             managed,
             ...(issue ? { issue } : {}),
