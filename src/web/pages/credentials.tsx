@@ -42,9 +42,9 @@ function PrivateFormFrame({
   return (
     <Element className={embedded ? 'credential-embedded' : 'credential-page'}>
       {!embedded && (
-        <a href="/" onClick={returnToChat} className="credential-brand" aria-label="Nod home">
+        <a href="/" onClick={returnToChat} className="credential-brand" aria-label="Wea home">
           <BrandMark />
-          <span>Nod</span>
+          <span>Wea</span>
         </a>
       )}
       {children}
@@ -131,7 +131,7 @@ function PaymentForm({ id, embedded, onClose }: PrivateFormProps) {
         }
       } catch {
         if (!controller.signal.aborted && version === updates.current)
-          setError('This payment request is unavailable. Ask Nod to check the checkout.');
+          setError('This payment request is unavailable. Ask Wea to check the checkout.');
       }
     };
     void refresh();
@@ -175,7 +175,7 @@ function PaymentForm({ id, embedded, onClose }: PrivateFormProps) {
     } catch {
       if (!controller.signal.aborted) {
         setStatus('uncertain');
-        setError('The result is not confirmed. Ask Nod to check the order before another attempt.');
+        setError('The result is not confirmed. Ask Wea to check the order before another attempt.');
         try {
           const result = await api<{ status: PaymentStatus; notEntered?: boolean }>(
             `${path}/status`,
@@ -220,14 +220,14 @@ function PaymentForm({ id, embedded, onClose }: PrivateFormProps) {
         {saving || status === 'entering' ? (
           <Loading label="Submitting your card…" />
         ) : status === 'submitted' ? (
-          <p>Nod will check the result and continue your task in the same conversation.</p>
+          <p>Wea will check the result and continue your task in the same conversation.</p>
         ) : notEntered ? (
           <p>
             No values were entered in this step. Return to chat if you want to start a new payment.
           </p>
         ) : status === 'uncertain' ? (
           <p>
-            The card may have reached the website. Ask Nod to check the order before another
+            The card may have reached the website. Ask Wea to check the order before another
             attempt.
           </p>
         ) : status === 'expired' ? (
@@ -417,7 +417,7 @@ function CredentialForm({ id, embedded, onClose, onRequestChange }: PrivateFormP
       {},
       () => setRetried(true),
       uncertain
-        ? 'Nod could not check this sign-in step. Return to chat and ask Nod to inspect the page.'
+        ? 'Wea could not check this sign-in step. Return to chat and ask Wea to inspect the page.'
         : 'A new sign-in step could not be requested. Return to chat to check this task.',
     );
   }
@@ -454,7 +454,7 @@ function CredentialForm({ id, embedded, onClose, onRequestChange }: PrivateFormP
       '/method',
       { methodId },
       submitted,
-      'This method could not continue. Ask Nod to check the sign-in page.',
+      'This method could not continue. Ask Wea to check the sign-in page.',
     );
   }
   function useSaved(entryId: string) {
@@ -475,7 +475,7 @@ function CredentialForm({ id, embedded, onClose, onRequestChange }: PrivateFormP
         listed = true;
         setManager({ stage: 'list', account, logins: result.logins });
       },
-      `Nod couldn’t open ${managerName}. Try again.`,
+      `Wea couldn’t open ${managerName}. Try again.`,
       true,
     );
     if (!listed)
@@ -509,7 +509,7 @@ function CredentialForm({ id, embedded, onClose, onRequestChange }: PrivateFormP
       '',
       input,
       submitted,
-      'The sign-in response could not be confirmed. Ask Nod to check the website before another attempt.',
+      'The sign-in response could not be confirmed. Ask Wea to check the website before another attempt.',
       true,
     );
   }
@@ -525,7 +525,7 @@ function CredentialForm({ id, embedded, onClose, onRequestChange }: PrivateFormP
         {saving && manager?.stage === 'waiting' ? (
           <div className="credential-complete" role="status" aria-live="polite">
             <h1>Approve in {managerName}</h1>
-            <p>{managerName} asks before Nod can read your logins.</p>
+            <p>{managerName} asks before Wea can read your logins.</p>
             <Loading label={`Waiting for ${managerName}…`} />
           </div>
         ) : saving ? (
@@ -558,7 +558,7 @@ function CredentialForm({ id, embedded, onClose, onRequestChange }: PrivateFormP
             <LockKeyhole size={32} />
             <h1>
               {retried
-                ? 'Nod is continuing the sign-in.'
+                ? 'Wea is continuing the sign-in.'
                 : notEntered
                   ? 'Stopped before entry'
                   : uncertain
@@ -571,8 +571,8 @@ function CredentialForm({ id, embedded, onClose, onRequestChange }: PrivateFormP
                 : notEntered
                   ? 'No values were entered in this step. Return to chat if you want to sign in again.'
                   : uncertain
-                    ? 'The sign-in may have reached the website. Ask Nod to check its result before another attempt.'
-                    : 'Ask Nod to check the sign-in page again.'}
+                    ? 'The sign-in may have reached the website. Ask Wea to check its result before another attempt.'
+                    : 'Ask Wea to check the sign-in page again.'}
             </p>
             {!retried && !notEntered && (
               <Button disabled={saving} onClick={() => void retry()}>

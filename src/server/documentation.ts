@@ -187,9 +187,9 @@ export function createDocumentation(root: string): Documentation {
     },
     async read(id, offset = 0) {
       const section = (await index()).sections.find((section) => section.id === id);
-      if (!section) throw new Error(`The Nod documentation section was not found: ${id}`);
+      if (!section) throw new Error(`The Wea documentation section was not found: ${id}`);
       if (!Number.isSafeInteger(offset) || offset < 0 || offset >= section.content.length)
-        throw new Error('The Nod documentation offset is outside this section.');
+        throw new Error('The Wea documentation offset is outside this section.');
       const { title, heading, url, content } = section;
       const end = Math.min(offset + readSize, content.length);
       return {

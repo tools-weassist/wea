@@ -209,10 +209,22 @@ function providerDescription(provider: ModelProvider) {
       return 'Models through your Cloudflare gateway';
     case 'compatible':
       return 'Ollama, LM Studio, vLLM or any other server';
+    case 'xai':
+      return 'Grok models with an xAI API key';
     default:
       return `Models with a ${modelProviderNames[provider]} API key`;
   }
 }
+
+/** Wea: the providers pilot users connect most, listed first. Ollama connects as a model server. */
+const weaFeaturedProviders: readonly ModelProvider[] = [
+  'openrouter',
+  'openai',
+  'anthropic',
+  'google',
+  'xai',
+  'compatible',
+];
 
 function connectionName(connection: ModelConnection, short = false) {
   if (!connection.keyEnding) return connection.label;
@@ -277,7 +289,7 @@ export function CloudKeyFields({
     return showWorkspace || workspaceFallback || workspaces.length > 0 ? (
       <>
         {workspaces.length > 0 && (
-          <Field label="Workspace" hint="Choose the workspace Nod should use.">
+          <Field label="Workspace" hint="Choose the workspace Wea should use.">
             <select
               className="input"
               value={
@@ -549,7 +561,10 @@ export function ModelSettings({ onDirtyChange }: { onDirtyChange?(dirty: boolean
   const available = connections.some(
     (connection) => connection.status === 'connected' && connection.models.length > 0,
   );
-  const listedProviders = modelProviders.filter((provider) =>
+  const listedProviders = [
+    ...weaFeaturedProviders,
+    ...modelProviders.filter((provider) => !weaFeaturedProviders.includes(provider)),
+  ].filter((provider) =>
     `${modelProviderNames[provider]} ${providerDescription(provider)} ${provider}`
       .toLowerCase()
       .includes(providerSearch.trim().toLowerCase()),
@@ -710,15 +725,17 @@ export function ModelSettings({ onDirtyChange }: { onDirtyChange?(dirty: boolean
                           <span
                             className={`model-connection-meta ${connection.issue ? 'reconnect' : connection.status}`}
                           >
-                            {connection.managed
-                              ? 'Server settings'
-                              : connection.method === 'subscription'
-                                ? 'ChatGPT plan'
-                                : connection.method === 'oauth'
-                                  ? 'Connected with sign-in'
-                                  : connection.provider === 'compatible'
-                                    ? 'Model server'
-                                    : 'API key'}
+                            {connection.hosted
+                              ? 'Hosted by WeAssist for testing'
+                              : connection.managed
+                                ? 'Server settings'
+                                : connection.method === 'subscription'
+                                  ? 'ChatGPT plan'
+                                  : connection.method === 'oauth'
+                                    ? 'Connected with sign-in'
+                                    : connection.provider === 'compatible'
+                                      ? 'Model server'
+                                      : 'API key'}
                             {connection.status === 'reconnect'
                               ? ' · Needs attention'
                               : connection.issue
@@ -924,7 +941,7 @@ export function ModelSettings({ onDirtyChange }: { onDirtyChange?(dirty: boolean
                   {panel.provider !== 'compatible' && <ModelKeyHelp provider={panel.provider} />}
                   {panel.provider === 'compatible' && (
                     <p className="model-key-note">
-                      Nod also uses this model to check actions. Smaller models decide less
+                      Wea also uses this model to check actions. Smaller models decide less
                       reliably.
                     </p>
                   )}
@@ -967,7 +984,7 @@ export function ModelSettings({ onDirtyChange }: { onDirtyChange?(dirty: boolean
                 </Button>
               </div>
               <details className="model-details">
-                <summary>Browser didn’t return to Nod?</summary>
+                <summary>Browser didn’t return to Wea?</summary>
                 <form
                   onSubmit={(event) => {
                     event.preventDefault();

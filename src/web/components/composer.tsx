@@ -165,7 +165,7 @@ export const Composer = forwardRef<ComposerHandle, ComposerProps>(function Compo
     submit: () => {},
     upload: (_files: File[], _method: 'paste') => {},
   });
-  const placeholder = busy ? 'Send another message to Nod…' : 'Message Nod…';
+  const placeholder = busy ? 'Send another message to Wea…' : 'Message Wea…';
   const currentPlaceholder = useRef(placeholder);
   currentPlaceholder.current = placeholder;
   const extensions = useMemo(
@@ -184,7 +184,7 @@ export const Composer = forwardRef<ComposerHandle, ComposerProps>(function Compo
     editorProps: {
       attributes: {
         role: 'textbox',
-        'aria-label': 'Message Nod',
+        'aria-label': 'Message Wea',
         'aria-multiline': 'true',
         'aria-describedby': 'composer-keyboard-hint',
         class: 'composer-editor message-text',

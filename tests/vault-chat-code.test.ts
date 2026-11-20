@@ -593,7 +593,7 @@ test(
         },
       );
       await t.test(
-        'a security code sent by itself pays in Nod while unrelated numbered messages reach chat',
+        'a security code sent by itself pays in Wea while unrelated numbered messages reach chat',
         async () => {
           await reset();
           const threadId = (await thread.activeThread(db.pool, ownerId)).id;

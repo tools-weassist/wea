@@ -6,7 +6,8 @@ export function createFeedbackDelivery(
 ): FeedbackDelivery {
   const defaultFeedbackUrl = 'https://internal.users.n8n.cloud/webhook/nod/feedback';
   const feedbackUrl = env.NOD_FEEDBACK_URL ?? defaultFeedbackUrl;
-  const feedbackEnabled = env.NOD_FEEDBACK_ENABLED !== 'false';
+  // Wea build: feedback delivery to n8n is off unless explicitly enabled.
+  const feedbackEnabled = env.NOD_FEEDBACK_ENABLED === 'true';
   if (
     feedbackEnabled &&
     feedbackUrl &&

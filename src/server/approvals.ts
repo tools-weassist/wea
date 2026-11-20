@@ -682,7 +682,7 @@ export async function createApprovals(
             conflict(
               repeatFailure
                 ? `The repeat request check failed${http}: ${failureReason(repeatFailure)} The action did not run again.`
-                : 'The action did not run again because Nod could not verify a new repeat request.',
+                : 'The action did not run again because Wea could not verify a new repeat request.',
             ),
             { notRun: true },
           );

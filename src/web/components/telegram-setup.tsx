@@ -91,7 +91,7 @@ export function TelegramSetup({
   const setupError =
     error ||
     (unavailable && !state.paired && !setup?.managed
-      ? 'Set up Nod’s secure key store to connect Telegram.'
+      ? 'Set up Wea’s secure key store to connect Telegram.'
       : '');
 
   function verify(event: React.FormEvent) {
@@ -110,7 +110,7 @@ export function TelegramSetup({
       {setupError && <Notice>{setupError}</Notice>}
       {setup?.managed && (
         <p>
-          Telegram is managed by the server environment. Change its settings there and restart Nod.
+          Telegram is managed by the server environment. Change its settings there and restart Wea.
         </p>
       )}
       {state.paired || setup?.managed ? null : (
@@ -212,7 +212,7 @@ export function TelegramSetup({
                     <div className="telegram-setup-content">
                       {state.needsDelivery ? (
                         <>
-                          <p>Your bot is saved, but Nod could not start receiving messages.</p>
+                          <p>Your bot is saved, but Wea could not start receiving messages.</p>
                           <Button
                             size="sm"
                             data-telegram-primary
@@ -243,7 +243,7 @@ export function TelegramSetup({
                           </p>
                           <Field
                             label="Your Telegram user ID"
-                            hint="Only this ID will be able to message Nod."
+                            hint="Only this ID will be able to message Wea."
                           >
                             <Input
                               inputMode="numeric"
@@ -353,7 +353,7 @@ export function TelegramSetup({
                         <strong>{candidate.name || 'Your Telegram account'}</strong>
                         {candidate.username && <span>@{candidate.username.replace(/^@/, '')}</span>}
                       </div>
-                      <p>Only this account will be able to message Nod.</p>
+                      <p>Only this account will be able to message Wea.</p>
                       <div className="telegram-setup-actions">
                         <Button
                           size="sm"

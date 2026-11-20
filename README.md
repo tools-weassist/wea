@@ -1,3 +1,12 @@
+# Wea
+
+**Wea is WeAssist's internal pilot build of [Nod](https://github.com/n8n-io/nod), the open source personal agent by n8n.**
+It is a modified version (see [NOTICE](NOTICE)): renamed to Wea, usage analytics and feedback to n8n off by default,
+and the GPL-3.0 local phoneme processor removed. Wea is not affiliated with or endorsed by n8n GmbH.
+Brand assets are pending; see [BRANDING.md](BRANDING.md). The upstream README follows.
+
+---
+
 <p align="center">
   <a href="https://nod.n8n.io#gh-dark-mode-only"><img src="docs/src/assets/readme/hero-dark.webp" alt="n8n presents Nod: open source personal agent with its own computer" width="100%" /></a>
   <a href="https://nod.n8n.io#gh-light-mode-only"><img src="docs/src/assets/readme/hero.webp" alt="n8n presents Nod: open source personal agent with its own computer" width="100%" /></a>

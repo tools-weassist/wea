@@ -74,7 +74,7 @@ export function ManualMcpDialog({
           </span>
           <div>
             <DialogTitle>Connect an MCP server</DialogTitle>
-            <DialogDescription>Add a server to use its tools in Nod.</DialogDescription>
+            <DialogDescription>Add a server to use its tools in Wea.</DialogDescription>
           </div>
         </div>
         <form onSubmit={(event) => void submit(event)} autoComplete="off">

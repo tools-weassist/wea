@@ -35,16 +35,16 @@ const nodActions: Array<[string, string]> = [
   ['NOD_browser', 'Continue in the browser'],
   ['NOD_vault_allow', 'Use a saved sign-in'],
   ['NOD_limits_update', 'Change spending limits'],
-  ['NOD_bug_report_send', 'Send a bug report to the Nod team'],
+  ['NOD_bug_report_send', 'Send a bug report to the Wea team'],
   ['NOD_model_select', 'Change the model'],
-  ['NOD_notification_preferences_update', 'Change Nod settings'],
+  ['NOD_notification_preferences_update', 'Change Wea settings'],
   ['NOD_schedule_pause', 'Pause a schedule'],
   ['NOD_schedule_cancel', 'Pause a schedule'],
   ['NOD_schedule_create', 'Create a schedule'],
   ['NOD_schedule_', 'Change a schedule'],
   ['NOD_memory_', 'Change memory'],
   ['NOD_rules', 'Change your rules'],
-  ['NOD_', 'Change a Nod setting'],
+  ['NOD_', 'Change a Wea setting'],
 ];
 
 export function approvalTitle(action: string) {
@@ -524,7 +524,7 @@ export function actionTarget(
       const target = details?.targetModel as { model?: unknown; for?: unknown } | undefined;
       const model = words(target?.model)[0];
       const work = words(target?.for)[0];
-      return model && work && work !== 'when the owner talks to Nod'
+      return model && work && work !== 'when the owner talks to Wea'
         ? `${model} for ${work}`
         : model;
     }

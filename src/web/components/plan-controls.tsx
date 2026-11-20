@@ -227,7 +227,7 @@ type ScheduleChange = ReturnType<typeof useDirectChange>;
 
 function pauseNote(pausing: boolean, title: string) {
   return pausing
-    ? `Paused ${title}. Nod will not run it until you resume it.`
+    ? `Paused ${title}. Wea will not run it until you resume it.`
     : `Resumed ${title}.`;
 }
 
@@ -494,7 +494,7 @@ function ScheduleEditorForm({
             onChange={(event) => update({ title: event.target.value })}
           />
         </Field>
-        <Field label="What Nod should do">
+        <Field label="What Wea should do">
           <textarea
             className="input"
             rows={4}
@@ -594,7 +594,7 @@ function ScheduleEditorForm({
           </div>
           {schedule.kind === 'recurring' && draft.frequency === 'custom' && (
             <p className="field-hint">
-              Custom timing is kept as saved. Choose a repeat option to replace it, or ask Nod to
+              Custom timing is kept as saved. Choose a repeat option to replace it, or ask Wea to
               adjust it.
             </p>
           )}

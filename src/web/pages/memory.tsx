@@ -77,7 +77,7 @@ const stages: Array<{ id: Stage; label: string; hint: string }> = [
     label: 'Mentioned once',
     hint: 'Heard once. A guess until you confirm it or say it again.',
   },
-  { id: 'observed', label: 'Learned', hint: 'Heard in two or more messages. Nod uses it.' },
+  { id: 'observed', label: 'Learned', hint: 'Heard in two or more messages. Wea uses it.' },
   { id: 'stated', label: 'Confirmed', hint: 'You said it, wrote it or confirmed it.' },
   {
     id: 'archive',
@@ -87,7 +87,7 @@ const stages: Array<{ id: Stage; label: string; hint: string }> = [
   {
     id: 'skills',
     label: 'Skills',
-    hint: 'How Nod did a task, written by Nod from what it did and read. It follows them next time.',
+    hint: 'How Wea did a task, written by Wea from what it did and read. It follows them next time.',
   },
 ];
 const stageLabel = Object.fromEntries(stages.map((stage) => [stage.id, stage.label])) as Record<
@@ -105,7 +105,7 @@ const reasons: Record<MemoryArchived['reason'], string> = {
   manual: 'Archived by you',
 };
 const channels: Record<string, string> = {
-  web: 'Nod web',
+  web: 'Wea web',
   telegram: 'Telegram',
   whatsapp: 'WhatsApp',
 };
@@ -1069,25 +1069,25 @@ function ImportNotes({
           {result
             ? [
                 result.added
-                  ? `Nod now knows ${formatNumber(result.added)} more ${result.added === 1 ? 'thing' : 'things'} about you.`
+                  ? `Wea now knows ${formatNumber(result.added)} more ${result.added === 1 ? 'thing' : 'things'} about you.`
                   : '',
                 result.existing
                   ? `${formatNumber(result.existing)} ${result.existing === 1 ? 'was' : 'were'} already saved.`
                   : '',
                 result.skipped
-                  ? `${formatNumber(result.skipped)} looked like a password or card number, so Nod left ${result.skipped === 1 ? 'it' : 'them'} out.`
+                  ? `${formatNumber(result.skipped)} looked like a password or card number, so Wea left ${result.skipped === 1 ? 'it' : 'them'} out.`
                   : '',
               ]
                 .filter(Boolean)
                 .join(' ')
             : reviewing
-              ? 'Remove anything you don’t want Nod to keep.'
+              ? 'Remove anything you don’t want Wea to keep.'
               : 'Copy this prompt into ChatGPT, Claude or Gemini, then paste its answer below.'}
         </DialogDescription>
         {result ? (
           <div className="memory-form">
             <Button autoFocus onClick={onFinish}>
-              Continue using Nod
+              Continue using Wea
             </Button>
           </div>
         ) : (
@@ -1395,7 +1395,7 @@ export function Memory({
         ))
       ) : (
         <p className="memory-empty">
-          {search ? 'Nothing here.' : 'Nothing yet. Nod writes one after a task worth repeating.'}
+          {search ? 'Nothing here.' : 'Nothing yet. Wea writes one after a task worth repeating.'}
         </p>
       )
     ) : stage === 'archive' ? (
@@ -1433,7 +1433,7 @@ export function Memory({
           'Nothing here.'
         ) : (
           <>
-            Nothing yet. Tell Nod something to remember, add a note or{' '}
+            Nothing yet. Tell Wea something to remember, add a note or{' '}
             <button type="button" onClick={() => setImporting(true)}>
               import from another assistant
             </button>

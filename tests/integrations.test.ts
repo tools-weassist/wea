@@ -12887,7 +12887,7 @@ test(
         assert.rejects(read, (error: Error & { status?: number }) => {
           assert.ok(
             error.message.includes(
-              `rate limiting this install (installation_busy, HTTP 429), so Nod is not calling it until ${until}`,
+              `rate limiting this install (installation_busy, HTTP 429), so Wea is not calling it until ${until}`,
             ),
           );
           assert.match(error.message, /Do not retry this source now/);
@@ -14687,7 +14687,7 @@ test('connected provider cancellation reaches session creation, search, schemas,
   assert.equal(requests.length, 4);
 });
 
-test('discovered requests identify Nod, follow redirects only to checked public addresses and drop credentials across origins', async () => {
+test('discovered requests identify Wea, follow redirects only to checked public addresses and drop credentials across origins', async () => {
   const { PassThrough } = await import('node:stream');
   const { EventEmitter } = await import('node:events');
   const sent: Array<{ url: string; authorization?: string }> = [];

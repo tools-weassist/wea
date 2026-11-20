@@ -158,7 +158,7 @@ const scheduleRunPresentation = z.strictObject({
 export type ScheduleRunPresentation = z.infer<typeof scheduleRunPresentation>;
 
 export const bugReportReplyHint =
-  'Reply "send" to share this summary with the Nod team, or ignore it. To add a diagnostic report, send it from Nod on your computer.';
+  'Reply "send" to share this summary with the Wea team, or ignore it. To add a diagnostic report, send it from Wea on your computer.';
 
 export const presentationSchema = z
   .discriminatedUnion('type', [

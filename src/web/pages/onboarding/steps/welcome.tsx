@@ -1,7 +1,6 @@
 import { useEffect, type CSSProperties } from 'react';
 import { DataSharing } from '../../../components/data-sharing';
 import { LockKeyhole, MousePointerClick, ShieldCheck, Sparkles } from '../../../components/icons';
-import { NodGlyph } from '../../../components/motion';
 import { Button } from '../../../components/ui';
 import { appPages } from '../../../../shared/app-links';
 import { desktopRuntimeAvailable } from '../../../lib/desktop';
@@ -13,7 +12,7 @@ function differentiators(local: boolean) {
     {
       icon: MousePointerClick,
       title: 'Gets tasks done',
-      text: 'Nod uses your apps and its own browser to complete tasks.',
+      text: 'Wea uses your apps and its own browser to complete tasks.',
     },
     {
       icon: Sparkles,
@@ -23,12 +22,12 @@ function differentiators(local: boolean) {
     {
       icon: LockKeyhole,
       title: `Runs on your ${local ? 'computer' : 'server'}`,
-      text: 'Nod works in a private workspace. Sign in with your AI provider or use your own key.',
+      text: 'Wea works in a private workspace. Sign in with your AI provider or use your own key.',
     },
     {
       icon: ShieldCheck,
       title: 'Keeps you in control',
-      text: 'Nod asks you before taking potentially dangerous actions.',
+      text: 'Wea asks you before taking potentially dangerous actions.',
     },
   ];
 }
@@ -56,11 +55,11 @@ export function Welcome({
   return (
     <section className="ob-step ob-welcome">
       <div className="ob-welcome-content">
-        <h1 className="ob-welcome-wordmark" aria-label="Nod">
-          <NodGlyph size={48} mode="bounce" className="ob-welcome-mark" />
-          <span aria-hidden="true">Nod</span>
+        <h1 className="ob-welcome-wordmark" aria-label="Wea">
+          <img className="wea-lockup wea-lockup-light" src="/brand/wea-lockup-light.svg" alt="" />
+          <img className="wea-lockup wea-lockup-dark" src="/brand/wea-lockup-dark.svg" alt="" />
         </h1>
-        <p className="ob-welcome-copy">An assistant that takes work off your plate.</p>
+        <p className="ob-welcome-copy ob-welcome-tagline">Breathe, the busywork is handled.</p>
         <ul className="ob-welcome-points">
           {differentiators(local).map(({ icon: Icon, title, text }, index) => (
             <li
@@ -80,7 +79,7 @@ export function Welcome({
         </ul>
         {usageShared && (
           <p className="ob-welcome-usage">
-            Please keep usage data on so the Nod team can see where I get stuck.
+            Please keep usage data on so the Wea team can see where I get stuck.
             <br />
             <DataSharing className="ob-link" usage traces={traces?.enabled} />
           </p>
@@ -95,7 +94,7 @@ export function Welcome({
 export function WelcomeNote() {
   return (
     <p className="ob-welcome-note">
-      This is a preview version of Nod, developed by n8n
+      Wea is a WeAssist internal pilot
       <br />
       <a className="ob-link" href={legalLinks.terms} target="_blank" rel="noreferrer">
         Terms of Use

@@ -744,7 +744,7 @@ export async function createChannelSettings(
           activation_pending:
             'The setup was saved, but message delivery could not be confirmed. Retry the connection to continue.',
           server_managed:
-            'This channel is managed by the server environment. Update it there and restart Nod.',
+            'This channel is managed by the server environment. Update it there and restart Wea.',
           pairing_unavailable:
             'This channel setup step is no longer available. Refresh Channels and try again.',
         };

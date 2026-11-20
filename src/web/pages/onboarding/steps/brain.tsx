@@ -509,7 +509,9 @@ function Connected({ c, onReconnect }: { c: Connect; onReconnect: () => void }) 
           <p className="ob-brain-title">
             {saved ? 'Key saved for ' : 'Connected to '}
             <span data-analytics-private>
-              {source.provider === 'compatible' ? source.label : modelSource(source)}
+              {source.provider === 'compatible' || source.hosted
+                ? source.label
+                : modelSource(source)}
             </span>
           </p>
           <p className="ob-brain-note">

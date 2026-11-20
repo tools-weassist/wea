@@ -22,7 +22,7 @@ const workUsagePath = '/api/usage/work';
 const kindNames: Record<WorkKind, string> = {
   chat: 'chat',
   schedule: 'schedules',
-  background: 'Nod’s own work',
+  background: 'Wea’s own work',
 };
 
 function modelOf(data: ModelsResponse, choice: ModelSelection | null | undefined) {
@@ -60,7 +60,7 @@ function laneTarget(
 ): ModelTarget {
   const value = data.routes?.[lane] ?? null;
   return {
-    title: lane === 'schedule' ? 'Model for schedules' : 'Model for work Nod starts on its own',
+    title: lane === 'schedule' ? 'Model for schedules' : 'Model for work Wea starts on its own',
     value: value === 'light' ? value : kept(data, value),
     defaults: [
       { value: null, label: 'The same model', model: data.selection },
@@ -214,7 +214,7 @@ export function ModelSentences() {
     <section className="model-current-section" aria-label="Your models">
       <div className="statement-summary model-sentences">
         <p>
-          When you talk to Nod, it uses{' '}
+          When you talk to Wea, it uses{' '}
           <ModelPicker
             appearance="statement"
             manageConnections={false}
@@ -224,7 +224,7 @@ export function ModelSentences() {
           .
         </p>
         <p>Schedules use {lane('schedule')}.</p>
-        <p>Work Nod starts on its own uses {lane('background')}.</p>
+        <p>Work Wea starts on its own uses {lane('background')}.</p>
         {ownSchedules.map((schedule) => (
           <p key={schedule.id}>
             {schedule.title} uses{' '}
@@ -258,7 +258,7 @@ export function ModelSentences() {
       {price && price.recorded > 0 && (
         <p className="model-sentences-note" role="status">
           {price.unpriced.length
-            ? `Work on ${price.unpriced.join(' and ')} has no price in Nod.`
+            ? `Work on ${price.unpriced.join(' and ')} has no price in Wea.`
             : Math.abs(price.projected - price.recorded) >= 0.01
               ? `With these choices, the last 30 days would have cost about ${money(price.projected)} instead of ${money(price.recorded)}.`
               : `Last 30 days: ${money(price.recorded)}.`}

@@ -38,7 +38,7 @@ export function createIntegrationIdentityCheckpoint(
         [ownerId, publicKey],
       );
       if (result.rowCount !== 1)
-        throw new Error('Nod’s saved app identity changed. Restore its app data to reconnect.');
+        throw new Error('Wea’s saved app identity changed. Restore its app data to reconnect.');
     },
   };
 }

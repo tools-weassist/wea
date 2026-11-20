@@ -114,7 +114,7 @@ export function createPersonalService(dependencies: PersonalDependencies) {
     if (action === 'notification_preferences_update') {
       const input = changed(preferences.validate(args));
       if (input.localFilesEnabled !== undefined && !dependencies.localFilesAvailable)
-        throw new Error('Local file access works only in the Nod desktop app.');
+        throw new Error('Local file access works only in the Wea desktop app.');
       return input;
     }
     if (action === 'model_select') return validateModelChoice(args);

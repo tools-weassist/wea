@@ -289,12 +289,15 @@ export function createLedger({
   analytics,
   telemetry,
   pricingThresholds,
+  newOwnerLimits,
 }: {
   pool: Pool;
   ownerId: string;
   analytics?: CaptureAnalytics;
   telemetry?: UsageTelemetry;
   pricingThresholds?(): number[];
+  /** Wea: starting caps for a new owner, lower while the WeAssist-hosted key pays for usage. */
+  newOwnerLimits?: { monthlyUsd: number; taskUsd: number };
 }) {
   const activeTurn = new AsyncLocalStorage<{ id: string; automatic: boolean }>();
   const pastLimit = new AsyncLocalStorage<true>();
@@ -777,8 +780,12 @@ export function createLedger({
 
   async function onboard(client: PoolClient) {
     await client.query(
-      `INSERT INTO spending_limits(owner_id,monthly_usd) VALUES($1,${newOwnerMonthlyUsd}) ON CONFLICT DO NOTHING`,
-      [ownerId],
+      'INSERT INTO spending_limits(owner_id,monthly_usd,task_usd) VALUES($1,$2,$3) ON CONFLICT DO NOTHING',
+      [
+        ownerId,
+        newOwnerLimits?.monthlyUsd ?? newOwnerMonthlyUsd,
+        newOwnerLimits?.taskUsd ?? defaultTaskUsd,
+      ],
     );
   }
 

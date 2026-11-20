@@ -1,23 +1,21 @@
 import { useRef, useState } from 'react';
 import { regexes } from 'zod';
-import {
-  communityLinks,
-  updatesEmailConsent,
-  type OnboardingProfile,
-} from '../../../../shared/onboarding';
+import { updatesEmailConsent, type OnboardingProfile } from '../../../../shared/onboarding';
 import { onboardingPersonProperties } from '../../../../shared/onboarding-analytics';
-import { ArrowUpRight } from '../../../components/icons';
-import { ServiceLogo } from '../../../components/service-logo';
+import { ArrowUpRight, MessageCircle } from '../../../components/icons';
 import { Input } from '../../../components/ui';
 import { api, errorMessage } from '../../../lib/api';
 import { analyticsForCurrentSession, captureAnalytics } from '../../../lib/analytics';
 import type { StepProps } from '..';
 import { Bubble, Footer, Messages } from '../motion';
 import { readStored } from '../storage';
+import { useSupportLink } from '../../../hooks/use-support-link';
+import { supportLinkTarget } from '../../../../shared/support';
 
 export function Join({ onNext, onBack, nextLabel, updatesEmail, usageShared }: StepProps) {
   const [email, setEmail] = useState('');
   const [consent, setConsent] = useState(false);
+  const support = useSupportLink();
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<{
     field: 'email' | 'consent' | 'server';
@@ -80,16 +78,14 @@ export function Join({ onNext, onBack, nextLabel, updatesEmail, usageShared }: S
           <Bubble>
             {canSubscribe ? (
               <>
-                <strong>Stay up to date.</strong> Leave your email for updates about Nod and other
+                <strong>Stay up to date.</strong> Leave your email for updates about Wea and other
                 n8n products.
               </>
             ) : (
-              <>Join the Nod community on Discord or the forum.</>
+              <>Need help during the pilot? {support.label} is one click away.</>
             )}
           </Bubble>,
-          <Bubble>
-            Use Report bug at the top of the chat for problems, ideas and feature requests.
-          </Bubble>,
+          <Bubble>For problems, ideas and feature requests, contact {support.label}.</Bubble>,
         ]}
       />
       {canSubscribe && (
@@ -168,24 +164,14 @@ export function Join({ onNext, onBack, nextLabel, updatesEmail, usageShared }: S
       )}
       <div className="ob-join-community" data-analytics-public>
         <div className="ob-join-links">
+          {/* Wea pilot: the upstream Discord and forum links stay in communityLinks but aren't shown. */}
           <a
-            href={communityLinks.discord}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => captureAnalytics('onboarding_community_opened', { channel: 'discord' })}
+            href={support.url}
+            {...supportLinkTarget(support)}
+            onClick={() => captureAnalytics('onboarding_community_opened', { channel: 'support' })}
           >
-            <ServiceLogo slug="discord" logoUrl="/logos/discord.svg" size={18} />
-            <span>Chat with the Nod team and community on Discord</span>
-            <ArrowUpRight size={16} aria-hidden="true" />
-          </a>
-          <a
-            href={communityLinks.forum}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => captureAnalytics('onboarding_community_opened', { channel: 'forum' })}
-          >
-            <ServiceLogo slug="n8n" logoUrl="/logos/n8n.svg" size={18} />
-            <span>Share ideas and help shape Nod on the forum</span>
+            <MessageCircle size={18} aria-hidden="true" />
+            <span>Questions or problems? Contact {support.label}</span>
             <ArrowUpRight size={16} aria-hidden="true" />
           </a>
         </div>

@@ -286,7 +286,7 @@ function TaskCards({
   return (
     <article
       className={`message message-assistant${grouped ? ' message-grouped' : ''}`}
-      aria-label="Nod"
+      aria-label="Wea"
       data-message-id={id}
       tabIndex={-1}
     >
@@ -2623,7 +2623,7 @@ export function Chat({
           {spendingPaused && trust?.limit && (
             <Notice kind="info">
               You reached your {money(trust.limit.monthlyUsd)} monthly spending limit. Raise or
-              remove it in <a href="/usage">Usage</a>, or ask Nod here.
+              remove it in <a href="/usage">Usage</a>, or ask Wea here.
             </Notice>
           )}
           <div

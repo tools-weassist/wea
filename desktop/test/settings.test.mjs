@@ -651,7 +651,16 @@ async function runningDesktop(
     process: {
       platform,
       argv,
-      env: typeof environment === 'function' ? environment(dirname(storage.path)) : environment,
+      /*
+       * Wea build: analytics are off by default, so packaged runs here opt in explicitly to keep
+       * exercising the upstream analytics pipeline. A test that sets the flag itself wins.
+       */
+      env: ((value) =>
+        packaged && !('NOD_ANALYTICS_ENABLED' in value)
+          ? { NOD_ANALYTICS_ENABLED: 'true', ...value }
+          : value)(
+        typeof environment === 'function' ? environment(dirname(storage.path)) : environment,
+      ),
       resourcesPath: resourcesPath ?? dirname(storage.path),
       versions: { electron: '0.0.0' },
       getSystemVersion: () => '0.0.0',
@@ -9404,7 +9413,7 @@ test('the update notice shows failure recovery and keeps newer status after a la
   await new Promise((resolve) => setTimeout(resolve, 20));
   assert.match(document.body.textContent, /failure has changed/);
   view.flushSync(() => listener({ ...failed, failure: { ...failed.failure, dismissed: true } }));
-  assert.match(document.body.textContent, /Nod 0.5.1 is ready/);
+  assert.match(document.body.textContent, /Wea 0.5.1 is ready/);
   assert.equal(document.body.textContent.includes('failure has changed'), false);
   view.flushSync(() => listener({ phase: 'ready', checking: false, readyVersion: '0.5.2' }));
   assert.equal(document.body.textContent.includes('failure has changed'), false);
@@ -9412,9 +9421,9 @@ test('the update notice shows failure recovery and keeps newer status after a la
   view.flushSync(() => button('Dismiss').click());
   assert.deepEqual(dismissals, [2]);
   view.flushSync(() => listener({ ...failed, failure: { ...failed.failure, dismissed: true } }));
-  assert.match(document.body.textContent, /Nod 0.5.1 is ready/);
+  assert.match(document.body.textContent, /Wea 0.5.1 is ready/);
   view.flushSync(() => listener({ phase: 'ready', checking: false, readyVersion: '0.5.2' }));
-  assert.match(document.body.textContent, /Nod 0.5.2 is ready/);
+  assert.match(document.body.textContent, /Wea 0.5.2 is ready/);
   assert.equal(document.body.textContent.includes('failure has changed'), false);
   assert.equal(button('Restart to update').disabled, false);
   view.flushSync(() => button('Later').click());

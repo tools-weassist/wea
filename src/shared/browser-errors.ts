@@ -20,19 +20,19 @@ const browserErrors = {
   browser_card_paused:
     'A private entry document is still open. Reload it before Pi reads or controls it. Check the result before another attempt.',
   browser_script_paused:
-    'Nod filled a private value on this page, so page scripts are paused here. Use snapshot or screenshot, or reload or move on before running a script.',
+    'Wea filled a private value on this page, so page scripts are paused here. Use snapshot or screenshot, or reload or move on before running a script.',
   browser_card_reload:
-    'A script ran on this document, so Nod will not enter a saved value on it. Reload the page and take a fresh snapshot before a new private operation.',
+    'A script ran on this document, so Wea will not enter a saved value on it. Reload the page and take a fresh snapshot before a new private operation.',
   browser_card_field:
-    'Nod could not verify a card field, so nothing more was entered. Check the result before another attempt.',
+    'Wea could not verify a card field, so nothing more was entered. Check the result before another attempt.',
   browser_card_disabled:
-    'The submit control stayed disabled. Nod did not activate it. Check the result before another attempt.',
+    'The submit control stayed disabled. Wea did not activate it. Check the result before another attempt.',
   browser_card_site:
     'The approved card field could not accept the value, so nothing more was entered. Check the result before another attempt.',
   browser_card_changed:
     'The checkout page changed. The operation may have reached the site. Check the result before another attempt.',
   browser_target_changed:
-    'Nod could not confirm it was still on the page and control it checked, so nothing was done. Take a fresh snapshot and choose the control again.',
+    'Wea could not confirm it was still on the page and control it checked, so nothing was done. Take a fresh snapshot and choose the control again.',
   browser_sign_in_choice:
     "This control cannot be a sign-in choice. A choice must be one visible, enabled button or link on this website's own page, not inside another website's frame. Offer the other methods without it, or click it with browser if it is the method to use.",
   browser_script_writes: 'This script changes the page, so it needs a check before it runs.',

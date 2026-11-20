@@ -36,15 +36,15 @@ export function DesktopUpdateToast() {
   if (!status || (!failure && (!version || version === status.dismissedVersion))) return null;
   const title = failure
     ? {
-        checking: 'Nod could not check for updates',
-        preparing: 'Nod could not prepare the update',
-        downloading: 'Nod could not download the update',
-        restart: 'Nod could not restart to update',
+        checking: 'Wea could not check for updates',
+        preparing: 'Wea could not prepare the update',
+        downloading: 'Wea could not download the update',
+        restart: 'Wea could not restart to update',
       }[failure.phase]
-    : `Nod ${version} is ready`;
+    : `Wea ${version} is ready`;
 
   return (
-    <aside className="desktop-update-toast" role="status" aria-label="Nod update">
+    <aside className="desktop-update-toast" role="status" aria-label="Wea update">
       <span className="desktop-update-toast-icon" aria-hidden="true">
         <ArrowUp size={14} />
       </span>
@@ -53,11 +53,11 @@ export function DesktopUpdateToast() {
         {failure ? (
           <>
             <p role="alert">{failure.message}</p>
-            <p>You can keep using Nod.</p>
+            <p>You can keep using Wea.</p>
           </>
         ) : (
           <p>
-            Nod will update when you quit. You can also restart now.{' '}
+            Wea will update when you quit. You can also restart now.{' '}
             <a
               href={`https://github.com/n8n-io/nod/releases/tag/nod-v${encodeURIComponent(version)}`}
               target="_blank"
@@ -102,7 +102,7 @@ export function DesktopUpdateToast() {
                   );
                 }}
               >
-                Download Nod
+                Download Wea
               </a>
             </Button>
           )}

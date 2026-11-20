@@ -65,7 +65,7 @@ function toolProgress() {
       for (const result of results) {
         if (result.error === undefined) failures.delete(result.name);
         else if (
-          /^(?:Validation failed for tool |Invalid (?:arguments for tool |[\w ]+ (?:input[.:]|arguments(?: at|[.:])))|Tool \S+ not found|This source (?:failed during this check|check has reached its read limit)|Nod could not confirm it was still on the page and control it checked|(?:This connected|The selected) account changed\.|The trust check couldn|The action review model is unavailable|Nod could not write an accurate confirmation|The workspace command did not run)/.test(
+          /^(?:Validation failed for tool |Invalid (?:arguments for tool |[\w ]+ (?:input[.:]|arguments(?: at|[.:])))|Tool \S+ not found|This source (?:failed during this check|check has reached its read limit)|Wea could not confirm it was still on the page and control it checked|(?:This connected|The selected) account changed\.|The trust check couldn|The action review model is unavailable|Wea could not write an accurate confirmation|The workspace command did not run)/.test(
             result.error,
           )
         ) {

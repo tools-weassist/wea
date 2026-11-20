@@ -1944,7 +1944,7 @@ test('onboarding answers update memory and profile analytics while the updates e
       {
         area: 'about',
         origin: 'stated',
-        text: 'Where they want Nod’s help: Mostly work. What they do: Agency; Engineering. Who it’s for: For my clients. Company size: 2–10. What they want off their plate first: Stay on top of email and Slack; Prep my meetings and day; Chase unpaid invoices.',
+        text: 'Where they want Wea’s help: Mostly work. What they do: Agency; Engineering. Who it’s for: For my clients. Company size: 2–10. What they want off their plate first: Stay on top of email and Slack; Prep my meetings and day; Chase unpaid invoices.',
       },
     ],
   );
@@ -1964,7 +1964,7 @@ test('onboarding answers update memory and profile analytics while the updates e
   assert.equal(current.length, 1);
   assert.equal(
     current[0]!.text,
-    'Where they want Nod’s help: Mostly personal life. What they do: Retired teacher.',
+    'Where they want Wea’s help: Mostly personal life. What they do: Retired teacher.',
   );
   await app.inject({
     method: 'POST',
@@ -1973,7 +1973,7 @@ test('onboarding answers update memory and profile analytics while the updates e
   });
   assert.deepEqual(
     (await notes()).map((entry) => entry.text),
-    ['Where they want Nod’s help: Both.'],
+    ['Where they want Wea’s help: Both.'],
   );
   await app.inject({
     method: 'POST',
@@ -2179,7 +2179,7 @@ test('onboarding answers update memory and profile analytics while the updates e
   assert.equal(personalBusiness.statusCode, 200);
   assert.deepEqual(
     (await notes()).map((entry) => entry.text),
-    ['Where they want Nod’s help: Mostly personal life. What they do: Agency.'],
+    ['Where they want Wea’s help: Mostly personal life. What they do: Agency.'],
   );
 });
 

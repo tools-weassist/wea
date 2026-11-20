@@ -21,7 +21,7 @@ function summary(view: TrustView) {
   const actions = week.actions
     ? ` It used your apps ${week.actions === 1 ? 'once' : `${week.actions} times`}.`
     : '';
-  return `In the last 7 days, Nod did ${week.things} ${week.things === 1 ? 'thing' : 'things'}.${actions} It spent ${week.spentUsd > 0 ? dollars(week.spentUsd) : 'nothing'}${plan(week.planUsd)}.`;
+  return `In the last 7 days, Wea did ${week.things} ${week.things === 1 ? 'thing' : 'things'}.${actions} It spent ${week.spentUsd > 0 ? dollars(week.spentUsd) : 'nothing'}${plan(week.planUsd)}.`;
 }
 
 function month({ view, timeZone, locale }: UsageReport) {
@@ -38,7 +38,7 @@ function month({ view, timeZone, locale }: UsageReport) {
   const notes = [
     month.planUsd > 0 &&
       ` Your ChatGPT plan covered about ${dollars(month.planUsd)}${month.spentUsd > 0 ? ' more' : ''} at API prices.`,
-    month.unpriced && ' Some usage has no price in Nod, such as a local or free model.',
+    month.unpriced && ' Some usage has no price in Wea, such as a local or free model.',
     month.backgroundUsd > 0 && ` Background work cost ${dollars(month.backgroundUsd)}.`,
   ]
     .filter(Boolean)
@@ -120,7 +120,7 @@ export function usagePdf(report: UsageReport, exported: Date) {
       ]);
     y -= gap;
   };
-  line('Nod usage', 20, true, 30);
+  line('Wea usage', 20, true, 30);
   line(
     `Exported ${exported.toLocaleString(locale, { day: 'numeric', month: 'long', year: 'numeric', ...clockOptions(locale, report.hourCycle), timeZone })}`,
     9,

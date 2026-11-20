@@ -317,7 +317,7 @@ export function SetupActions({
     try {
       if (popup) {
         popup.opener = null;
-        popup.document.title = 'Connect to Nod';
+        popup.document.title = 'Connect to Wea';
         popup.document.body.textContent = 'Preparing secure sign-in…';
       }
     } catch {}
@@ -352,7 +352,7 @@ export function SetupActions({
         }
         const app = result.apps.get(href);
         if (!app || app.available === false) {
-          fail(app?.error ?? 'This sign-in link is no longer available. Ask Nod to connect again.');
+          fail(app?.error ?? 'This sign-in link is no longer available. Ask Wea to connect again.');
           return;
         }
         if (app.pairingConfirmed === true) {
@@ -366,7 +366,7 @@ export function SetupActions({
         if (!current()) return;
       }
       if (Date.now() >= deadline) {
-        fail('The sign-in link expired. Ask Nod to connect again.');
+        fail('The sign-in link expired. Ask Wea to connect again.');
         return;
       }
       timer.current = window.setTimeout(() => void check(), 5000);
@@ -383,7 +383,7 @@ export function SetupActions({
       const app = result.apps.get(href);
       if (!app || app.available === false) {
         popup?.close();
-        fail(app?.error ?? 'This sign-in link could not be opened. Ask Nod to connect again.');
+        fail(app?.error ?? 'This sign-in link could not be opened. Ask Wea to connect again.');
         return;
       }
       const pairingConfirmed = app.pairingConfirmed === true;
@@ -446,7 +446,7 @@ export function SetupActions({
     } catch {
       popup?.close();
       if (!current()) return;
-      fail('This sign-in link could not be opened. Ask Nod to connect again.');
+      fail('This sign-in link could not be opened. Ask Wea to connect again.');
     }
   }
   const pending = actions.filter(

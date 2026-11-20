@@ -28,7 +28,7 @@ export function VaultCardPayments({ cardId }: { cardId: string }) {
             <VaultActivityPages activity={activity} item={cardId} />
           </div>
         ) : (
-          <p className="statement-empty">Nod hasn’t used this card yet.</p>
+          <p className="statement-empty">Wea hasn’t used this card yet.</p>
         )}
       </section>
     </>

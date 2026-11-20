@@ -5038,12 +5038,12 @@ test(
           const originalMessage = (await row(owner.turnId)).message_id;
           await db.pool.query('UPDATE turns SET withdrawn=true WHERE id=$1', [owner.turnId]);
           const changed = await begin(
-            'Replace the complete instruction: read the synthetic archive every Friday and summarize it in Nod. Never send email.',
+            'Replace the complete instruction: read the synthetic archive every Friday and summarize it in Wea. Never send email.',
           );
           const patch = {
             id: created.id,
             prompt:
-              'Read the synthetic archive every Friday and summarize it in Nod. Never send email.',
+              'Read the synthetic archive every Friday and summarize it in Wea. Never send email.',
           };
           const prepared = await personal.prepareScheduleChange('schedule_update', patch);
           const before = reviews.length;

@@ -349,7 +349,7 @@ export function AppAccountManager({
           </DialogTitle>
           <DialogDescription data-analytics-private>
             {selected && accountLabel(selected)}
-            <span>Nod will lose access to this account. You can connect it again later.</span>
+            <span>Wea will lose access to this account. You can connect it again later.</span>
           </DialogDescription>
           {disconnectError && (
             <div data-analytics-private>

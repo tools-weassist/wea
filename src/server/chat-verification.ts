@@ -293,7 +293,7 @@ export async function createChatVerification(
           throw conflict(
             waiting.kind === 'payment'
               ? waiting.channel !== channel
-                ? 'Open the secure payment link in Nod. Nod did not use this code.'
+                ? 'Open the secure payment link in Wea. Wea did not use this code.'
                 : 'Send just the card’s security code.'
               : unavailableMessage,
           );

@@ -115,8 +115,8 @@ export function BrowserNotificationPrompt({ ownerId }: { ownerId: string }) {
   return (
     <aside className="notification-choice" aria-label="Notifications">
       <div className="notification-choice-copy">
-        <strong>Get notified by Nod</strong>
-        <p>Let Nod tell you when a reply is ready while you’re away. Keep this tab open.</p>
+        <strong>Get notified by Wea</strong>
+        <p>Let Wea tell you when a reply is ready while you’re away. Keep this tab open.</p>
       </div>
       <div className="notification-choice-actions">
         <Button

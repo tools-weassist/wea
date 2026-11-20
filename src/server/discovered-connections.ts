@@ -543,7 +543,7 @@ export async function createDiscoveredConnections(
         .local(url.origin)
         .transport.validateEndpoint(endpoint)
         .catch(() => {
-          throw error(`Nod could not reach ${url.host}. Check the address.`);
+          throw error(`Wea could not reach ${url.host}. Check the address.`);
         });
       local = true;
       const advertised = await options
@@ -597,7 +597,7 @@ export async function createDiscoveredConnections(
       pending.service !== 'n8n'
         ? `${server.name} MCP setup failed.`
         : parsed.token
-          ? `Nod could not use this token at ${url.host}. Check the address and the token in ${server.name} under Settings, Instance-level MCP.`
+          ? `Wea could not use this token at ${url.host}. Check the address and the token in ${server.name} under Settings, Instance-level MCP.`
           : `${server.name} did not answer at ${url.host}. Check the address, and turn on MCP access in ${server.name} under Settings, Instance-level MCP.`;
     try {
       return parsed.token
@@ -1397,7 +1397,7 @@ export async function createDiscoveredConnections(
         ...(row.reconnect_required && !newAccount ? { connectionId: row.id } : {}),
         paths: row.paths.map((path) => {
           if (path.kind === 'cli') {
-            if (!path.source || !path.env) throw error('Ask Nod to set up this CLI again.', 409);
+            if (!path.source || !path.env) throw error('Ask Wea to set up this CLI again.', 409);
             return {
               kind: path.kind,
               command: path.command,
@@ -1809,7 +1809,7 @@ export async function createDiscoveredConnections(
             .transport.validateEndpoint(parsed.data.endpoint)
             .catch((local: unknown) => {
               throw error(
-                `Nod could not use ${origin}: ${local instanceof Error ? local.message : String(local)}`,
+                `Wea could not use ${origin}: ${local instanceof Error ? local.message : String(local)}`,
               );
             });
           localOrigin = origin;

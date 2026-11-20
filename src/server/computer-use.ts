@@ -180,7 +180,7 @@ export function appKey(id: string) {
 }
 
 const blockedApps: Array<[RegExp, string]> = [
-  [/^(dev\.nod\.desktop(\..+)?|com\.github\.electron|io\.n8n\.nod|nod)$/, 'Nod itself'],
+  [/^(dev\.nod\.desktop(\..+)?|com\.github\.electron|io\.n8n\.nod|nod)$/, 'Wea itself'],
   [
     /^(com\.apple\.terminal|com\.googlecode\.iterm2|dev\.warp\.warp.*|com\.mitchellh\.ghostty|net\.kovidgoyal\.kitty|(io|org)\.alacritty|co\.zeit\.hyper|com\.github\.wez\.wezterm|org\.wezfurlong\.wezterm|com\.raphaelamorim\.rio|org\.tabby|wt|windowsterminal|cmd|powershell(_ise)?|pwsh|conhost|openconsole|wsl|bash|mintty|org\.gnome\.terminal|org\.gnome\.console|org\.gnome\.ptyxis|ptyxis|kgx|gnome-terminal(-server)?|org\.kde\.konsole|konsole|org\.kde\.yakuake|yakuake|guake|xterm|uxterm|com\.gexperts\.tilix|tilix|terminator|kitty|alacritty|wezterm|xfce4-terminal|lxterminal|terminology|foot|x-terminal-emulator)$/,
     'a terminal',
@@ -210,7 +210,7 @@ const blockedApps: Array<[RegExp, string]> = [
 const viewOnlyApps: Array<[RegExp, string]> = [
   [
     /^(com\.google\.chrome.*|com\.apple\.safari.*|company\.thebrowser\..*|org\.mozilla\..*|com\.microsoft\.edge.*|com\.brave\.browser.*|com\.operasoftware\..*|com\.vivaldi\..*|app\.zen-browser\..*|com\.kagi\..*|ai\.perplexity\..*|com\.openai\.atlas.*|org\.chromium\..*|chrome|google-chrome(-stable|-beta)?|chromium(-browser)?|msedge|microsoft-edge(-stable)?|firefox(-esr)?|brave(-browser)?|opera|vivaldi(-stable)?|arc|librewolf|zen|org\.gnome\.epiphany|epiphany)$/,
-    "a web browser; use Nod's own browser for websites",
+    "a web browser; use Wea's own browser for websites",
   ],
   [
     /^(com\.microsoft\.vscode.*|com\.visualstudio\.code.*|com\.todesktop\..*|com\.exafunction\..*|dev\.zed\..*|com\.jetbrains\..*|com\.apple\.dt\.xcode|com\.stablyai\.orca|code(-insiders)?|cursor|windsurf|zed|devenv|jetbrains-.*|idea64|pycharm64|webstorm64)$/,
@@ -263,7 +263,7 @@ export function computerAppRule(bundleId: string, keptOut: string[] = []) {
   const names = [appKey(bundleId), leaf(bundleId)];
   const matches = (pattern: RegExp) => names.some((name) => pattern.test(name));
   if (keptOut.some((entry) => names.includes(appKey(entry))))
-    return { kind: 'blocked' as const, why: 'an app the owner keeps Nod out of' };
+    return { kind: 'blocked' as const, why: 'an app the owner keeps Wea out of' };
   for (const [pattern, why] of blockedApps)
     if (matches(pattern)) return { kind: 'blocked' as const, why };
   for (const [pattern, why] of viewOnlyApps)
@@ -339,7 +339,7 @@ export function createComputerUse(
   let listing: { at: number; apps: Promise<App[]> } | undefined;
 
   function unavailable() {
-    return new IntegrationError('Computer use works only in the Nod desktop app.', 503);
+    return new IntegrationError('Computer use works only in the Wea desktop app.', 503);
   }
 
   async function settings(database: Query = pool) {
@@ -355,7 +355,7 @@ export function createComputerUse(
       database,
       ownerId,
       turn,
-      "Computer use only works in work the owner started: a message, or a schedule the owner set up. Nod didn't touch any app.",
+      "Computer use only works in work the owner started: a message, or a schedule the owner set up. Wea didn't touch any app.",
     );
   }
 
@@ -385,7 +385,7 @@ export function createComputerUse(
 
   function ruleFor(app: Identity, keptOut: string[]) {
     if (!mac && !app.bundle && !app.program)
-      return { kind: 'blocked' as const, why: 'an app Nod can’t identify' };
+      return { kind: 'blocked' as const, why: 'an app Wea can’t identify' };
     const rules = [app.bundle, app.program]
       .filter((id): id is string => Boolean(id))
       .map((id) => computerAppRule(id, keptOut));
@@ -398,15 +398,15 @@ export function createComputerUse(
   function allowed(app: Identity, keptOut: string[], acting: boolean) {
     const rule = ruleFor(app, keptOut);
     if (rule.kind === 'blocked')
-      throw new IntegrationError(`${app.name} is ${rule.why}, so Nod never uses it.`, 403);
+      throw new IntegrationError(`${app.name} is ${rule.why}, so Wea never uses it.`, 403);
     if (acting && rule.kind === 'view')
-      throw new IntegrationError(`${app.name} is ${rule.why}. Nod can only look at it.`, 403);
+      throw new IntegrationError(`${app.name} is ${rule.why}. Wea can only look at it.`, 403);
   }
 
   function granted(root: string, app: Identity) {
     if (!isGranted(root, app))
       throw new IntegrationError(
-        `Nod hasn't opened ${app.name} in this request. Use open {bundle: "${app.bundle}"} first.`,
+        `Wea hasn't opened ${app.name} in this request. Use open {bundle: "${app.bundle}"} first.`,
         403,
       );
   }
@@ -454,7 +454,7 @@ export function createComputerUse(
       signal,
     )) as { tree?: Node };
     if (!tree) throw new IntegrationError('That control is gone. Take a new snapshot.', 409);
-    if (secure(tree)) throw new IntegrationError('Nod never uses password fields.', 403);
+    if (secure(tree)) throw new IntegrationError('Wea never uses password fields.', 403);
     if (tree.role !== found.role || (tree.name ?? '') !== found.name)
       throw new IntegrationError('That control changed. Take a new snapshot.', 409);
     return tree;
@@ -491,7 +491,7 @@ export function createComputerUse(
       text.length > treeChars
     )
       throw new IntegrationError(
-        'Nod could not read the complete window within its size limit, so this step did not run.',
+        'Wea could not read the complete window within its size limit, so this step did not run.',
         409,
       );
     return {
@@ -539,7 +539,7 @@ export function createComputerUse(
     const found = controls.get(root)?.get(refId);
     if (!found)
       throw new IntegrationError(
-        'Nod has no snapshot with that ref in this request. Take a snapshot and use a ref from it.',
+        'Wea has no snapshot with that ref in this request. Take a snapshot and use a ref from it.',
         404,
       );
     return found;
@@ -547,7 +547,7 @@ export function createComputerUse(
 
   function targetOf(root: string, refId: string, keptOut: string[]) {
     const found = shown(root, refId);
-    if (found.secure) throw new IntegrationError('Nod never uses password fields.', 403);
+    if (found.secure) throw new IntegrationError('Wea never uses password fields.', 403);
     const app = { bundle: found.bundle, program: found.program, pid: found.pid, name: found.app };
     allowed(app, keptOut, true);
     granted(root, app);
@@ -574,7 +574,7 @@ export function createComputerUse(
   function unique(apps: App[], name: string) {
     if (apps.filter((item) => item.name === name).length > 1)
       throw new IntegrationError(
-        `More than one running app is named ${name}, so Nod can't tell them apart.`,
+        `More than one running app is named ${name}, so Wea can't tell them apart.`,
         409,
       );
   }
@@ -651,7 +651,7 @@ export function createComputerUse(
     }
     if (action === 'COMPUTER_KEY' && systemShortcut(input.keys!, platform))
       throw new IntegrationError(
-        `${input.keys} is a system shortcut, so Nod never sends it. Use the app's own controls.`,
+        `${input.keys} is a system shortcut, so Wea never sends it. Use the app's own controls.`,
         403,
       );
     const app = await appFor(root, input.pid!, keptOut, !observing.has(action), signal);
@@ -894,7 +894,7 @@ export function createComputerUse(
       return async () => {
         await noSecureFocus(
           scope,
-          'A password field has focus in this window, so Nod took no screenshot.',
+          'A password field has focus in this window, so Wea took no screenshot.',
           signal,
         );
         return ask({ op: 'screenshot', ...scope, noSecureFocus: true }, signal);
@@ -902,7 +902,7 @@ export function createComputerUse(
     await unchangedWindow(prepared, signal);
     await noSecureFocus(
       scope,
-      'A password field has focus in this window, so Nod sent no keys.',
+      'A password field has focus in this window, so Wea sent no keys.',
       signal,
     );
     return async () => {
@@ -1013,7 +1013,7 @@ export function createComputerUse(
         await desktop.request({ op: 'request', which: input.data.which });
       } catch (error) {
         return reply.code(409).send({
-          error: `Nod couldn't ask for this permission: ${error instanceof Error ? error.message : String(error)}`,
+          error: `Wea couldn't ask for this permission: ${error instanceof Error ? error.message : String(error)}`,
         });
       }
       return status();
@@ -1021,7 +1021,7 @@ export function createComputerUse(
     app.delete('/api/computer-use/keep-out', async (request, reply) => {
       if (!desktop) return reply.code(503).send({ error: unavailable().message });
       const input = z.object({ bundle }).strict().safeParse(request.body);
-      if (!input.success) return reply.code(400).send({ error: 'Name the app to let Nod use.' });
+      if (!input.success) return reply.code(400).send({ error: 'Name the app to let Wea use.' });
       await removeKeepOut(pool, ownerId, 'computer_keep_out', input.data.bundle);
       return status();
     });

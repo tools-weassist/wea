@@ -257,7 +257,7 @@ export function ScheduleRow({
             <Button
               variant="ghost"
               size="sm"
-              aria-label={`Ask Nod about ${schedule.title}`}
+              aria-label={`Ask Wea about ${schedule.title}`}
               onClick={() =>
                 onAsk(
                   `Help me adjust the schedule ${JSON.stringify(schedule.title)}, ${schedule.kind === 'once' && schedule.runAt ? date(schedule.runAt) : scheduleLabel(schedule.cron ?? '', dateFormat)} (${schedule.timeZone}). Ask me what I want to change.`,
@@ -265,7 +265,7 @@ export function ScheduleRow({
               }
             >
               <Sparkles size={16} aria-hidden="true" />
-              Ask Nod
+              Ask Wea
             </Button>
             <DeletePlan id={schedule.id} title={schedule.title} />
           </>

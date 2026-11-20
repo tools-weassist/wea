@@ -741,14 +741,14 @@ function AccountApp({
     else
       return (
         <main className="empty-state">
-          <p>Open Nod in the desktop app.</p>
+          <p>Open Wea in the desktop app.</p>
         </main>
       );
-  if (sessionState.loading) return <SetupProgress title="Opening Nod…" />;
+  if (sessionState.loading) return <SetupProgress title="Opening Wea…" />;
   if (!session?.user || !session.settings)
     return (
       <main className="initial-loading">
-        <Notice>{sessionState.error || 'Nod could not be opened.'}</Notice>
+        <Notice>{sessionState.error || 'Wea could not be opened.'}</Notice>
         <Button variant="outline" onClick={() => void sessionState.refresh()}>
           Try again
         </Button>
@@ -800,7 +800,7 @@ export function App({ sessionState }: { sessionState: ReturnType<typeof useSessi
     <>
       {desktopSettingsAvailable() && <div className="desktop-titlebar" aria-hidden="true" />}
       {updating ? (
-        <SetupProgress title="Updating Nod…" description="Nod reopens when it’s done." />
+        <SetupProgress title="Updating Wea…" description="Wea reopens when it’s done." />
       ) : /^\/privacy\/?$/.test(path) ? (
         <Privacy />
       ) : (

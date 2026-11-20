@@ -84,7 +84,7 @@ test('source analytics version uses explicit values or a clean checkout revision
   const runGit = (args: string[]) =>
     promisify(execFile)('git', ['-C', root, ...args], { timeout: 5000 });
   await runGit(['init', '--quiet']);
-  await runGit(['config', 'user.name', 'Nod test']);
+  await runGit(['config', 'user.name', 'Wea test']);
   await runGit(['config', 'user.email', 'nod@example.test']);
   const file = join(root, 'sample.txt');
   await writeFile(file, 'original');

@@ -341,7 +341,7 @@ export function Vault({ hidden = false, onAsk }: { hidden?: boolean; onAsk?(text
         {!pageMode && empty && (
           <div className="statement vault-start">
             <p className="statement-summary">
-              Nod has <b>no logins</b> and <b>no cards</b> yet.
+              Wea has <b>no logins</b> and <b>no cards</b> yet.
             </p>
             <div className="vault-doors">
               {[
@@ -354,7 +354,7 @@ export function Vault({ hidden = false, onAsk }: { hidden?: boolean; onAsk?(text
                 {
                   icon: KeyRound,
                   label: 'Add a login',
-                  detail: 'Nod signs in when a task needs it',
+                  detail: 'Wea signs in when a task needs it',
                   run: () => start('login'),
                 },
                 {

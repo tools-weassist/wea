@@ -63,7 +63,7 @@ import { logFailure } from './failure-log.ts';
 import { isLocalFilesAction, type LocalFiles } from './local-files.ts';
 
 const unverifiedAccount =
-  "Nod can't confirm this is the same account, so it can't reconnect it in place. Connect the app again as a new connection; the old one stays in Apps until you remove it.";
+  "Wea can't confirm this is the same account, so it can't reconnect it in place. Connect the app again as a new connection; the old one stays in Apps until you remove it.";
 const retiredNotionMcp = 'notion_mcp';
 const retiredNotionMessage =
   'This older Notion MCP connection cannot read pages. Connect Notion again, then remove this connection in Apps.';
@@ -395,10 +395,10 @@ export async function createIntegrations(pool: Pool, options: IntegrationOptions
     const reason = `${wait.code ? `${wait.code}, ` : ''}HTTP ${wait.status}`;
     throw Object.assign(
       new IntegrationError(
-        `The connection service ${wait.status === 429 ? 'is rate limiting this install' : 'is unavailable'} (${reason}), so Nod is not calling it until ${new Date(wait.until).toISOString()}. ${
+        `The connection service ${wait.status === 429 ? 'is rate limiting this install' : 'is unavailable'} (${reason}), so Wea is not calling it until ${new Date(wait.until).toISOString()}. ${
           work === 'background'
-            ? 'Nod did not read this source. Do not retry this source now; it is checked again after that time.'
-            : 'Nod did not send this action. It can run after that time.'
+            ? 'Wea did not read this source. Do not retry this source now; it is checked again after that time.'
+            : 'Wea did not send this action. It can run after that time.'
         }`,
         wait.status,
       ),
@@ -803,7 +803,7 @@ export async function createIntegrations(pool: Pool, options: IntegrationOptions
                 : 'pending',
           supportsTriggers: supported,
           description: changed
-            ? "Nod's app connection settings changed since this account was connected. Connect it again to use it."
+            ? "Wea's app connection settings changed since this account was connected. Connect it again to use it."
             : row?.inbox_reconnect_required
               ? 'Inbox history expired. Reconnect this account to resume new email updates. Review the missing interval separately; reconnecting does not recover it.'
               : service.description,

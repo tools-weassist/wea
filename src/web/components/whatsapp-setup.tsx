@@ -157,7 +157,7 @@ export function WhatsAppSetup({
         >
           {!selfChatOnly && (
             <fieldset disabled={busy} className="channel-modes">
-              <legend>Choose how you will message Nod</legend>
+              <legend>Choose how you will message Wea</legend>
               <label>
                 <input
                   type="radio"
@@ -182,7 +182,7 @@ export function WhatsAppSetup({
             <>
               <p>
                 Register a second number in WhatsApp or the WhatsApp Business app. You will link
-                that account to Nod.
+                that account to Wea.
               </p>
               <Field
                 label="Your personal WhatsApp number"
@@ -203,12 +203,12 @@ export function WhatsAppSetup({
             </>
           ) : (
             <p>
-              Use <strong>Message yourself</strong> to chat with Nod. Other chats stay outside Nod.
+              Use <strong>Message yourself</strong> to chat with Wea. Other chats stay outside Wea.
             </p>
           )}
           <p>
             WhatsApp doesn’t officially support this connection, so there’s a small risk of account
-            restrictions. Nod only messages you.
+            restrictions. Wea only messages you.
             {!selfChatOnly && ' A separate bot number keeps your own chats safe.'}
           </p>
           <label className="channel-policy">
@@ -268,7 +268,7 @@ export function WhatsAppSetup({
                     'Open WhatsApp'
                   )}
                   {setup?.linkMode === 'self-chat'
-                    ? ', select Message yourself, and send Nod a message.'
+                    ? ', select Message yourself, and send Wea a message.'
                     : ' on your phone and send a message to the linked number.'}
                 </p>
               </>
@@ -285,7 +285,7 @@ export function WhatsAppSetup({
                       size={196}
                       marginSize={4}
                       level="M"
-                      title="Link WhatsApp to Nod"
+                      title="Link WhatsApp to Wea"
                     />
                   </div>
                 ) : (
@@ -296,7 +296,7 @@ export function WhatsAppSetup({
               <p>
                 {state === 'connecting'
                   ? 'Connecting to WhatsApp…'
-                  : (link?.error ?? 'WhatsApp is disconnected. Nod is trying to connect again.')}
+                  : (link?.error ?? 'WhatsApp is disconnected. Wea is trying to connect again.')}
               </p>
             ) : (
               <Notice>

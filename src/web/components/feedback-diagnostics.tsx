@@ -337,7 +337,7 @@ export function FeedbackDiagnostics({
                       >
                         <strong>
                           {message.role === 'assistant'
-                            ? 'Nod'
+                            ? 'Wea'
                             : message.role === 'user'
                               ? 'You'
                               : label(message.role, 'Message')}

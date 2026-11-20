@@ -15,7 +15,9 @@ import { errorMessage } from '../lib/api';
 import { desktopZoomAvailable, getDesktopZoomFactor, setDesktopZoomFactor } from '../lib/desktop';
 import { savePreferences } from '../lib/preferences';
 import { localeRegion } from '../../shared/date-locale';
-import { communityLinks, legalLinks } from '../../shared/onboarding';
+import { legalLinks } from '../../shared/onboarding';
+import { supportLinkTarget } from '../../shared/support';
+import { useSupportLink } from '../hooks/use-support-link';
 import {
   dateFormatFrom,
   formatCalendarDate,
@@ -191,6 +193,7 @@ export function GeneralPreferences({
   native: ReturnType<typeof useDesktopSettings>;
   desktop: boolean;
 }) {
+  const support = useSupportLink();
   const {
     data,
     loading,
@@ -379,15 +382,12 @@ export function GeneralPreferences({
         </section>
       )}
       <section className="account-region account-links" aria-labelledby={`${id}-community`}>
-        <h3 id={`${id}-community`}>Community</h3>
+        {/* Wea pilot: shows the support link instead of the upstream community links. */}
+        <h3 id={`${id}-community`}>Support</h3>
         <p className="field-hint">
-          Talk with other Nod users on{' '}
-          <a href={communityLinks.discord} target="_blank" rel="noreferrer">
-            Discord
-          </a>{' '}
-          or share ideas in the{' '}
-          <a href={communityLinks.forum} target="_blank" rel="noreferrer">
-            n8n Labs forum
+          Questions, problems or ideas during the pilot? Contact{' '}
+          <a href={support.url} {...supportLinkTarget(support)}>
+            {support.label}
           </a>
           .
         </p>

@@ -2238,7 +2238,7 @@ test('Pi runs independent public web reads together through the tool guard', asy
   }
 });
 
-test('Pi sessions use native tools on the sandbox workspace plus Nod tools', async () => {
+test('Pi sessions use native tools on the sandbox workspace plus Wea tools', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'nod-pi-native-'));
   const { workspace, scripts } = recordingWorkspace();
   const ran: string[] = [];

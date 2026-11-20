@@ -50,7 +50,7 @@ const day = 86_400_000;
 const sources: Record<TrustSource, { icon: typeof Zap; label: string }> = {
   chat: { icon: MessageCircle, label: '' },
   task: { icon: MessageCircle, label: 'Task' },
-  started: { icon: ScanSearch, label: 'Task Nod started' },
+  started: { icon: ScanSearch, label: 'Task Wea started' },
   schedule: { icon: CalendarClock, label: 'Schedule' },
   event: { icon: Zap, label: '' },
   check: { icon: ScanSearch, label: 'Activity check' },
@@ -198,9 +198,9 @@ function Month({ view }: { view: TrustView }) {
   const notes = [
     month.planUsd > 0 &&
       `Your ChatGPT plan covered about ${money(month.planUsd)}${month.spentUsd > 0 ? ' more' : ''} at API prices.`,
-    month.unpriced && 'Some usage has no price in Nod, such as a local or free model.',
+    month.unpriced && 'Some usage has no price in Wea, such as a local or free model.',
     month.backgroundUsd > 0 &&
-      `${money(month.backgroundUsd)} was background work: source checks, schedules and tasks Nod started.`,
+      `${money(month.backgroundUsd)} was background work: source checks, schedules and tasks Wea started.`,
     month.outside.length > 0 &&
       `Of that, ${month.outside.map((item) => `${outsideNames[item.kind]} ${money(item.costUsd)}`).join(', ')} ran outside a check or task.`,
   ].filter((note): note is string => Boolean(note));

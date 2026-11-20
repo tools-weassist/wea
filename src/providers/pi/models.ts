@@ -250,7 +250,7 @@ export function createPiModelBackend(options: { fetch?: typeof fetch } = {}): Mo
     }
     const token = tokenSchema.parse(await response.json());
     if (!token.scope.split(/\s+/).includes(planScope))
-      throw new ModelAuthError('Allow Nod to use your ChatGPT plan, then try again.', true);
+      throw new ModelAuthError('Allow Wea to use your ChatGPT plan, then try again.', true);
     return token;
   }
   function definition(model: Model<Api>): ModelDefinition {
@@ -615,7 +615,7 @@ export function createPiModelBackend(options: { fetch?: typeof fetch } = {}): Mo
         client_id: saved?.clientId ?? registration,
         ...(saved
           ? { id_token_hint: saved.idToken, ...(saved.email ? { login_hint: saved.email } : {}) }
-          : { agent_name_hint: 'Nod' }),
+          : { agent_name_hint: 'Wea' }),
         ext_agent_host_id: `urn:uuid:${hostId}`,
         response_type: 'code',
         redirect_uri: expected.href,
@@ -710,7 +710,7 @@ export function createPiModelBackend(options: { fetch?: typeof fetch } = {}): Mo
           await response.body?.cancel();
           if ([400, 401, 403, 404].includes(response.status))
             throw new ModelAuthError(
-              'Nod couldn’t discover a workspace for this key. Enter its Workspace ID from the Claude Console.',
+              'Wea couldn’t discover a workspace for this key. Enter its Workspace ID from the Claude Console.',
             );
           throw new Error(`Anthropic workspace discovery failed (${response.status}).`);
         }
@@ -738,7 +738,7 @@ export function createPiModelBackend(options: { fetch?: typeof fetch } = {}): Mo
       }
       if (!workspaces.data.length)
         throw new ModelAuthError(
-          'Nod couldn’t discover a workspace for this key. Enter its Workspace ID from the Claude Console.',
+          'Wea couldn’t discover a workspace for this key. Enter its Workspace ID from the Claude Console.',
         );
       if (workspaces.has_more || workspaces.data.length !== 1)
         throw new ModelWorkspaceSelectionError(
@@ -971,7 +971,7 @@ export function createPiModelBackend(options: { fetch?: typeof fetch } = {}): Mo
         state,
         code_challenge: challenge,
         code_challenge_method: 'S256',
-        key_label: 'Nod',
+        key_label: 'Wea',
       }).toString();
       return { url: url.toString(), state, secret: { state, verifier, redirectUri } };
     },
@@ -1166,10 +1166,10 @@ export async function createPiModelRuntime(
       return [{ providerId: provider, type: subscription ? 'oauth' : 'api_key' }];
     },
     async modify() {
-      throw new Error('Model credentials are managed by Nod.');
+      throw new Error('Model credentials are managed by Wea.');
     },
     async delete() {
-      throw new Error('Model credentials are managed by Nod.');
+      throw new Error('Model credentials are managed by Wea.');
     },
   };
   const runtime = await ModelRuntime.create({

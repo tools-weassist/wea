@@ -27,7 +27,7 @@ export function DesktopPreferencesSetup({
       .then((value) => {
         if (!current) return;
         if (value.preferenceStep !== 'complete')
-          throw new Error('Nod couldn’t finish setup. Try again.');
+          throw new Error('Wea couldn’t finish setup. Try again.');
         ready.current();
       })
       .catch((cause) => {

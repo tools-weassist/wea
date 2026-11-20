@@ -134,16 +134,16 @@ export async function setBrowserNotifications(
   window.localStorage.setItem(key, 'enabled');
   let notification;
   try {
-    notification = new window.Notification('Nod', {
+    notification = new window.Notification('Wea', {
       body: 'Notifications are on.',
-      icon: new URL('/nod-logo.png', window.location.origin).href,
+      icon: new URL('/wea-logo.png', window.location.origin).href,
       tag: key,
     });
   } catch {
     if (previous === null) window.localStorage.removeItem(key);
     else window.localStorage.setItem(key, previous === 'enabled' ? 'disabled' : previous);
     window.dispatchEvent(new Event(changed));
-    throw new Error('This browser cannot show notifications here. Use Nod’s desktop app.');
+    throw new Error('This browser cannot show notifications here. Use Wea’s desktop app.');
   }
   notification.onshow = () => {
     if (!isCurrent() || !browserNotificationStatus(ownerId).enabled) notification.close();
@@ -201,9 +201,9 @@ export async function deliverBrowserNotification(
       key,
       JSON.stringify({ createdAt: message.createdAt, ids: [...ids, message.id] }),
     );
-    const notification = new window.Notification('Nod', {
-      body: 'Nod has a new reply for you.',
-      icon: new URL('/nod-logo.png', window.location.origin).href,
+    const notification = new window.Notification('Wea', {
+      body: 'Wea has a new reply for you.',
+      icon: new URL('/wea-logo.png', window.location.origin).href,
       tag: key,
     });
     notification.onshow = () => {

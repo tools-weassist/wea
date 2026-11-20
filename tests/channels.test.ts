@@ -1254,7 +1254,7 @@ test(
                 async attachmentFailure(names) {
                   notices++;
                   assert.deepEqual(names, [file.name]);
-                  return `The file ${file.name} is available in Nod.`;
+                  return `The file ${file.name} is available in Wea.`;
                 },
               });
               const delivered = sent.slice(before);
@@ -1264,7 +1264,7 @@ test(
               const fallback = delivered[0].content.text as string;
               for (const line of answer.replaceAll('**', '').split('\n'))
                 assert.ok(fallback.includes(line));
-              assert.equal(delivered[1].content.text, `The file ${file.name} is available in Nod.`);
+              assert.equal(delivered[1].content.text, `The file ${file.name} is available in Wea.`);
               assert.ok(delivered.every((message) => !message.content.image));
               assert.deepEqual(
                 result.ids,
@@ -1293,7 +1293,7 @@ test(
               ],
               async attachmentFailure(names) {
                 assert.deepEqual(names, ['missing.png']);
-                return 'The missing.png file is available in Nod.';
+                return 'The missing.png file is available in Wea.';
               },
             });
             assert.equal(sent.length, beforeMixed + 3);
@@ -1301,7 +1301,7 @@ test(
             assert.deepEqual(sent[beforeMixed + 1].content.image, Buffer.from('available image'));
             assert.equal(
               sent[beforeMixed + 2].content.text,
-              'The missing.png file is available in Nod.',
+              'The missing.png file is available in Wea.',
             );
             assert.deepEqual(
               mixed.ids,
@@ -1319,7 +1319,7 @@ test(
                 attachments: [attachment('uncertain.png', 'image/png', 'uncertain image')],
                 async attachmentFailure() {
                   uncertainImageNotices++;
-                  return 'The image is available in Nod.';
+                  return 'The image is available in Wea.';
                 },
               }),
               /may have accepted/,
@@ -2946,29 +2946,9 @@ test('ElevenLabs preserves safe setup recovery through the speech service withou
   }
 });
 
-test('local pronunciation uses each bundled language dictionary and preserves Kokoro phonemes', async () => {
-  const cases = [
-    ['en-us', 'red fox', 'ɹˈɛd fˈɑːks'],
-    ['en-gb', 'red fox', 'ɹˈɛd fˈɒks'],
-    ['es', 'rojo chico', 'rˈoxo ʧˈiko'],
-    ['fr-fr', 'Bonjour Jean', 'bɔ̃ʒˈuʁ ʒˈɑ̃'],
-    ['hi', 'नमस्ते दुनिया', 'nəmˈʌsteː dˈʊnɪjˌaː'],
-    ['it', 'Ciao ragazzo', 'ʧˈao raɡˈaʦːo'],
-  ] as const;
-  for (const [language, text, expected] of cases)
-    assert.equal(await phonemizeSpeech(text, language), expected, language);
-  await assert.rejects(phonemizeSpeech('x'.repeat(2_001), 'en-us'));
-  const unsupported = await runProcess(
-    process.execPath,
-    [
-      '--import',
-      import.meta.resolve('tsx'),
-      fileURLToPath(new URL('../src/providers/local-speech/phonemizer-worker.ts', import.meta.url)),
-    ],
-    { input: JSON.stringify({ text: 'Synthetic words', voice: 'missing' }), timeoutMs: 15_000 },
-  );
-  assert.equal(unsupported.exitCode, 1);
-  assert.equal(unsupported.stdout, '');
+test('Wea build: the GPL local phonemizer is removed and fails closed', async () => {
+  for (const language of ['en-us', 'en-gb', 'es', 'fr-fr', 'hi', 'it'] as const)
+    await assert.rejects(phonemizeSpeech('red fox', language));
 });
 
 test('local speech setup keeps each caller cancellable and stops only after the last caller leaves', async (t) => {
@@ -3390,7 +3370,9 @@ const workerPath = process.argv[2];
 const cache = process.argv[3];
 const require = createRequire(workerPath);
 const hf = await import(pathToFileURL(require.resolve('@huggingface/transformers')));
-const { phonemizeSpeech } = await import(new URL('./phonemizer.ts', pathToFileURL(workerPath)));
+// Wea build: the GPL phonemizer is removed. This stand-in expands digits and Cyrillic the way
+// spoken phonemes do, so the tokenizer and duration limits are still exercised.
+const phonemizeSpeech = async (text) => text.replace(/[0-9]/g, 'ʃˈɪks').replace(/[а-яА-ЯёЁ]/g, 'ʒˈɛʃə');
 const tokenizer = new hf.PreTrainedTokenizer({
   model: { type: 'WordLevel', vocab: { '[UNK]': 0 }, unk_token: '[UNK]' },
   added_tokens: [], normalizer: null, post_processor: null, decoder: null,
@@ -4651,11 +4633,11 @@ test('channel presentation keeps punctuated local addresses out of delivery word
         assert.equal(input.kind, 'delivery');
         if (input.kind === 'delivery') assert.equal(input.secureAction, true);
         assert.doesNotMatch(JSON.stringify(input), /localhost|127\.0\.0\.1|\[::1\]|5678/);
-        return 'Open Nod to read this instruction.';
+        return 'Open Wea to read this instruction.';
       },
     });
     assert.equal(calls, 1);
-    assert.equal(delivered, 'Open Nod to read this instruction.');
+    assert.equal(delivered, 'Open Wea to read this instruction.');
   }
   const publicText = 'Read https://records.example.test:443.';
   assert.equal(await channelReply(publicText, { threadId: 'owned-thread' }), publicText);
@@ -4686,7 +4668,7 @@ test('channel presentation isolates private links from the model and rejects uns
   const presentation: unknown[] = [];
   const present = async (threadId: string | null, input: unknown) => {
     presentation.push({ threadId, input });
-    return 'Continua na aplicação Nod.';
+    return 'Continua na aplicação Wea.';
   };
   await channelReply(
     'Continua [em segurança](/credentials/secret-id?token=secret-token) ou [aprova](http://localhost:4310/payments/private-id). Consulta https://example.com/docs.',
@@ -4699,7 +4681,7 @@ test('channel presentation isolates private links from the model and rejects uns
   assert.equal(await channelReply(ordinary, { threadId: 'owned-thread', present }), ordinary);
   assert.equal(presentation.length, 1);
   for (const page of ['/vault', '/trust']) {
-    await channelReply(`Save it in Nod: ${page}?add=login`, { threadId: 'owned-thread', present });
+    await channelReply(`Save it in Wea: ${page}?add=login`, { threadId: 'owned-thread', present });
     assert.doesNotMatch(JSON.stringify(presentation), /(?:vault|trust)\?add/);
   }
   for (const generated of [
@@ -4881,7 +4863,7 @@ test(
         assert.doesNotMatch(JSON.stringify(input), /private-token|api\/artifacts/);
         if (input.kind === 'delivery' && input.secureAction) handoffPresentations.push(input);
         if (input.kind === 'delivery' && input.files) unavailableFiles.push(input.files);
-        return 'Continua na aplicação Nod.';
+        return 'Continua na aplicação Wea.';
       },
       transport,
       resolveAttachments: async (resolvedThreadId, ids) => {
@@ -5642,7 +5624,7 @@ test(
       }
       const rejectedImages = await addReply(
         'channel:whatsapp:555000:wamid.good',
-        'These files remain in Nod.',
+        'These files remain in Wea.',
         [
           { id: largeImageId },
           { id: brokenImageId },
@@ -5692,7 +5674,7 @@ test(
           failure === 'rejected' ? ['text', 'image', 'image', 'text'] : ['text', 'image', 'text'],
         );
         assert.deepEqual(delivered.at(-2)!.body.image, { id: `fixture-media-${uploaded.length}` });
-        assert.match(JSON.stringify(delivered.at(-1)!.body), /Continua na aplicação Nod/);
+        assert.match(JSON.stringify(delivered.at(-1)!.body), /Continua na aplicação Wea/);
         const acceptedIds: string[] = delivered.flatMap((_, index) =>
           failure === 'rejected' && index === 1
             ? []
@@ -5758,7 +5740,7 @@ test(
         await channels.drain();
         assert.equal(sent.length, before + 2);
         assert.equal(sent.at(-1)?.provider, provider);
-        assert.match(JSON.stringify(sent.at(-1)?.body), /Continua na aplicação Nod/);
+        assert.match(JSON.stringify(sent.at(-1)?.body), /Continua na aplicação Wea/);
         assert.match(
           provider === 'telegram' ? readable(sent.at(-2)!.body) : JSON.stringify(sent.at(-2)?.body),
           /The website needs sign-in/,
@@ -5793,7 +5775,7 @@ test(
       await app.close();
       const restarted = await createChannels(pool, {
         ownerId: 'local-development',
-        present: async () => 'Consulta os ficheiros na aplicação Nod.',
+        present: async () => 'Consulta os ficheiros na aplicação Wea.',
         resolveAttachments: async (_threadId, ids) => {
           if (ids.length !== 1 || ids[0] !== whatsappFileId)
             throw new Error('Attachment unavailable.');

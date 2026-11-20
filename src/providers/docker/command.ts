@@ -258,7 +258,7 @@ def scan():
    with open(proc+'/'+name+'/stat') as f: values=f.read().rsplit(')',1)[1].split()
    table[int(name)]=(owner,values[0],int(values[1]),int(values[19]))
   except (FileNotFoundError,ProcessLookupError): pass
-  except Exception as error: sys.exit('Nod could not read process %s: %s.'%(name,error))
+  except Exception as error: sys.exit('Wea could not read process %s: %s.'%(name,error))
  ancestors=set()
  pid=os.getpid()
  while pid in table and pid not in ancestors:
@@ -266,7 +266,7 @@ def scan():
   pid=table[pid][2]
  try:
   with open(proc+'/1/cmdline','rb') as f: init=os.path.basename(f.read().split(b'\\0')[0]) in [b'docker-init',b'tini']
- except Exception as error: sys.exit('Nod could not read the workspace init process: %s.'%error)
+ except Exception as error: sys.exit('Wea could not read the workspace init process: %s.'%error)
  children=sorted((started,pid) for pid,(_,_,parent,started) in table.items() if parent==1)
  main=children[0][1] if init and children else None
  return {pid for pid,(owner,state,_,_) in table.items() if owner==user and state not in ['Z','X'] and pid not in ancestors and pid not in [1,main]}
@@ -278,7 +278,7 @@ while True:
  for pid in found:
   try: os.kill(pid,signal.SIGKILL)
   except ProcessLookupError: pass
-  except OSError as error: sys.exit('Nod could not stop process %d: %s.'%(pid,error))
+  except OSError as error: sys.exit('Wea could not stop process %d: %s.'%(pid,error))
  time.sleep(0.1)
 `;
 
@@ -313,7 +313,7 @@ export async function runWorkspaceCommand(options: {
   drainTimeoutMs?: number;
 }): Promise<{ stdout: Buffer; stderr: Buffer; exitCode: number }> {
   if (!/^nod-workspace(?:-[a-zA-Z0-9_-]+)?$/.test(options.container))
-    throw new Error('WORKSPACE_CONTAINER must identify a Nod workspace.');
+    throw new Error('WORKSPACE_CONTAINER must identify a Wea workspace.');
   const id = threadIdentity(options.threadId);
   const launch = (workdir: string) => () =>
     (options.spawn ?? spawn)(
@@ -396,7 +396,7 @@ function runSupervisedCommand(options: {
       return reject(
         new WorkspaceCommandError(
           true,
-          'The workspace is unavailable. Start its container and restart Nod.',
+          'The workspace is unavailable. Start its container and restart Wea.',
         ),
       );
     }

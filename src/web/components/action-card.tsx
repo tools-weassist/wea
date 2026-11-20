@@ -159,7 +159,7 @@ function UncertainNote({ app }: { app: string }) {
         May have run
       </p>
       <p>
-        {app || 'The app'} didn’t confirm it, and Nod won’t retry it. Check {app || 'the app'}{' '}
+        {app || 'The app'} didn’t confirm it, and Wea won’t retry it. Check {app || 'the app'}{' '}
         before trying again.
       </p>
     </div>
@@ -318,7 +318,7 @@ export function CodeRequestCard({ kind }: { kind: 'otp' | 'payment' }) {
       <p className="code-card-hint">
         <ArrowDown size={16} aria-hidden="true" />
         {otp
-          ? 'Send the code by itself in the message box. Nod enters it privately and hides it in this chat.'
+          ? 'Send the code by itself in the message box. Wea enters it privately and hides it in this chat.'
           : 'Send the 3- or 4-digit code from your card by itself in the message box.'}
       </p>
     </ActionCard>

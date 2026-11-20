@@ -152,10 +152,10 @@ export function clientPlatform(): ClientPlatform {
   if (!bridge) return { kind: 'browser' };
   if (bridge.protocolVersion !== undefined) {
     if (bridge.protocolVersion !== 1 || !['local', 'remote'].includes(bridge.mode ?? ''))
-      throw new Error('This desktop connection is not supported. Update Nod, then try again.');
+      throw new Error('This desktop connection is not supported. Update Wea, then try again.');
     if (bridge.mode === 'remote') return { kind: 'desktop-remote' };
     if (!bridge.localRuntime)
-      throw new Error('Local setup is unavailable. Update Nod, then try again.');
+      throw new Error('Local setup is unavailable. Update Wea, then try again.');
     return { kind: 'desktop-local', runtime: bridge.localRuntime };
   }
   if (typeof bridge.getSettings !== 'function') return { kind: 'browser' };
@@ -169,7 +169,7 @@ export function clientPlatform(): ClientPlatform {
       },
       subscribeStatus: (listener) => bridge.onStatus?.(listener) ?? (() => {}),
       prepare: (options) => {
-        if (!bridge.prepare) throw new Error('Restart Nod to try setting up your workspace again.');
+        if (!bridge.prepare) throw new Error('Restart Wea to try setting up your workspace again.');
         return bridge.prepare(options);
       },
       setup: async () => ({
@@ -181,7 +181,7 @@ export function clientPlatform(): ClientPlatform {
           onboardingPreferenceStep: 'complete',
         });
         if (saved.onboardingPreferenceStep !== 'complete')
-          throw new Error('Nod could not finish device setup. Try again.');
+          throw new Error('Wea could not finish device setup. Try again.');
         return { preferenceStep: 'complete' };
       },
       reconcileSetup: async () => {

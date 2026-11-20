@@ -10,7 +10,7 @@ import { X } from './icons';
 import { Button } from './ui';
 
 function withBrand(text: string) {
-  return text.split(/\b(Nod)\b/).map((part, index) =>
+  return text.split(/\b(Wea)\b/).map((part, index) =>
     index % 2 ? (
       <span key={index} className="survey-brand">
         <BrandMark />
@@ -170,7 +170,7 @@ function SurveyForm({ survey, onClose }: { survey: AnalyticsSurvey; onClose(): v
             <small className="survey-card-hint">Please do not enter personal data.</small>
           </label>
           <div className="survey-card-footer">
-            <span>Your answer goes to the Nod team.</span>
+            <span>Your answer goes to the Wea team.</span>
             <Button type="submit" size="sm" disabled={!question.optional && !text.trim()}>
               {last ? 'Send' : 'Next'}
             </Button>

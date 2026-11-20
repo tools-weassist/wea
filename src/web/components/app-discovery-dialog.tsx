@@ -474,7 +474,7 @@ export function AppDiscoveryDialog({
                 ? 'Sign in to connect your account.'
                 : paths.some((path) => path.kind === 'cli' && !path.testArgv)
                   ? 'Save credentials. The command is not checked during setup.'
-                  : 'Nod will check access before connecting.'}
+                  : 'Wea will check access before connecting.'}
             </DialogDescription>
           </div>
         </div>

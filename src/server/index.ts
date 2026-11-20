@@ -16,7 +16,7 @@ const parent = (
 const runtimeReady =
   desktopMode && process.env.NOD_DESKTOP_RUNTIME_PENDING === 'true'
     ? new Promise<void>((resolve) => {
-        if (!parent) throw new Error('Desktop startup requires Nod.');
+        if (!parent) throw new Error('Desktop startup requires Wea.');
         const ready = (event: { data: unknown }) => {
           if ((event.data as { type?: string })?.type !== 'nod-runtime-ready') return;
           parent.removeListener('message', ready);
@@ -108,5 +108,5 @@ if (desktopMode)
     type: 'nod-ready',
     port: listeningPort,
   });
-else if (authToken) console.log(`Nod is ready at ${publicOrigin}`);
-else console.log(`Nod is ready at ${publicOrigin}/#access=${await accessKey(dataRoot)}`);
+else if (authToken) console.log(`Wea is ready at ${publicOrigin}`);
+else console.log(`Wea is ready at ${publicOrigin}/#access=${await accessKey(dataRoot)}`);

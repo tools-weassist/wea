@@ -1903,7 +1903,7 @@ test(
             (item: { role: string; text: string }) => item.role === 'user' && item.text === text,
           );
         assert.ok(message);
-        const reply = 'A reply from Nod';
+        const reply = 'A reply from Wea';
         await pool.query(
           `INSERT INTO messages(id,owner_id,role,text,thread_id,turn_id)
            SELECT $1,owner_id,'assistant',$2,thread_id,turn_id FROM messages WHERE id=$3`,

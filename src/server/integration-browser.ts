@@ -32,7 +32,7 @@ function renderIntegrationBrowser(
   const introduction = continuation.id
     ? ''
     : `<div id="introduction">${integrationPrivacyNotice}<button id="connect" type="button">Continue to sign in</button></div>`;
-  return String.raw`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Connect your app · Nod</title><style nonce="${nonce}">:root{color-scheme:light dark}body{font:16px system-ui;margin:0;min-height:100svh;display:grid;place-items:center;background:light-dark(#fafafa,#191919);color:light-dark(#191919,#fafafa)}main{max-width:360px;padding:32px;text-align:center}h1{font-size:21px;font-weight:550;letter-spacing:-.4px}p{line-height:1.6;color:light-dark(#676767,#bfbfbf)}button{font:inherit;padding:12px 20px;border:0;border-radius:8px;background:light-dark(#191919,#fafafa);color:light-dark(#fafafa,#191919);cursor:pointer}button:disabled{opacity:.5;cursor:default}a{color:inherit;text-underline-offset:3px}</style></head><body><main${continuation.id ? ' hidden' : ''}><h1 id="heading">${continuation.id ? 'Opening sign-in…' : 'Connect your app'}</h1>${introduction}<p id="status" role="status"></p></main><script nonce="${nonce}">
+  return String.raw`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Connect your app · Wea</title><style nonce="${nonce}">:root{color-scheme:light dark}body{font:16px system-ui;margin:0;min-height:100svh;display:grid;place-items:center;background:light-dark(#fafafa,#191919);color:light-dark(#191919,#fafafa)}main{max-width:360px;padding:32px;text-align:center}h1{font-size:21px;font-weight:550;letter-spacing:-.4px}p{line-height:1.6;color:light-dark(#676767,#bfbfbf)}button{font:inherit;padding:12px 20px;border:0;border-radius:8px;background:light-dark(#191919,#fafafa);color:light-dark(#fafafa,#191919);cursor:pointer}button:disabled{opacity:.5;cursor:default}a{color:inherit;text-underline-offset:3px}</style></head><body><main${continuation.id ? ' hidden' : ''}><h1 id="heading">${continuation.id ? 'Opening sign-in…' : 'Connect your app'}</h1>${introduction}<p id="status" role="status"></p></main><script nonce="${nonce}">
 const brokerOrigin=${broker};
 const bridgeKey=${secret};
 const expected=${expected};
@@ -82,7 +82,7 @@ location.replace(target.href);
 }
 }catch(error){
 try{sessionStorage.removeItem(slot);if(database)await stored('take');}catch{}
-content.hidden=false;document.body.classList.add('failed');document.title='Sign-in could not be completed · Nod';document.getElementById('heading').textContent='Sign-in could not be completed';document.getElementById('status').textContent=error?.reply||'Return to Nod and try again.';
+content.hidden=false;document.body.classList.add('failed');document.title='Sign-in could not be completed · Wea';document.getElementById('heading').textContent='Sign-in could not be completed';document.getElementById('status').textContent=error?.reply||'Return to Wea and try again.';
 }finally{clearTimeout(waiting);database?.close();}})();
 </script></body></html>`;
 }
@@ -221,7 +221,7 @@ export function createIntegrationBrowser(options?: {
             error:
               error instanceof IntegrationConnectionError
                 ? error.message
-                : 'The app connection could not be started. Return to Nod and try again.',
+                : 'The app connection could not be started. Return to Wea and try again.',
           });
         }
       });

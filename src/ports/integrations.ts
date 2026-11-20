@@ -113,9 +113,9 @@ export class IntegrationCatalogAccessDenied extends Error {
   constructor(readonly code?: IntegrationCatalogAccessCode) {
     super(
       code === 'installation_enrollment_required'
-        ? 'This Nod installation needs enrollment for app access. Contact support if it remains blocked.'
+        ? 'This Wea installation needs enrollment for app access. Contact support if it remains blocked.'
         : code === 'installation_revoked'
-          ? 'App access for this Nod installation was revoked. Contact support to restore it.'
+          ? 'App access for this Wea installation was revoked. Contact support to restore it.'
           : code === 'browser_pairing_required'
             ? 'App access needs browser pairing. Complete the app connection in your browser, then try again.'
             : 'The app catalog could not authorize this request. Contact support if it persists.',

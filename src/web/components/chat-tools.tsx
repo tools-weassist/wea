@@ -334,7 +334,7 @@ export function ChatTools({ files, tasks = [] }: { files: ImagePreview[]; tasks?
                     {message ? (
                       <>
                         <span className="chat-search-meta">
-                          <strong>{message.role === 'user' ? 'You' : 'Nod'}</strong>
+                          <strong>{message.role === 'user' ? 'You' : 'Wea'}</strong>
                           <time dateTime={message.createdAt}>
                             {formatDateTime(message.createdAt, dateFormat)}
                           </time>

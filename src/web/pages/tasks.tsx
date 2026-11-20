@@ -108,7 +108,7 @@ function TaskCommands({ id }: { id: string }) {
     <section className="task-commands" aria-label="Workspace commands">
       <p className="task-commands-where">
         <LockKeyhole size={14} aria-hidden="true" />
-        Nod runs these in its isolated workspace. You can view them here.
+        Wea runs these in its isolated workspace. You can view them here.
       </p>
       {data.error ? (
         <Notice>{data.error}</Notice>
@@ -533,7 +533,7 @@ export function Scheduled({
               </span>
               <h2 id="schedule-empty-title">Your first schedule</h2>
               <p>
-                Set up a reminder, a regular summary or a check-in. Nod will help you work out what
+                Set up a reminder, a regular summary or a check-in. Wea will help you work out what
                 to do and when.
               </p>
               <NewPlan onAsk={onAsk} />

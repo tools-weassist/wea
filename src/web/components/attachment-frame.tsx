@@ -92,7 +92,7 @@ export function documentFrame(body: string, stage: string) {
       p { margin: 0 0 12px; text-wrap: pretty; }
       ul, ol { margin: 0 0 12px; padding-left: 24px; }
       li { margin: 4px 0; }
-      a { color: #87003c; text-underline-offset: 3px; }
+      a { color: #067a8f; text-underline-offset: 3px; }
       img { max-width: 100%; height: auto; }
       table { width: 100%; margin: 16px 0; border-collapse: collapse; font-size: 14px; }
       th, td { padding: 6px 10px; border: 1px solid #d6d6d6; text-align: left; vertical-align: top; }

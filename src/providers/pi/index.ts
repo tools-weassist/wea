@@ -731,7 +731,7 @@ export function createPiAgent(options: {
                   ? { name: tool.deferred.namespace, description: tool.deferred.description }
                   : {
                       name: 'nod',
-                      description: 'Nod tools for apps, browsers, files, memory and tasks.',
+                      description: 'Wea tools for apps, browsers, files, memory and tasks.',
                     },
               }
             : { exposure: 'direct' as const }),
@@ -1027,7 +1027,7 @@ export function createPiAgent(options: {
       ];
       if (guidelines.some((rule) => rule.includes('codemode')))
         guidelines.push(
-          'Codemode can call workspace, web, app and Nod tools. Every call keeps its normal validation, owner authority, approval and stop checks. Read schemas with searchTools or describeTool when needed. Await every call and inspect its result. Use direct tool calls when you need images.',
+          'Codemode can call workspace, web, app and Wea tools. Every call keeps its normal validation, owner authority, approval and stop checks. Read schemas with searchTools or describeTool when needed. Await every call and inspect its result. Use direct tool calls when you need images.',
         );
       if (input.tools.some((tool) => tool.name === 'browser'))
         guidelines.push(

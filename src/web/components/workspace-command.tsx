@@ -84,7 +84,7 @@ export function WorkspaceCommandDialog({ id, onClose }: { id: string; onClose():
         }}
       >
         <DialogTitle>Workspace command</DialogTitle>
-        <DialogDescription>Commands run in Nod's isolated workspace.</DialogDescription>
+        <DialogDescription>Commands run in Wea's isolated workspace.</DialogDescription>
         <CommandOutput id={id} />
       </DialogContent>
     </Dialog>
