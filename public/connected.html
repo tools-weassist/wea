@@ -21,7 +21,10 @@
         --muted: #676767;
         --surface: #fff;
         --border: #e0e0e0;
-        --focus: #87003c;
+        --focus: #0698b2;
+        --button: #067a8f;
+        --button-hover: #05616f;
+        --button-text: #ffffff;
       }
       :root[data-theme='dark'] {
         background: #191919;
@@ -29,7 +32,10 @@
         --muted: #bfbfbf;
         --surface: #242424;
         --border: #353535;
-        --focus: #0698b2;
+        --focus: #07c2e4;
+        --button: #07c2e4;
+        --button-hover: #38d3ee;
+        --button-text: #142134;
       }
       * {
         box-sizing: border-box;
@@ -93,8 +99,8 @@
         min-height: 44px;
         padding: 10px 20px;
         border-radius: 999px;
-        background: #0698b2;
-        color: #ffffff;
+        background: var(--button);
+        color: var(--button-text);
         font-size: 14px;
         font-weight: 500;
         text-decoration: none;
@@ -103,7 +109,7 @@
         cursor: pointer;
       }
       .return:hover {
-        background: #ffd0d9;
+        background: var(--button-hover);
       }
       [hidden] {
         display: none !important;

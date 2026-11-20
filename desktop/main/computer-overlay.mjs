@@ -28,8 +28,8 @@ html,body{margin:0;height:100%;background:transparent;overflow:hidden;font:500 1
 @media (prefers-reduced-motion:reduce){.dot{animation:none}}
 .quiet .dot{animation:none;opacity:.8}
 .text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-button{font:inherit;border:0;border-radius:14px;height:28px;padding:0 12px;background:#0698B2;color:#ffffff;cursor:pointer;display:flex;align-items:center;gap:6px}
-button:hover{background:#ffbcca}
+button{font:inherit;border:0;border-radius:14px;height:28px;padding:0 12px;background:#067a8f;color:#ffffff;cursor:pointer;display:flex;align-items:center;gap:6px}
+button:hover{background:#05616f}
 kbd{font:inherit;opacity:.6}
 @media (prefers-color-scheme:dark){.pill{background:#1f1f1f;color:#f5f5f5}}
 </style></head><body><div class="pill"><span class="dot"></span><span class="text" id="text"></span><button id="stop">Stop <kbd>${stopLabel}</kbd></button></div>

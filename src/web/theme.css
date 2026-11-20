@@ -25,13 +25,21 @@
   --wea-font-body: 'League Spartan', Arial, sans-serif;
   --wea-mark-disc: var(--wea-teal);
   --wea-mark-wave: var(--wea-mist);
-  /* The upstream accent scale keeps its variable names and now holds Wea teal tints. */
-  --pink-10: #e3f5f8;
-  --pink-20: #c4eaf1;
-  --pink-30: #9fdce7;
-  --brand-pink: var(--wea-teal);
-  --pink-70: #05697b;
-  --pink-80: #04434f;
+  /* Brandi's light-mode UI tokens: accent for logo, icons, focus rings and large accents only. */
+  --wea-accent: var(--wea-teal);
+  --wea-button: #067a8f;
+  --wea-button-hover: #05616f;
+  --wea-button-text: var(--wea-white);
+  /*
+   * The upstream accent scale keeps its variable names. Tints are the accent at 10-12% opacity;
+   * the strong steps are the button tokens.
+   */
+  --pink-10: color-mix(in srgb, var(--wea-accent) 10%, transparent);
+  --pink-20: color-mix(in srgb, var(--wea-accent) 12%, transparent);
+  --pink-30: color-mix(in srgb, var(--wea-accent) 12%, transparent);
+  --brand-pink: var(--wea-accent);
+  --pink-70: var(--wea-button);
+  --pink-80: var(--wea-button-hover);
   --background: var(--white);
   --canvas: var(--background);
   --sidebar: #f5f5f5;
@@ -53,10 +61,10 @@
   --accent-border: var(--pink-30);
   --link: var(--accent);
   --link-hover: var(--pink-80);
-  --primary: var(--brand-pink);
-  --primary-hover: #0789a0;
-  --primary-pressed: var(--pink-70);
-  --primary-foreground: var(--wea-white);
+  --primary: var(--wea-button);
+  --primary-hover: var(--wea-button-hover);
+  --primary-pressed: var(--wea-button-hover);
+  --primary-foreground: var(--wea-button-text);
   --chat-sent: var(--pink-20);
   --chat-sent-foreground: var(--black);
   --control: var(--gray-15);
@@ -71,7 +79,7 @@
   --secondary: var(--surface-inset);
   --muted: var(--surface-subtle);
   --border: var(--gray-25);
-  --ring: var(--pink-70);
+  --ring: var(--wea-accent);
   --focus-border: color-mix(in srgb, var(--primary) 55%, var(--border));
   --focus-halo: 0 0 0 4px color-mix(in srgb, var(--primary) 16%, transparent);
   --selection: var(--pink-20);
@@ -155,7 +163,14 @@
   color-scheme: dark;
   --wea-mark-disc: var(--wea-glow-teal);
   --wea-mark-wave: var(--wea-ink-navy);
-  --link-hover: var(--pink-20);
+  /* Brandi's dark-mode UI tokens: never white text on Glow Teal. */
+  --wea-accent: var(--wea-glow-teal);
+  --wea-button: var(--wea-glow-teal);
+  --wea-button-hover: #38d3ee;
+  --wea-button-text: var(--wea-ink-navy);
+  --pink-70: var(--wea-accent);
+  --pink-80: color-mix(in srgb, var(--wea-accent) 12%, transparent);
+  --link-hover: var(--wea-button-hover);
   --background: var(--black);
   --sidebar: #1f1f1f;
   --surface: var(--gray-90);
@@ -166,7 +181,7 @@
   --foreground: var(--white);
   --text-secondary: var(--gray-30);
   --muted-foreground: var(--gray-40);
-  --accent: var(--wea-glow-teal);
+  --accent: var(--wea-accent);
   --accent-soft: var(--pink-80);
   --accent-border: var(--pink-70);
   --chat-sent: var(--pink-80);
@@ -180,7 +195,7 @@
   --switch-off: var(--gray-60);
   --switch-thumb: var(--black);
   --border: var(--gray-85);
-  --ring: var(--wea-glow-teal);
+  --ring: var(--wea-accent);
   --selection: var(--pink-80);
   --dot-grid: var(--gray-80);
   --error: #ffacb9;

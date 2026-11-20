@@ -21,10 +21,10 @@ export function signInPage(succeeded: boolean, nonce: string, provider?: 'ChatGP
     .brand svg { width: 36px; height: 36px; }
     h1 { margin: 0 0 12px; font-size: 28px; font-weight: 600; letter-spacing: -.8px; line-height: 1.2; }
     p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.7; }
-    button { margin-top: 24px; border: 0; border-radius: 999px; padding: 12px 20px; background: #0698B2; color: #ffffff; font: inherit; cursor: pointer; }
-    button:hover { background: #ffd0d9; }
+    button { margin-top: 24px; border: 0; border-radius: 999px; padding: 12px 20px; background: #067a8f; color: #ffffff; font: inherit; cursor: pointer; }
+    button:hover { background: #05616f; }
     button:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
-    @media (prefers-color-scheme: dark) { :root { --background: #1e1b21; --foreground: #f5f1f6; --muted: #ada4b6; } }
+    @media (prefers-color-scheme: dark) { :root { --background: #1e1b21; --foreground: #f5f1f6; --muted: #ada4b6; } button { background: #07c2e4; color: #142134; } button:hover { background: #38d3ee; } }
   </style>
 </head>
 <body>
