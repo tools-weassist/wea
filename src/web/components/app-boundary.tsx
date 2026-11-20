@@ -29,7 +29,7 @@ class AppBoundary extends Component<
             className="button button-primary button-default"
             onClick={() => window.location.reload()}
           >
-            Reload Nod
+            Reload Wea
           </button>
           {this.props.ownerId && (
             <>

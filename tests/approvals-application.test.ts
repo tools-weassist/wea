@@ -1356,7 +1356,7 @@ test(
           assert.equal(models.view().light?.modelId, 'gpt-6-luna');
           assert.ok(
             fallbackChecks.some((input) =>
-              JSON.stringify(input).includes('work Nod starts on its own'),
+              JSON.stringify(input).includes('work Wea starts on its own'),
             ),
           );
           assert.equal((await models.resolve()).definition.choice.id, 'gpt-6.1-sol');
@@ -2424,7 +2424,7 @@ test(
               assert.deepEqual(await approvalsFor(turn), []);
               assert.match(
                 (await pool.query('SELECT error FROM turns WHERE id=$1', [turn])).rows[0].error,
-                /Nod cannot show/,
+                /Wea cannot show/,
               );
             } finally {
               reviewRequirement = undefined;
@@ -9042,7 +9042,7 @@ test(
                   assert.equal(readCount(), reads + (background ? 0 : 1));
                   assert.equal(writeCount(), writes + (background ? 0 : 1));
                   if (background)
-                    assert.match(JSON.stringify(saved), /Nod did not read this source/);
+                    assert.match(JSON.stringify(saved), /Wea did not read this source/);
                 } finally {
                   calendarReadReview = undefined;
                   connectionWait = undefined;

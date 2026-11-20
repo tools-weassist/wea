@@ -555,8 +555,8 @@ export function VoiceSettings({ onBusyChange }: { onBusyChange(busy: boolean): v
           <p id={`${id}-permission-help`} className="field-hint">
             {desktopSettingsAvailable()
               ? /Mac/.test(navigator.platform)
-                ? 'Allow Nod in System Settings → Privacy & Security → Microphone.'
-                : 'Allow microphone access for Nod in your device’s privacy settings.'
+                ? 'Allow Wea in System Settings → Privacy & Security → Microphone.'
+                : 'Allow microphone access for Wea in your device’s privacy settings.'
               : 'Allow Microphone in this site’s browser permissions, then return here.'}
           </p>
           <div className="dialog-actions">

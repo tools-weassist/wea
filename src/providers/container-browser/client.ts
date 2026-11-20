@@ -182,7 +182,7 @@ export function createBridgeComputer(options: {
         new Error(
           fenced && !disposed && available
             ? `The workspace browser is unavailable. ${reopenNotice}`
-            : 'The workspace browser is unavailable. Restart Nod before continuing.',
+            : 'The workspace browser is unavailable. Restart Wea before continuing.',
         ),
       );
     }

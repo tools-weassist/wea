@@ -78,11 +78,11 @@ export function ChatSkeleton({
           ) : slow ? (
             <span key="slow">Getting things ready…</span>
           ) : (
-            <span className="sr-only">Opening Nod…</span>
+            <span className="sr-only">Opening Wea…</span>
           )}
         </p>
         <div className="composer ghost-composer" aria-hidden="true">
-          <p>Message Nod…</p>
+          <p>Message Wea…</p>
           <div className="composer-tools">
             <div className="composer-left" />
             <div className="composer-right">

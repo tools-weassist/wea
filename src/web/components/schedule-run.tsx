@@ -23,7 +23,7 @@ function skippedText(run: ScheduleRunPresentation) {
   const stopped = run.skipped.filter((skip) => skip.reason === 'stopped').length;
   const paused = run.skipped.length - stopped;
   return [
-    stopped ? `${runs(stopped)} skipped while Nod wasn't running.` : '',
+    stopped ? `${runs(stopped)} skipped while Wea wasn't running.` : '',
     paused ? `${runs(paused)} skipped while the model was paused after failed requests.` : '',
   ]
     .filter(Boolean)
@@ -164,7 +164,7 @@ export function ScheduleRunTrack({ run }: { run: ScheduleRunPresentation }) {
           <p className="schedule-run-sentence">
             <CircleAlert size={16} aria-hidden="true" />
             <span>
-              {late && `Tried at ${time(run.startedAt)}, when Nod was running again. `}
+              {late && `Tried at ${time(run.startedAt)}, when Wea was running again. `}
               {run.reason}
               {run.reason && !/[.!?]$/.test(run.reason) ? '.' : ''}
               {run.code && <code className="schedule-run-code">{run.code}</code>}

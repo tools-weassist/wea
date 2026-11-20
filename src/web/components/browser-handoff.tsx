@@ -468,7 +468,7 @@ export function BrowserHandoff({ turnId, paused = false }: { turnId: string; pau
     return (
       <p className="browser-handoff-feedback" role="status">
         {returned
-          ? 'Control returned to Nod. It will check the page and continue.'
+          ? 'Control returned to Wea. It will check the page and continue.'
           : 'This browser handoff has ended. Continue in chat.'}
       </p>
     );
@@ -500,7 +500,7 @@ export function BrowserHandoff({ turnId, paused = false }: { turnId: string; pau
       className={`browser-handoff${expanded ? ' browser-handoff-expanded' : ''}`}
       role={expanded ? 'dialog' : undefined}
       aria-modal={expanded || undefined}
-      aria-label={expanded ? "Nod's browser" : undefined}
+      aria-label={expanded ? "Wea's browser" : undefined}
       style={
         expanded && naturalSize.width
           ? { width: `min(${naturalSize.width + 2}px, calc(100vw - 48px))` }
@@ -521,7 +521,7 @@ export function BrowserHandoff({ turnId, paused = false }: { turnId: string; pau
         tabIndex={0}
         role="application"
         aria-disabled={!live || busy}
-        aria-label="Nod's browser. Click and type to use it."
+        aria-label="Wea's browser. Click and type to use it."
         onKeyDown={key}
         onPaste={paste}
       >
@@ -529,7 +529,7 @@ export function BrowserHandoff({ turnId, paused = false }: { turnId: string; pau
           <img
             key={attempt}
             src={frame || undefined}
-            alt="Nod's browser"
+            alt="Wea's browser"
             draggable={false}
             hidden={!shown}
             onLoad={(event) => {
@@ -574,7 +574,7 @@ export function BrowserHandoff({ turnId, paused = false }: { turnId: string; pau
             </Button>
           </div>
         ) : !shown ? (
-          <Loading label="Opening Nod's browser…" />
+          <Loading label="Opening Wea's browser…" />
         ) : null}
       </div>
       {error && (
@@ -608,7 +608,7 @@ export function BrowserHandoff({ turnId, paused = false }: { turnId: string; pau
         <span>
           {paused
             ? 'Reply in chat to continue this task.'
-            : 'Nod is paused while you use this page.'}
+            : 'Wea is paused while you use this page.'}
         </span>
         <div className="browser-handoff-actions">
           <Button variant="ghost" size="sm" asChild>
@@ -628,7 +628,7 @@ export function BrowserHandoff({ turnId, paused = false }: { turnId: string; pau
             disabled={busy || paused}
             title={paused ? 'Paused at the spending limit.' : undefined}
           >
-            {returning ? 'Returning…' : 'Return to Nod'}
+            {returning ? 'Returning…' : 'Return to Wea'}
           </Button>
         </div>
       </div>
@@ -638,7 +638,7 @@ export function BrowserHandoff({ turnId, paused = false }: { turnId: string; pau
   return (
     <>
       <div className="browser-handoff browser-handoff-placeholder">
-        <span>Nod's browser is open in a larger view.</span>
+        <span>Wea's browser is open in a larger view.</span>
         {sizeToggle}
       </div>
       {createPortal(

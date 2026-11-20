@@ -21,11 +21,11 @@ const path = '/api/computer-use';
 const permissionText = {
   accessibility: {
     label: 'Accessibility',
-    hint: 'Lets Nod read app windows and press their controls.',
+    hint: 'Lets Wea read app windows and press their controls.',
   },
   screen: {
     label: 'Screen Recording',
-    hint: 'Lets Nod take a picture of one app window when its controls aren’t enough.',
+    hint: 'Lets Wea take a picture of one app window when its controls aren’t enough.',
   },
 } as const;
 
@@ -45,7 +45,7 @@ export function ComputerUseSettings() {
   if (!data.available)
     return (
       <section className="account-region">
-        <p className="field-hint">Computer use works in the Nod desktop app.</p>
+        <p className="field-hint">Computer use works in the Wea desktop app.</p>
       </section>
     );
 
@@ -63,7 +63,7 @@ export function ComputerUseSettings() {
   }
 
   const mac = data.platform === 'darwin';
-  const label = mac ? 'Let Nod use apps on this Mac' : 'Let Nod use apps on this computer';
+  const label = mac ? 'Let Wea use apps on this Mac' : 'Let Wea use apps on this computer';
   const fileManager = mac
     ? 'Finder'
     : data.platform === 'win32'
@@ -90,10 +90,10 @@ export function ComputerUseSettings() {
           />
         </div>
         <p className="field-hint">
-          Experimental. Nod opens an app only when your request names it or needs it, and asks
+          Experimental. Wea opens an app only when your request names it or needs it, and asks
           before a step that sends, saves over, deletes or buys anything. Browsers and code editors
           stay view-only; known terminals, system settings, {fileManager} and password managers are
-          never used. To keep Nod out of any other app, tell Nod.
+          never used. To keep Wea out of any other app, tell Wea.
         </p>
       </section>
       {data.enabled && data.platform === 'linux' && !data.permissions.ready && (
@@ -101,7 +101,7 @@ export function ComputerUseSettings() {
           <p className="field-hint">
             {data.permissions.sandboxed
               ? 'Computer use doesn’t work in the Flatpak app yet: its sandbox can’t reach other apps.'
-              : 'Nod can’t reach the accessibility service on this computer. On Linux, install at-spi2-core, turn on assistive technologies in your desktop’s accessibility settings, then sign out and back in.'}
+              : 'Wea can’t reach the accessibility service on this computer. On Linux, install at-spi2-core, turn on assistive technologies in your desktop’s accessibility settings, then sign out and back in.'}
           </p>
         </section>
       )}
@@ -130,10 +130,10 @@ export function ComputerUseSettings() {
               {mac && data.permissions[which] !== 'granted' && (
                 <>
                   {
-                    ' macOS opens System Settings, Privacy & Security; turn on Nod there, then come back.'
+                    ' macOS opens System Settings, Privacy & Security; turn on Wea there, then come back.'
                   }
                   {which === 'screen' &&
-                    ' If you already turned it on, quit and reopen Nod; macOS applies it only after a restart.'}
+                    ' If you already turned it on, quit and reopen Wea; macOS applies it only after a restart.'}
                 </>
               )}
             </p>
@@ -143,9 +143,9 @@ export function ComputerUseSettings() {
         <section className="account-region">
           <KeepOutList
             title="Kept out of computer use"
-            hint="Nod never uses these apps. Tell Nod to add one; only you can remove it here."
+            hint="Wea never uses these apps. Tell Wea to add one; only you can remove it here."
             items={data.keptOut}
-            removeLabel={(bundle) => `Let Nod use ${bundle} again`}
+            removeLabel={(bundle) => `Let Wea use ${bundle} again`}
             disabled={busy}
             onRemove={(bundle) =>
               void save(() =>

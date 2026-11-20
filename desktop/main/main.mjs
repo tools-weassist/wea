@@ -68,7 +68,7 @@ const desktopRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const engineRoot = app.isPackaged
   ? join(process.resourcesPath, 'engine')
   : resolve(desktopRoot, '..');
-const notificationIcon = join(engineRoot, app.isPackaged ? 'dist/web' : 'public', 'nod-logo.png');
+const notificationIcon = join(engineRoot, app.isPackaged ? 'dist/web' : 'public', 'wea-logo.png');
 const appPages = JSON.parse(readFileSync(join(engineRoot, 'src/shared/app-pages.json'), 'utf8'));
 const posthogConfig = JSON.parse(
   readFileSync(join(engineRoot, 'src/shared/posthog-host.json'), 'utf8'),

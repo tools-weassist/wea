@@ -7112,7 +7112,7 @@ test(
         },
       );
 
-      await t.test('chat-app clear saves one visible acknowledgement in Nod', async () => {
+      await t.test('chat-app clear saves one visible acknowledgement in Wea', async () => {
         const { createChannels } = await import('../src/server/channels.ts');
         const threadId = (await thread.activeThread()).id;
         for (const provider of ['telegram', 'whatsapp']) {
@@ -8415,7 +8415,7 @@ test(
                 const until = new Date(Date.now() + 120_000);
                 sourceFailure = Object.assign(
                   new Error(
-                    `The connection service is rate limiting this install (installation_busy, HTTP 429), so Nod is not calling it until ${until.toISOString()}. Nod did not read this source. Do not retry this source now; it is checked again after that time.`,
+                    `The connection service is rate limiting this install (installation_busy, HTTP 429), so Wea is not calling it until ${until.toISOString()}. Wea did not read this source. Do not retry this source now; it is checked again after that time.`,
                   ),
                   { statusCode: 429, status: 429, notRun: true },
                 );
@@ -13899,7 +13899,7 @@ test('a first task stays open after its chat turn ends and follows its own saved
 });
 
 test(
-  'the live line uses an active tool label, drops old steps, and keeps work Nod started apart',
+  'the live line uses an active tool label, drops old steps, and keeps work Wea started apart',
   { skip: !process.env.TEST_DATABASE_URL, timeout: 30_000 },
   async () => {
     const schema = `test_activity_${randomUUID().replaceAll('-', '').slice(0, 16)}`;

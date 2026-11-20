@@ -277,7 +277,7 @@ export function CloudKeyFields({
     return showWorkspace || workspaceFallback || workspaces.length > 0 ? (
       <>
         {workspaces.length > 0 && (
-          <Field label="Workspace" hint="Choose the workspace Nod should use.">
+          <Field label="Workspace" hint="Choose the workspace Wea should use.">
             <select
               className="input"
               value={
@@ -924,7 +924,7 @@ export function ModelSettings({ onDirtyChange }: { onDirtyChange?(dirty: boolean
                   {panel.provider !== 'compatible' && <ModelKeyHelp provider={panel.provider} />}
                   {panel.provider === 'compatible' && (
                     <p className="model-key-note">
-                      Nod also uses this model to check actions. Smaller models decide less
+                      Wea also uses this model to check actions. Smaller models decide less
                       reliably.
                     </p>
                   )}
@@ -967,7 +967,7 @@ export function ModelSettings({ onDirtyChange }: { onDirtyChange?(dirty: boolean
                 </Button>
               </div>
               <details className="model-details">
-                <summary>Browser didn’t return to Nod?</summary>
+                <summary>Browser didn’t return to Wea?</summary>
                 <form
                   onSubmit={(event) => {
                     event.preventDefault();

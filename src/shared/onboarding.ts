@@ -74,7 +74,7 @@ export const legalLinks = {
 } as const;
 export const updatesEmailConsent = {
   version: 2,
-  text: 'I agree that n8n GmbH links my email to my Nod usage data and emails me about Nod and other n8n products.',
+  text: 'I agree that n8n GmbH links my email to my Wea usage data and emails me about Wea and other n8n products.',
   privacyUrl: legalLinks.privacy,
 } as const;
 export function connectedGmail(connection: Connection) {

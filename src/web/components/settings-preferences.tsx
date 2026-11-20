@@ -381,7 +381,7 @@ export function GeneralPreferences({
       <section className="account-region account-links" aria-labelledby={`${id}-community`}>
         <h3 id={`${id}-community`}>Community</h3>
         <p className="field-hint">
-          Talk with other Nod users on{' '}
+          Talk with other Wea users on{' '}
           <a href={communityLinks.discord} target="_blank" rel="noreferrer">
             Discord
           </a>{' '}

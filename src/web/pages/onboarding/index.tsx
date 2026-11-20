@@ -318,7 +318,7 @@ export function Onboarding({
       if (!request.signal.aborted) {
         setPreparation('failed');
         setPreparationError({
-          message: cause instanceof ApiError ? cause.message : 'Nod could not finish setup.',
+          message: cause instanceof ApiError ? cause.message : 'Wea could not finish setup.',
           details: cause instanceof ApiError ? `HTTP ${cause.status}` : errorMessage(cause),
         });
         capture('ui_error', { area: 'onboarding', action: 'prepare' });

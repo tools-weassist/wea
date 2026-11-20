@@ -98,7 +98,7 @@ function fieldValue(record: Record<string, unknown>, names: string[]) {
 const verificationHidden =
   'Verification email content is private. Use sign_in with emailCode:true to retrieve and enter its code.';
 const uncheckedHidden =
-  'Nod could not check whether this email is for signing in, so its content is private.';
+  'Wea could not check whether this email is for signing in, so its content is private.';
 
 export function hiddenEmail(value: unknown) {
   const message = (value as { message?: unknown } | null)?.message;
@@ -209,7 +209,7 @@ export async function privateEmailResult(
   const count = [...withheld.values()].reduce((sum, value) => sum + value, 0);
   const contentWithheld = {
     emails: count,
-    message: `The read succeeded, but Nod withheld the subject and content of ${count} ${count === 1 ? 'email' : 'emails'} because it could not check whether they are for signing in: ${[
+    message: `The read succeeded, but Wea withheld the subject and content of ${count} ${count === 1 ? 'email' : 'emails'} because it could not check whether they are for signing in: ${[
       ...withheld,
     ]
       .map(([reason, emails]) => `${reason} (${emails})`)

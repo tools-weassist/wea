@@ -44,7 +44,7 @@ export function Sidebar({
   const chatLabel = [
     'Chat',
     unreadCount || unreadPending ? unreadLabel : null,
-    presence === 'waiting' ? 'waiting for you' : presence === 'working' ? 'Nod is working' : null,
+    presence === 'waiting' ? 'waiting for you' : presence === 'working' ? 'Wea is working' : null,
   ]
     .filter(Boolean)
     .join(', ');
@@ -204,7 +204,7 @@ export function Sidebar({
         <a
           href="/"
           className="brand"
-          aria-label="Nod"
+          aria-label="Wea"
           onClick={(event) => {
             if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
             event.preventDefault();
@@ -212,7 +212,7 @@ export function Sidebar({
           }}
         >
           <BrandMark />
-          <span>Nod</span>
+          <span>Wea</span>
         </a>
       </div>
       <nav className="main-nav" aria-label="Main navigation" id="sidebar-navigation">

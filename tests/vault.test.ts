@@ -1504,7 +1504,7 @@ test(
         );
       });
 
-      await t.test('Nod never keeps a security code', async () => {
+      await t.test('Wea never keeps a security code', async () => {
         for (const response of [
           await app.inject({
             method: 'POST',
@@ -5805,14 +5805,14 @@ const {BrowserHandoff}=await import('./src/web/components/browser-handoff.tsx');
 const handoff=()=>createElement(BrowserHandoff,{turnId:'00000000-0000-4000-8000-000000000712'});
 await remount(handoff());
 const startHandoff=count('browser_handoff_action');
-await click(button('Return to Nod'));check('BH1-rejected',count('browser_handoff_action')===startHandoff);
-handoffMode='hold';await click(button('Return to Nod'));await waitFor(()=>releaseHandoff);
+await click(button('Return to Wea'));check('BH1-rejected',count('browser_handoff_action')===startHandoff);
+handoffMode='hold';await click(button('Return to Wea'));await waitFor(()=>releaseHandoff);
 check('BH1-pending',count('browser_handoff_action')===startHandoff);
 await act(async()=>releaseHandoff());check('BH1-success',count('browser_handoff_action')===startHandoff+1);
-await remount(handoff());await click(button('Return to Nod'));await waitFor(()=>releaseHandoff);
+await remount(handoff());await click(button('Return to Wea'));await waitFor(()=>releaseHandoff);
 configureAnalytics(undefined);configureAnalytics(config,'web');await act(async()=>releaseHandoff());
 check('BH2-consent-fence',count('browser_handoff_action')===startHandoff+1);
-await remount(handoff());await click(button('Return to Nod'));await waitFor(()=>releaseHandoff);
+await remount(handoff());await click(button('Return to Wea'));await waitFor(()=>releaseHandoff);
 setRequestAccount('synthetic-another-owner');await act(async()=>releaseHandoff());
 check('BH2-owner-fence',count('browser_handoff_action')===startHandoff+1);restore();
 await remount(handoff());await click(document.querySelector('button[aria-label="Enlarge browser"]'));

@@ -1,7 +1,7 @@
 :root {
   color-scheme: light;
   --white: #fafafa;
-  --black: #191919;
+  --black: var(--wea-ink-navy);
   --gray-0: #fff;
   --gray-10: #f8f8f8;
   --gray-15: #f1f1f1;
@@ -15,12 +15,23 @@
   --gray-80: #464646;
   --gray-85: #353535;
   --gray-90: #242424;
-  --pink-10: #ffe8ec;
-  --pink-20: #ffd0d9;
-  --pink-30: #ffbcca;
-  --brand-pink: #ff91ac;
-  --pink-70: #87003c;
-  --pink-80: #5a0026;
+  /* Wea brand tokens (concept C "Breathe", /workspace/wea-brand/README.md). */
+  --wea-ink-navy: #142134;
+  --wea-teal: #0698b2;
+  --wea-glow-teal: #07c2e4;
+  --wea-mist: #f1f5f9;
+  --wea-white: #ffffff;
+  --wea-font-heading: 'Fraunces', Georgia, serif;
+  --wea-font-body: 'League Spartan', Arial, sans-serif;
+  --wea-mark-disc: var(--wea-teal);
+  --wea-mark-wave: var(--wea-mist);
+  /* The upstream accent scale keeps its variable names and now holds Wea teal tints. */
+  --pink-10: #e3f5f8;
+  --pink-20: #c4eaf1;
+  --pink-30: #9fdce7;
+  --brand-pink: var(--wea-teal);
+  --pink-70: #05697b;
+  --pink-80: #04434f;
   --background: var(--white);
   --canvas: var(--background);
   --sidebar: #f5f5f5;
@@ -43,9 +54,9 @@
   --link: var(--accent);
   --link-hover: var(--pink-80);
   --primary: var(--brand-pink);
-  --primary-hover: var(--pink-20);
-  --primary-pressed: var(--pink-30);
-  --primary-foreground: var(--black);
+  --primary-hover: #0789a0;
+  --primary-pressed: var(--pink-70);
+  --primary-foreground: var(--wea-white);
   --chat-sent: var(--pink-20);
   --chat-sent-foreground: var(--black);
   --control: var(--gray-15);
@@ -142,6 +153,8 @@
 
 :root[data-theme='dark'] {
   color-scheme: dark;
+  --wea-mark-disc: var(--wea-glow-teal);
+  --wea-mark-wave: var(--wea-ink-navy);
   --link-hover: var(--pink-20);
   --background: var(--black);
   --sidebar: #1f1f1f;
@@ -153,7 +166,7 @@
   --foreground: var(--white);
   --text-secondary: var(--gray-30);
   --muted-foreground: var(--gray-40);
-  --accent: var(--brand-pink);
+  --accent: var(--wea-glow-teal);
   --accent-soft: var(--pink-80);
   --accent-border: var(--pink-70);
   --chat-sent: var(--pink-80);
@@ -167,7 +180,7 @@
   --switch-off: var(--gray-60);
   --switch-thumb: var(--black);
   --border: var(--gray-85);
-  --ring: var(--brand-pink);
+  --ring: var(--wea-glow-teal);
   --selection: var(--pink-80);
   --dot-grid: var(--gray-80);
   --error: #ffacb9;

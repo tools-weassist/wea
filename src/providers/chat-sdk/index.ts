@@ -446,7 +446,7 @@ export function createChatSdkTransport(
       text: {
         recorded: 'Answer recorded.',
         unavailable: 'No answer was recorded for this tap.',
-        retry: 'Nod is still processing this chat. Try tapping again.',
+        retry: 'Wea is still processing this chat. Try tapping again.',
       }[result],
     }).catch(() => {
       throw new MessagingConnectionError('Telegram could not acknowledge the approval tap.');

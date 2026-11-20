@@ -414,7 +414,7 @@ export async function insertBugReportDraft(
   );
   return insertAssistantMessage(client, turn, text, [], streamId, undefined, {
     version: 1,
-    title: 'Bug report for the Nod team',
+    title: 'Bug report for the Wea team',
     sources: [],
     type: 'bug-report',
     draftId,
@@ -1423,7 +1423,7 @@ function modelRecoveryAdvice(text: string) {
 
 const offlineCause =
   /\(transport cause: (ENOTFOUND|EAI_AGAIN|ENETUNREACH|EHOSTUNREACH|ENETDOWN)\)\s*\[request phase: [^\]]*\]$/;
-const offlineHint = `Scheduled tasks run only while this computer is awake and online. To keep them running while it sleeps, [run Nod on a server](https://nod.n8n.io/docs/deploy/self-host/).`;
+const offlineHint = `Scheduled tasks run only while this computer is awake and online. To keep them running while it sleeps, [run Wea on a server](https://nod.n8n.io/docs/deploy/self-host/).`;
 
 function offlineFailure(error: unknown, provider: string | undefined) {
   if (
@@ -1436,7 +1436,7 @@ function offlineFailure(error: unknown, provider: string | undefined) {
   const name =
     (modelProviderNames as Record<string, string>)[provider ?? ''] ?? 'the model provider';
   return {
-    reason: `Nod couldn't reach ${name} because this computer had no internet connection`,
+    reason: `Wea couldn't reach ${name} because this computer had no internet connection`,
     code,
   };
 }
@@ -1617,7 +1617,7 @@ async function failTurn(
         client,
         ref,
         message.trim(),
-        'Nod stopped on an unexpected error while working on a request.',
+        'Wea stopped on an unexpected error while working on a request.',
         streamId,
       );
     else

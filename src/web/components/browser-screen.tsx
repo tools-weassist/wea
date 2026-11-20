@@ -41,7 +41,7 @@ export function BrowserScreen({
     if (imageUrl.current) URL.revokeObjectURL(imageUrl.current);
     imageUrl.current = '';
     setScreenState(
-      browserId ? 'Opening the browser view…' : 'The browser appears when Nod uses it.',
+      browserId ? 'Opening the browser view…' : 'The browser appears when Wea uses it.',
     );
     async function frame() {
       if (
@@ -152,7 +152,7 @@ export function BrowserScreen({
                   variant="ghost"
                   size="sm"
                   disabled={stoppingBrowser === browserId}
-                  aria-label="Stop Nod"
+                  aria-label="Stop Wea"
                   onClick={() => {
                     const id = browserId;
                     setStoppingBrowser(id);

@@ -130,7 +130,7 @@ export function MessageQuote({
       >
         <strong>
           {composing ? 'Replying to ' : ''}
-          {message.role === 'assistant' ? 'Nod' : composing ? 'yourself' : 'You'}
+          {message.role === 'assistant' ? 'Wea' : composing ? 'yourself' : 'You'}
         </strong>
         <span
           className="message-excerpt"
@@ -694,7 +694,7 @@ export function MessageBubble({
     <article
       ref={articleElement}
       className={`message message-${message.role}${grouped ? ' message-grouped' : ''}${arriving ? ' message-arriving' : ''}${panel ? ' message-panel-open' : ''}`}
-      aria-label={streaming ? 'Nod is responding' : message.role === 'user' ? 'You' : 'Nod'}
+      aria-label={streaming ? 'Wea is responding' : message.role === 'user' ? 'You' : 'Wea'}
       data-message-id={streaming ? undefined : message.id}
       onMouseUp={selectQuote}
       onKeyUp={selectQuote}
@@ -936,13 +936,13 @@ export function MessageBubble({
                 ) : (
                   agentReaction && (
                     <Tooltip
-                      content={`Nod reacted: ${reactionName(agentReaction)}`}
+                      content={`Wea reacted: ${reactionName(agentReaction)}`}
                       key={agentReaction}
                     >
                       <span
                         className={reactionClass}
                         role="img"
-                        aria-label={`Nod reacted: ${reactionName(agentReaction)}`}
+                        aria-label={`Wea reacted: ${reactionName(agentReaction)}`}
                       >
                         {agentReaction}
                       </span>

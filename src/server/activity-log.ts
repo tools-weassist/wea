@@ -9,7 +9,7 @@ import { activityRange, type ActivityRange } from './ledger.ts';
 const sources: Record<TrustSource, string> = {
   chat: 'Chat',
   task: 'Task',
-  started: 'Task Nod started',
+  started: 'Task Wea started',
   schedule: 'Schedule',
   event: 'App event',
   check: 'Activity check',

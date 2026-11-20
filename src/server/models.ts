@@ -119,7 +119,7 @@ export interface WorkOrigin {
 const workNames = {
   task: 'This task',
   schedule: 'This schedule',
-  lane: { schedule: 'Schedules', background: 'Work Nod starts on its own' },
+  lane: { schedule: 'Schedules', background: 'Work Wea starts on its own' },
 } as const;
 
 export function endpointAddress(address: string) {
@@ -869,7 +869,7 @@ export function createModelService(options: {
       await options.keyStore.getKey();
     } catch (cause) {
       throw new ConnectionError(
-        'Nod cannot open its credential storage. Check your server settings, then try again.',
+        'Wea cannot open its credential storage. Check your server settings, then try again.',
         { cause },
       );
     }
@@ -1457,7 +1457,7 @@ export function createModelService(options: {
         const definitions = await catalog('compatible', 'api_key', value);
         if (!definitions.length)
           throw new ConnectionError(
-            'This server has no models Nod can use. Nod needs models with tool support.',
+            'This server has no models Wea can use. Wea needs models with tool support.',
           );
         return save('compatible', 'api_key', value, definitions);
       });

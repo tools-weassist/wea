@@ -30,14 +30,23 @@
   margin-top: -12px;
 }
 
-.ob-welcome-mark {
-  flex: none;
-  color: var(--foreground);
+.wea-lockup {
+  display: block;
+  height: 72px;
+  width: auto;
 }
 
-.ob-welcome-mark > circle,
-.ob-welcome-mark > .ob-glyph-orbit {
-  animation-iteration-count: 2;
+.wea-lockup-dark,
+:root[data-theme='dark'] .wea-lockup-light {
+  display: none;
+}
+
+:root[data-theme='dark'] .wea-lockup-dark {
+  display: block;
+}
+
+.ob-welcome-tagline {
+  color: var(--foreground);
 }
 
 .ob-welcome-copy {

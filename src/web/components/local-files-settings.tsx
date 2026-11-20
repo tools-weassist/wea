@@ -57,15 +57,15 @@ export function LocalFilesSettings() {
         />
       </div>
       <p className="field-hint">
-        Let Nod work with files in your home folder and external drives in work you start. You can
+        Let Wea work with files in your home folder and external drives in work you start. You can
         also turn this on or off in chat.
       </p>
       {!!data.paths.length && (
         <KeepOutList
           title="Kept out of local files"
-          hint="Nod never opens or changes anything in these folders. Tell Nod to add one; only you can remove it here."
+          hint="Wea never opens or changes anything in these folders. Tell Wea to add one; only you can remove it here."
           items={data.paths}
-          removeLabel={(folder) => `Let Nod into ${folder} again`}
+          removeLabel={(folder) => `Let Wea into ${folder} again`}
           disabled={busy}
           onRemove={(folder) => void letIn(folder)}
         />

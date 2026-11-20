@@ -127,7 +127,7 @@ export async function createApp(slug: string, input: CreateAppOptions) {
       $schema: 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json',
       name: slug,
       version: '0.1.0',
-      description: `Connect ${name} to Nod.`,
+      description: `Connect ${name} to Wea.`,
       license: 'Apache-2.0',
       author: { name: 'Replace with the maintainer name' },
       extensions: { 'io.n8n.nod': { app: './io.n8n.nod/app.json' } },

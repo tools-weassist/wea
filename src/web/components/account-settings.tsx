@@ -502,7 +502,7 @@ export function AccountSettings({
                         />
                       </div>
                       <p className="field-hint">
-                        Share how you use Nod, including your onboarding answers and your email if
+                        Share how you use Wea, including your onboarding answers and your email if
                         you gave it, without your messages or screen recordings.
                       </p>
                     </section>

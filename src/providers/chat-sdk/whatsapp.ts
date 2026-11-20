@@ -136,7 +136,7 @@ export function createWhatsAppLinkedTransport(options: {
     });
     writes = pending.catch((cause) => {
       if (!closed && !halted)
-        stop('failed', 'Nod could not save the WhatsApp device keys. Select Reconnect.', cause);
+        stop('failed', 'Wea could not save the WhatsApp device keys. Select Reconnect.', cause);
     });
     return pending;
   }
@@ -466,7 +466,7 @@ export function createWhatsAppLinkedTransport(options: {
         })
         .catch((cause) => {
           if (!closed && !halted)
-            stop('failed', 'Nod could not read a WhatsApp message. Select Reconnect.', cause);
+            stop('failed', 'Wea could not read a WhatsApp message. Select Reconnect.', cause);
         })
         .finally(() => {
           queued -= messages.length;
@@ -520,7 +520,7 @@ export function createWhatsAppLinkedTransport(options: {
           void clearSaved().catch(() => {
             stop(
               'failed',
-              'Nod could not remove the signed-out WhatsApp device keys. Select Reconnect.',
+              'Wea could not remove the signed-out WhatsApp device keys. Select Reconnect.',
             );
           });
         } else if (
@@ -542,7 +542,7 @@ export function createWhatsAppLinkedTransport(options: {
             `${reason} (${code}). Select Reconnect. If it still fails, check Linked Devices in WhatsApp.`,
           );
         } else {
-          state.error = `WhatsApp disconnected${Number.isInteger(code) ? ` (${code})` : ''}. Nod is trying to reconnect.`;
+          state.error = `WhatsApp disconnected${Number.isInteger(code) ? ` (${code})` : ''}. Wea is trying to reconnect.`;
           channel.error = state.error;
           clearTimeout(reconnect);
           reconnect = setTimeout(
@@ -550,7 +550,7 @@ export function createWhatsAppLinkedTransport(options: {
               try {
                 connect();
               } catch (cause) {
-                stop('failed', 'Nod could not reconnect to WhatsApp. Select Reconnect.', cause);
+                stop('failed', 'Wea could not reconnect to WhatsApp. Select Reconnect.', cause);
               }
             },
             Math.min(60_000, 1000 * 2 ** Math.min(attempt++, 6)),
@@ -606,7 +606,7 @@ export function createWhatsAppLinkedTransport(options: {
           void clearSaved().catch(() => {
             stop(
               'failed',
-              'Nod could not remove the expired WhatsApp device keys. Select Reconnect.',
+              'Wea could not remove the expired WhatsApp device keys. Select Reconnect.',
             );
           });
         }, 5 * 60_000);
@@ -617,7 +617,7 @@ export function createWhatsAppLinkedTransport(options: {
       if (!closed && !halted)
         stop(
           'failed',
-          'Nod could not start the saved WhatsApp connection. Select Reconnect.',
+          'Wea could not start the saved WhatsApp connection. Select Reconnect.',
           cause,
         );
     });
@@ -851,7 +851,7 @@ export function createWhatsAppLinkedTransport(options: {
         try {
           await clearSaved();
         } catch (cause) {
-          stop('failed', 'Nod could not remove the WhatsApp device keys.', cause);
+          stop('failed', 'Wea could not remove the WhatsApp device keys.', cause);
           throw cause;
         }
         channel.available = false;

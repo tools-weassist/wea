@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties, type HTMLAttributes } from 'react';
 import { cn } from '../lib/utils';
+import { WeaMarkShapes } from './wea-mark';
 
 export function prefersReducedMotion() {
   return (
@@ -42,12 +43,12 @@ export function NodGlyph({
     <circle
       cx="25"
       cy="6"
-      r="4"
+      r="2.5"
       className={cn(
         mode === 'idle' && phase === 'rest' && 'ob-glyph-pulse',
         orbiting && (waiting ? 'ob-glyph-waiting' : progress < 1 && 'ob-glyph-receiving'),
       )}
-      fill="var(--brand-pink)"
+      fill="var(--wea-glow-teal)"
     />
   );
   const dot = reaction ? (
@@ -86,7 +87,7 @@ export function NodGlyph({
           )}
         </>
       )}
-      <circle cx="16" cy="16" r="10" stroke="currentColor" strokeWidth="4" />
+      <WeaMarkShapes r={12} small={size <= 48} />
       <g
         className="ob-glyph-orbit"
         data-phase={phase}
@@ -105,7 +106,7 @@ export function NodGlyph({
             setPhase(live.current.thinking ? 'spin' : 'rest');
         }}
       >
-        {dot}
+        {mode !== 'still' && mode !== 'bounce' && dot}
       </g>
     </svg>
   );

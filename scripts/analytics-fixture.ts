@@ -25,7 +25,7 @@ let modelSetupChecks = 0;
 let updatesEmailSubmissions = 0;
 const survey = {
   id: '0190c1a2-0000-7000-8000-000000000001',
-  name: 'Synthetic Nod survey',
+  name: 'Synthetic Wea survey',
   type: 'api',
   start_date: '2026-01-01T00:00:00Z',
   end_date: null,
@@ -37,7 +37,7 @@ const survey = {
       id: '0190c1a2-0000-7000-8000-000000000002',
       type: 'rating',
       scale: 10,
-      question: 'How likely are you to recommend Nod to a friend or colleague?',
+      question: 'How likely are you to recommend Wea to a friend or colleague?',
       lowerBoundLabel: 'Not at all likely',
       upperBoundLabel: 'Extremely likely',
     },

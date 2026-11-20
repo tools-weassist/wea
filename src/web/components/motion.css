@@ -162,13 +162,13 @@
     transform: translate(0.25px, -0.5px) scale(1.04);
   }
 }
-.ob-glyph-bounce > circle,
+.ob-glyph-bounce > .wea-mark,
 .ob-glyph-bounce > .ob-glyph-orbit {
   transform-box: view-box;
   transform-origin: center;
 }
 
-.ob-glyph-bounce > circle {
+.ob-glyph-bounce > .wea-mark {
   animation: ob-bounce-ring 1.5s 0.25s var(--ease-enter) infinite;
 }
 

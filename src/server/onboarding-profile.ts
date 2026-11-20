@@ -128,7 +128,7 @@ export function profileNote(profile: OnboardingProfile) {
     own(profile.jobsText),
   ].filter(Boolean);
   return [
-    profile.scope && `Where they want Nod’s help: ${label(profileScopes, profile.scope)}.`,
+    profile.scope && `Where they want Wea’s help: ${label(profileScopes, profile.scope)}.`,
     roles.length && `What they do: ${roles.join('; ')}.`,
     profileAsksWhoFor(profile.scope, profile.roles) &&
       profile.whoFor &&
@@ -173,7 +173,7 @@ export function createOnboardingProfile(options: {
         if (!saved && enabled)
           return response.code(502).send({
             error:
-              'Nod couldn’t confirm your choices reached analytics. Try again, or continue without retrying.',
+              'Wea couldn’t confirm your choices reached analytics. Try again, or continue without retrying.',
           });
         shared = saved && enabled && version === options.profileAnalytics.version();
       }
@@ -185,7 +185,7 @@ export function createOnboardingProfile(options: {
       if (!options.updatesEmail)
         return response
           .code(404)
-          .send({ error: 'Email updates aren’t available in this version of Nod.' });
+          .send({ error: 'Email updates aren’t available in this version of Wea.' });
       if (!options.updatesEmail.enabled())
         return response
           .code(403)
@@ -199,7 +199,7 @@ export function createOnboardingProfile(options: {
       if (!saved)
         return response.code(502).send({
           error:
-            'Nod couldn’t finish signing you up. Your email may already be saved. Try again, or write to privacy@n8n.io to request deletion.',
+            'Wea couldn’t finish signing you up. Your email may already be saved. Try again, or write to privacy@n8n.io to request deletion.',
         });
       return { ok: true };
     });

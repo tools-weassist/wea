@@ -5,11 +5,11 @@ import { NodGlyph } from '../../components/motion';
 import { Button } from '../../components/ui';
 
 const stepNames: Record<OnboardingStep, string> = {
-  welcome: 'Welcome to Nod',
+  welcome: 'Welcome to Wea',
   about: 'About you',
   email: 'Connect your email',
   brain: 'Connect an AI provider',
-  privacy: 'Help improve Nod',
+  privacy: 'Help improve Wea',
   join: 'Stay up to date',
 };
 
@@ -37,7 +37,7 @@ export function OnboardingFrame({
         <header className="ob-header">
           <div className="ob-brand">
             <NodGlyph mode="still" />
-            <span>Nod</span>
+            <span>Wea</span>
           </div>
           <div
             className="ob-dots"

@@ -57,20 +57,20 @@ export function AppConnectionDialog({
     (outcome === 'unavailable'
       ? onRetry
         ? 'This sign-in is no longer active. Try again to open a new window.'
-        : 'This link is no longer available. Ask Nod for a new sign-in link.'
+        : 'This link is no longer available. Ask Wea for a new sign-in link.'
       : outcome === 'cancelled'
         ? 'You can try again when you’re ready to connect this account.'
         : outcome === 'failed'
           ? onRetry
             ? 'Sign-in couldn’t be confirmed. Try again with a new window.'
-            : 'Ask Nod for a new sign-in link to try again.'
+            : 'Ask Wea for a new sign-in link to try again.'
           : signIn?.reopened && !onRetry
-            ? 'Sign-in is already open in your browser. If you closed it, ask Nod for a new sign-in link.'
+            ? 'Sign-in is already open in your browser. If you closed it, ask Wea for a new sign-in link.'
             : signIn?.broker
-              ? `${signIn.name} will ask you to allow Composio, the service Nod uses to connect apps. Review what it can access, then allow it.`
+              ? `${signIn.name} will ask you to allow Composio, the service Wea uses to connect apps. Review what it can access, then allow it.`
               : opening || !signIn?.url
                 ? 'Your browser will open when sign-in is ready.'
-                : 'Review what Nod can access in your browser.');
+                : 'Review what Wea can access in your browser.');
   return (
     <Dialog
       open={Boolean(

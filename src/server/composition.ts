@@ -1211,9 +1211,9 @@ async function initializeApplication(
             ? `the task "${await tasks.modelTask(id)}"`
             : 'the task being started'
           : {
-              chat: 'when the owner talks to Nod',
+              chat: 'when the owner talks to Wea',
               schedules: 'schedules without their own model',
-              background: 'work Nod starts on its own',
+              background: 'work Wea starts on its own',
             }[scope];
     return {
       service: modelSource(connection),
@@ -1624,7 +1624,7 @@ async function initializeApplication(
       if (action === 'GMAIL_SEND_DRAFT')
         throw Object.assign(
           new Error(
-            'Nod cannot verify the complete saved Gmail draft from this confirmation. Prepare the complete message before asking to send it.',
+            'Wea cannot verify the complete saved Gmail draft from this confirmation. Prepare the complete message before asking to send it.',
           ),
           { notRun: true },
         );
@@ -1749,7 +1749,7 @@ async function initializeApplication(
                             .catch((error: unknown) => {
                               throw Object.assign(
                                 new Error(
-                                  `Nod could not check the selected Gmail account: ${safeIntegrationFailure(error)}`,
+                                  `Wea could not check the selected Gmail account: ${safeIntegrationFailure(error)}`,
                                 ),
                                 { notRun: true },
                               );
@@ -1792,7 +1792,7 @@ async function initializeApplication(
                               .catch((error: unknown) => {
                                 throw Object.assign(
                                   new Error(
-                                    `Nod could not recheck permission to read the Gmail draft before deletion: ${safeIntegrationFailure(error)}`,
+                                    `Wea could not recheck permission to read the Gmail draft before deletion: ${safeIntegrationFailure(error)}`,
                                   ),
                                   { notRun: true },
                                 );
@@ -1800,7 +1800,7 @@ async function initializeApplication(
                             if (readVerdict.confirm)
                               throw Object.assign(
                                 new Error(
-                                  'Nod could not authorize a fresh Gmail draft read before deletion.',
+                                  'Wea could not authorize a fresh Gmail draft read before deletion.',
                                 ),
                                 { notRun: true },
                               );
@@ -1817,7 +1817,7 @@ async function initializeApplication(
                               .catch((error: unknown) => {
                                 throw Object.assign(
                                   new Error(
-                                    `Nod could not recheck the Gmail draft before deletion: ${safeIntegrationFailure(error)}`,
+                                    `Wea could not recheck the Gmail draft before deletion: ${safeIntegrationFailure(error)}`,
                                   ),
                                   { notRun: true },
                                 );
@@ -1827,7 +1827,7 @@ async function initializeApplication(
                               .catch((error: unknown) => {
                                 throw Object.assign(
                                   new Error(
-                                    `Nod could not record the Gmail draft read before deletion: ${safeIntegrationFailure(error)}`,
+                                    `Wea could not record the Gmail draft read before deletion: ${safeIntegrationFailure(error)}`,
                                   ),
                                   { notRun: true },
                                 );
@@ -1836,7 +1836,7 @@ async function initializeApplication(
                             if (!currentTarget)
                               throw Object.assign(
                                 new Error(
-                                  'Nod could not verify the Gmail draft before deletion. Ask again before deleting it.',
+                                  'Wea could not verify the Gmail draft before deletion. Ask again before deleting it.',
                                 ),
                                 { notRun: true },
                               );
@@ -2359,7 +2359,7 @@ async function initializeApplication(
       typeof calendarId !== 'string' ||
       !calendarId.trim()
     )
-      throw new Error('Nod cannot identify the Calendar event proposed for change.');
+      throw new Error('Wea cannot identify the Calendar event proposed for change.');
     const readAction = 'GOOGLECALENDAR_EVENTS_GET';
     const readArgs = {
       connectionId: args.connectionId,
@@ -2372,8 +2372,8 @@ async function initializeApplication(
     if (verdict.confirm)
       throw new Error(
         verdict.reason === 'rule'
-          ? 'Your rules require confirmation before reading this Calendar event, so Nod did not identify it or propose a change.'
-          : 'Nod could not authorize the Calendar read needed to identify this event, so it did not propose a change.',
+          ? 'Your rules require confirmation before reading this Calendar event, so Wea did not identify it or propose a change.'
+          : 'Wea could not authorize the Calendar read needed to identify this event, so it did not propose a change.',
       );
     let observed: unknown;
     try {
@@ -2389,15 +2389,15 @@ async function initializeApplication(
     } catch (error) {
       signal?.throwIfAborted();
       throw new Error(
-        `The Calendar event read failed: ${safeIntegrationFailure(error)} Nod did not change the event.`,
+        `The Calendar event read failed: ${safeIntegrationFailure(error)} Wea did not change the event.`,
       );
     }
     if ((await integrations.binding(String(args.connectionId ?? ''))) !== binding)
-      throw new Error('The selected Calendar account changed while Nod read the event.');
+      throw new Error('The selected Calendar account changed while Wea read the event.');
     const target = calendarEventTarget(observed, eventId);
     if (!target)
       throw new Error(
-        'Nod cannot verify the Calendar event, its dates and its version, so it did not propose or make a change.',
+        'Wea cannot verify the Calendar event, its dates and its version, so it did not propose or make a change.',
       );
     await ledger.action(turn.turnId, readAction, verdict.basis);
     signal?.throwIfAborted();
@@ -2895,7 +2895,7 @@ async function initializeApplication(
         }
         if (action === 'bug_report_draft' || action === 'bug_report_send') {
           if (!readyDrafts().configured)
-            return 'Bug reports cannot be sent from this Nod. Describe the problem in your reply instead.';
+            return 'Bug reports cannot be sent from this Wea. Describe the problem in your reply instead.';
         }
         if (action === 'bug_report_draft') {
           const { summary } = z.object({ summary: z.string().trim().min(1).max(4000) }).parse(args);
@@ -3286,7 +3286,7 @@ async function initializeApplication(
         const prepareConfirmation = async () => {
           if (action === 'GMAIL_SEND_DRAFT')
             throw new Error(
-              'Nod cannot show and bind the complete saved Gmail draft for approval. Prepare the complete message before asking to send it.',
+              'Wea cannot show and bind the complete saved Gmail draft for approval. Prepare the complete message before asking to send it.',
             );
           connected ??=
             action === 'CONNECTED_MCP_CALL'
@@ -3314,7 +3314,7 @@ async function initializeApplication(
           const deletingDraft = action === 'GMAIL_DELETE_DRAFT';
           if (action === 'GMAIL_DELETE_MESSAGE' || deletingDraft || action === 'GMAIL_SEND_EMAIL') {
             if (typeof prepared.connectionId !== 'string')
-              throw new Error('Nod cannot identify the selected Gmail account.');
+              throw new Error('Wea cannot identify the selected Gmail account.');
             targetBinding = await integrations.binding(prepared.connectionId);
             if (!targetBinding)
               throw new Error('The selected Gmail account is no longer available.');
@@ -3331,7 +3331,7 @@ async function initializeApplication(
             if (action === 'GMAIL_SEND_EMAIL') {
               if (!account.accountEmail?.trim())
                 throw new Error(
-                  'Nod cannot verify the sender address for this Gmail confirmation.',
+                  'Wea cannot verify the sender address for this Gmail confirmation.',
                 );
               gmailSender = account.accountEmail;
             }
@@ -3341,7 +3341,7 @@ async function initializeApplication(
             const item = deletingDraft ? 'draft' : 'message';
             const connectionId = prepared.connectionId;
             if (typeof itemId !== 'string' || !itemId.trim() || typeof connectionId !== 'string')
-              throw new Error(`Nod cannot identify the Gmail ${item} proposed for deletion.`);
+              throw new Error(`Wea cannot identify the Gmail ${item} proposed for deletion.`);
             const readAction = deletingDraft
               ? 'GMAIL_GET_DRAFT'
               : 'GMAIL_FETCH_MESSAGE_BY_MESSAGE_ID';
@@ -3355,10 +3355,10 @@ async function initializeApplication(
             if (readVerdict.confirm)
               throw new Error(
                 readVerdict.reason === 'rule'
-                  ? `Your rules require confirmation before reading this Gmail ${item}, so Nod did not identify it or propose deletion. Allow this read in your rules before asking to delete it.`
+                  ? `Your rules require confirmation before reading this Gmail ${item}, so Wea did not identify it or propose deletion. Allow this read in your rules before asking to delete it.`
                   : deletingDraft
-                    ? 'Nod could not authorize the Gmail draft read needed to identify this draft, so it did not propose deletion.'
-                    : 'Nod could not authorize the Gmail metadata read needed to identify this message, so it did not propose deletion.',
+                    ? 'Wea could not authorize the Gmail draft read needed to identify this draft, so it did not propose deletion.'
+                    : 'Wea could not authorize the Gmail metadata read needed to identify this message, so it did not propose deletion.',
               );
             let observed: unknown;
             try {
@@ -3374,7 +3374,7 @@ async function initializeApplication(
             } catch (error) {
               options.signal?.throwIfAborted();
               throw new Error(
-                `The Gmail ${deletingDraft ? 'draft' : 'metadata'} read failed: ${safeIntegrationFailure(error)} Nod did not ask for approval or delete the ${item}.`,
+                `The Gmail ${deletingDraft ? 'draft' : 'metadata'} read failed: ${safeIntegrationFailure(error)} Wea did not ask for approval or delete the ${item}.`,
               );
             }
             await ledger.action(turn.turnId, readAction, readVerdict.basis);
@@ -3388,13 +3388,13 @@ async function initializeApplication(
             } else target = gmailMessageTarget(observed, itemId);
             if (!target)
               throw new Error(
-                `Nod cannot verify which Gmail ${item} this would delete, so it did not ask for approval or delete it.`,
+                `Wea cannot verify which Gmail ${item} this would delete, so it did not ask for approval or delete it.`,
               );
           }
           if (isCalendarEventChange(action)) {
             const connectionId = prepared.connectionId;
             if (typeof connectionId !== 'string')
-              throw new Error('Nod cannot identify the Calendar account proposed for change.');
+              throw new Error('Wea cannot identify the Calendar account proposed for change.');
             targetBinding = await integrations.binding(connectionId);
             let boundAccountId: unknown;
             try {

@@ -85,7 +85,7 @@ export function BugReportCard({
       .then((snapshot) => {
         if (!feedbackReportData(snapshot.content))
           throw new Error(
-            'Update Nod to prepare a redacted diagnostic report, or continue without one.',
+            'Update Wea to prepare a redacted diagnostic report, or continue without one.',
           );
         reportRef.current = snapshot;
         setReport(snapshot);
@@ -220,7 +220,7 @@ export function BugReportCard({
           <div className="action-card-footer">
             <span className="action-card-status" data-state="done" role="status">
               <Check size={16} aria-hidden="true" />
-              Sent to the Nod team
+              Sent to the Wea team
             </span>
             {sent.issueUrl && (
               <a

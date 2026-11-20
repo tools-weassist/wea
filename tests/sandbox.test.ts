@@ -659,7 +659,7 @@ test('the workspace stays fenced when a live process cannot be read', async () =
   });
   const first = execute(docker.session, 'first');
   const reason =
-    /did not stop safely: .*Nod could not confirm that its processes stopped: Nod could not read process 4242: \[Errno 21\] Is a directory: .*\. Restart Nod before continuing\./;
+    /did not stop safely: .*Wea could not confirm that its processes stopped: Wea could not read process 4242: \[Errno 21\] Is a directory: .*\. Restart Wea before continuing\./;
   try {
     docker.launches[0]!.child.emit('close', 137);
     await assert.rejects(first, reason);
@@ -1042,7 +1042,7 @@ test('local file rules match each platform', () => {
   assert.equal(linux.privatePath('/home/ada/nod/.local/keys'), true);
   assert.equal(linux.holdsData('/home/ada/nod'), true);
   for (const suffix of ['flatpak', 'flatpakref', 'flatpakrepo'])
-    assert.equal(linux.executable(`/home/ada/Downloads/Nod.${suffix}`, 0o644), true);
+    assert.equal(linux.executable(`/home/ada/Downloads/Wea.${suffix}`, 0o644), true);
   assert.equal(linux.executable('/home/ada/Downloads/notes.txt', 0o644), false);
 });
 
@@ -1898,7 +1898,7 @@ test('local files stay in home, skip secrets and kept-out folders, and never ove
   }
 });
 
-test('computer use refuses blocked apps, keeps browsers view-only and acts only on refs Nod showed', async () => {
+test('computer use refuses blocked apps, keeps browsers view-only and acts only on refs Wea showed', async () => {
   for (const bundle of [
     'com.apple.Terminal',
     'com.googlecode.iterm2',

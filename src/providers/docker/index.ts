@@ -103,7 +103,7 @@ export function createDockerWorkspace(options: {
   return createCommandWorkspace({
     workspaceRoot: options.workspaceRoot,
     instructions:
-      'Use IPv4 for internet access from your Linux workspace. Node, Python (with pdfplumber and pillow_heif), pipx, git, curl, ripgrep, jq, ffmpeg, yt-dlp, poppler-utils, qpdf, Ghostscript and Tesseract OCR are installed. Python also has pypdf, openpyxl, python-docx and python-pptx, and LibreOffice (soffice) converts office files. Install trusted Python libraries with pip install <package>, trusted CLIs with npm install -g <package> or pipx install <package>; /home/node persists across tasks and restarts. A connected app CLI never runs from here: Nod installs its own copy from the source you propose. You run as an unprivileged user without sudo or a graphical display; use a CLI or browser web app. Keep outputs in this workspace and install tools here, not on the user’s device.',
+      'Use IPv4 for internet access from your Linux workspace. Node, Python (with pdfplumber and pillow_heif), pipx, git, curl, ripgrep, jq, ffmpeg, yt-dlp, poppler-utils, qpdf, Ghostscript and Tesseract OCR are installed. Python also has pypdf, openpyxl, python-docx and python-pptx, and LibreOffice (soffice) converts office files. Install trusted Python libraries with pip install <package>, trusted CLIs with npm install -g <package> or pipx install <package>; /home/node persists across tasks and restarts. A connected app CLI never runs from here: Wea installs its own copy from the source you propose. You run as an unprivileged user without sudo or a graphical display; use a CLI or browser web app. Keep outputs in this workspace and install tools here, not on the user’s device.',
     runCommand: (id, args, input) =>
       runWorkspaceCommand({
         container: options.container,
@@ -158,7 +158,7 @@ export function createCommandWorkspace(options: {
         await error.stop();
         lifecycle = new AbortController();
       } catch (cause) {
-        unavailable ??= `${error.message} Nod could not confirm that its processes stopped: ${cause instanceof Error ? cause.message : String(cause)} Restart Nod before continuing.`;
+        unavailable ??= `${error.message} Wea could not confirm that its processes stopped: ${cause instanceof Error ? cause.message : String(cause)} Restart Wea before continuing.`;
         return unavailable;
       }
     })(recovery);
@@ -173,7 +173,7 @@ export function createCommandWorkspace(options: {
     signal?: AbortSignal,
   ) {
     while (recovery) await recovery;
-    if (disposed) throw new Error('The workspace is unavailable. Restart Nod before continuing.');
+    if (disposed) throw new Error('The workspace is unavailable. Restart Wea before continuing.');
     if (unavailable) throw new Error(unavailable);
     const operation = run(signal ? AbortSignal.any([signal, lifecycle.signal]) : lifecycle.signal);
     pending.add(operation);

@@ -1,3 +1,5 @@
+> **Wea build:** the Spellophone/eSpeak NG phoneme processor described below is removed from Wea and is not distributed. This file is kept for reference to upstream Nod.
+
 # Local speech components
 
 The standalone phoneme processor uses Spellophone 0.2.1 and eSpeak NG 1.52.0, licensed under GPL-3.0-or-later. It accepts text and a language and returns a JSON phoneme string on standard output. Input is one JSON object on standard input, with `text` and `voice` (`en-us`, `en-gb`, `es`, `fr-fr`, `hi`, or `it`). The processor's source is included at `../../src/providers/local-speech/phonemizer-worker.ts`. This processor is distributed under GPL-3.0-or-later; the application's root Apache-2.0 license does not replace the licenses of its third-party components.

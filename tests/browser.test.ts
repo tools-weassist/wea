@@ -1738,7 +1738,7 @@ test('malformed methods and namespaces never reach a computer or filesystem path
   }
 });
 
-test('a failed workspace browser action names only Nod-authored reasons', async () => {
+test('a failed workspace browser action names only Wea-authored reasons', async () => {
   let failure: Error = new RuntimeTimeLimitError();
   const fixture = await harness({
     computer: {
@@ -8741,7 +8741,7 @@ test('chat state reads make progress during refresh events and reject late repli
           step: null, site: null, since: '2026-11-19T12:00:00Z' }];
         await act(async () => event({ type: 'activity', items: activity }));
         const approval = { ...message('pending-approval', 'Synthetic pending change'),
-          approval: { id: 'synthetic-approval', state: 'pending', title: 'Save change', app: 'Nod', slug: 'nod' } };
+          approval: { id: 'synthetic-approval', state: 'pending', title: 'Save change', app: 'Wea', slug: 'nod' } };
         await complete(reads[1], state([saved, message('newer-reply', 'Synthetic newer reply'), approval]));
         assert.ok(document.querySelector('[data-message-id="newer-reply"]'));
         assert.ok(document.querySelector('[data-message-id="pending-approval"] button'));
@@ -9761,7 +9761,7 @@ test('shared controls retain reachable tabs, visible-label typeahead and disable
         await tick();
         assert.equal(Number.parseFloat(tooltip.style.left), first + 120);
         let clicked = 0;
-        await render(h(Button, { disabled: true, title: 'A spending limit pauses control', onClick() { clicked++; } }, 'Return to Nod'));
+        await render(h(Button, { disabled: true, title: 'A spending limit pauses control', onClick() { clicked++; } }, 'Return to Wea'));
         const button = document.querySelector('button');
         assert.equal(button.disabled, true);
         const target = document.querySelector('[data-tooltip-trigger]');

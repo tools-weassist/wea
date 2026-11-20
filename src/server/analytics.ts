@@ -45,10 +45,8 @@ export const snapshotAnalytics = (capture?: CaptureAnalytics) => capture?.snapsh
 export type MemoryChange = Extract<AnalyticsEvent, { event: 'memory_changed' }>['properties'];
 
 export function analyticsEnabled(env: Record<string, string | undefined>) {
-  const production = env.NODE_ENV === 'production';
-  return (
-    env.NOD_ANALYTICS_ENABLED === 'true' || (env.NOD_ANALYTICS_ENABLED !== 'false' && production)
-  );
+  // Wea build: usage analytics to n8n are off unless explicitly enabled.
+  return env.NOD_ANALYTICS_ENABLED === 'true';
 }
 
 export function analyticsEnvironment(

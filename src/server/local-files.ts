@@ -152,8 +152,8 @@ function denied(error: unknown) {
 
 function permissionMessage(path: string) {
   return process.platform === 'darwin'
-    ? `Nod can't open ${path}. Allow Nod in System Settings, Privacy & Security, Files and Folders (or Full Disk Access), then try again.`
-    : `Nod can't open ${path}.`;
+    ? `Wea can't open ${path}. Allow Wea in System Settings, Privacy & Security, Files and Folders (or Full Disk Access), then try again.`
+    : `Wea can't open ${path}.`;
 }
 
 export function isLocalFilesAction(action: string): action is Action {
@@ -269,7 +269,7 @@ export function createLocalFiles(
       database,
       ownerId,
       turn,
-      "Local files only open in work the owner started: a message, or a schedule the owner set up. Nod didn't touch any file.",
+      "Local files only open in work the owner started: a message, or a schedule the owner set up. Wea didn't touch any file.",
     );
   }
 
@@ -287,7 +287,7 @@ export function createLocalFiles(
     if (!available) throw unavailable();
     await assertStartedByOwner(turn, database);
     const input = absolute.safeParse(typeof path === 'string' ? path.trim() : path);
-    if (!input.success) throw new IntegrationError('Name the absolute path to keep Nod out of.');
+    if (!input.success) throw new IntegrationError('Name the absolute path to keep Wea out of.');
     const real = await resolvedAsFarAsItExists(nodePath.resolve(input.data));
     return addKeepOut(database, ownerId, 'local_keep_out', real, keepOutLimit, 'folders');
   }
@@ -297,19 +297,19 @@ export function createLocalFiles(
   }
 
   function unavailable() {
-    return new IntegrationError('Local files work only in the Nod desktop app.', 503);
+    return new IntegrationError('Local files work only in the Wea desktop app.', 503);
   }
 
   function outside(path: string) {
     return new IntegrationError(
-      `${path} is outside your home folder and drives, private (hidden, a secret or Nod's own data), or the root of a drive.`,
+      `${path} is outside your home folder and drives, private (hidden, a secret or Wea's own data), or the root of a drive.`,
       403,
     );
   }
 
   function kept(path: string) {
     return new IntegrationError(
-      `The owner told Nod to keep out of ${path}. Nothing was changed.`,
+      `The owner told Wea to keep out of ${path}. Nothing was changed.`,
       403,
     );
   }
@@ -391,7 +391,7 @@ export function createLocalFiles(
   async function trashReady() {
     if (!(await options.trash?.ready()))
       throw new IntegrationError(
-        "This computer has no Trash Nod can use, so it didn't trash, replace or edit anything.",
+        "This computer has no Trash Wea can use, so it didn't trash, replace or edit anything.",
         503,
       );
   }
@@ -478,7 +478,7 @@ export function createLocalFiles(
     const info = await maybeLstat(path);
     if (info && !info.isFile()) throw new IntegrationError(`${path} is not a regular file.`);
     if (info && (await rules).executable(path, info.mode))
-      throw new IntegrationError(`${path} is executable. Nod only changes plain files.`);
+      throw new IntegrationError(`${path} is executable. Wea only changes plain files.`);
     return info;
   }
 
@@ -556,7 +556,7 @@ export function createLocalFiles(
       );
     if (process.platform !== 'darwin') return;
     const stamp = Math.floor(Date.now() / 1000).toString(16);
-    await run('/usr/bin/xattr', ['-w', 'com.apple.quarantine', `0081;${stamp};Nod;`, path]).catch(
+    await run('/usr/bin/xattr', ['-w', 'com.apple.quarantine', `0081;${stamp};Wea;`, path]).catch(
       () => undefined,
     );
   }
@@ -574,7 +574,7 @@ export function createLocalFiles(
     try {
       const opened = await file.stat();
       if (opened.dev !== checked.dev || opened.ino !== checked.ino)
-        throw new IntegrationError(`${path} changed while Nod was opening it.`);
+        throw new IntegrationError(`${path} changed while Wea was opening it.`);
       const checkVersion = async () => {
         if (!version) return;
         if (fileVersion(await file.stat({ bigint: true })) !== version) throw changedRead(path);
@@ -712,7 +712,7 @@ export function createLocalFiles(
         (process.platform === 'win32' && /[. ]$/.test(resolved))
       )
         throw new IntegrationError(
-          `${path} would be a program or shortcut. Nod only creates plain files.`,
+          `${path} would be a program or shortcut. Wea only creates plain files.`,
         );
       return resolved;
     };
@@ -856,7 +856,7 @@ export function createLocalFiles(
         .strict()
         .safeParse(request.body);
       if (!input.success)
-        return reply.code(400).send({ error: 'Name the folder to let Nod into.' });
+        return reply.code(400).send({ error: 'Name the folder to let Wea into.' });
       return { available, paths: await letIn(input.data.path) };
     });
   }

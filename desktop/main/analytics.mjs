@@ -25,9 +25,8 @@ export function createDesktopAnalytics(path, { packaged = false, env = process.e
         if (!uuid.test(id)) throw new Error('The analytics installation ID is invalid.');
       }
       return {
-        enabled:
-          env.NOD_ANALYTICS_ENABLED === 'true' ||
-          (env.NOD_ANALYTICS_ENABLED !== 'false' && packaged),
+        // Wea build: usage analytics to n8n are off unless explicitly enabled.
+        enabled: env.NOD_ANALYTICS_ENABLED === 'true',
         distinctId: `local:${id.toLowerCase()}`,
       };
     })();

@@ -80,11 +80,11 @@ export function Join({ onNext, onBack, nextLabel, updatesEmail, usageShared }: S
           <Bubble>
             {canSubscribe ? (
               <>
-                <strong>Stay up to date.</strong> Leave your email for updates about Nod and other
+                <strong>Stay up to date.</strong> Leave your email for updates about Wea and other
                 n8n products.
               </>
             ) : (
-              <>Join the Nod community on Discord or the forum.</>
+              <>Join the Wea community on Discord or the forum.</>
             )}
           </Bubble>,
           <Bubble>
@@ -175,7 +175,7 @@ export function Join({ onNext, onBack, nextLabel, updatesEmail, usageShared }: S
             onClick={() => captureAnalytics('onboarding_community_opened', { channel: 'discord' })}
           >
             <ServiceLogo slug="discord" logoUrl="/logos/discord.svg" size={18} />
-            <span>Chat with the Nod team and community on Discord</span>
+            <span>Chat with the Wea team and community on Discord</span>
             <ArrowUpRight size={16} aria-hidden="true" />
           </a>
           <a
@@ -185,7 +185,7 @@ export function Join({ onNext, onBack, nextLabel, updatesEmail, usageShared }: S
             onClick={() => captureAnalytics('onboarding_community_opened', { channel: 'forum' })}
           >
             <ServiceLogo slug="n8n" logoUrl="/logos/n8n.svg" size={18} />
-            <span>Share ideas and help shape Nod on the forum</span>
+            <span>Share ideas and help shape Wea on the forum</span>
             <ArrowUpRight size={16} aria-hidden="true" />
           </a>
         </div>

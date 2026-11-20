@@ -724,7 +724,7 @@ test('strict Jev reads need a separate effect check and never treat a private dr
   await assert.rejects(review('Only existing reads can pass.', input, undefined, question));
 });
 
-test('a browser uncertainty score cannot change the permission question for Nod settings', async () => {
+test('a browser uncertainty score cannot change the permission question for Wea settings', async () => {
   const { checkJevTrust } = await import('../src/server/trust-jev.ts');
   const { jevPolicy } = await import('../src/server/trust-jev-policy.ts');
   const model = {
@@ -768,7 +768,7 @@ test('a browser uncertainty score cannot change the permission question for Nod 
       },
     },
     {
-      userMessages: [{ at: '2033-06-20T18:30:00Z', text: 'Set my Nod task check-in to USD 7.' }],
+      userMessages: [{ at: '2033-06-20T18:30:00Z', text: 'Set my Wea task check-in to USD 7.' }],
       action: { name: 'NOD_limits_update', arguments: {} },
     },
     raw,
@@ -1070,7 +1070,7 @@ test('an uncertain effect needs a strong separate check before it can become pri
   }
 });
 
-test('every checker must quote owner words for Nod settings, sign-in, uploads and opening apps or files', () => {
+test('every checker must quote owner words for Wea settings, sign-in, uploads and opening apps or files', () => {
   const words = {
     userMessages: [{ at: '2033-06-20T18:30:00Z', text: 'Perform the synthetic action now.' }],
   };

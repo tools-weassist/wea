@@ -59,11 +59,11 @@ export function DataSharing({
     <Dialog>
       <DialogTrigger asChild>
         <button type="button" className={className}>
-          How Nod uses your data
+          How Wea uses your data
         </button>
       </DialogTrigger>
       <DialogContent className="data-sharing">
-        <DialogTitle>How Nod uses your data</DialogTitle>
+        <DialogTitle>How Wea uses your data</DialogTitle>
         <DialogDescription>
           These switches control usage data and conversation traces. Connected services receive the
           data they need to do your work.
@@ -81,9 +81,9 @@ export function DataSharing({
           )}
           {traces !== undefined && (
             <Item icon={MessageSquareText} title="Conversation traces" state={state(traces)}>
-              Off by default for new owners. With n8n&apos;s default trace service, the Nod team can
+              Off by default for new owners. With n8n&apos;s default trace service, the Wea team can
               review conversations and app results. A custom trace service sends them to its
-              operator. Nod removes personal details it recognizes. Traces can still identify you.
+              operator. Wea removes personal details it recognizes. Traces can still identify you.
               Traces include a stable analytics ID whenever trace sharing is on, even if usage
               sharing is off. It links traces across conversations. It can also link them to stored
               usage data, About you choices, and an email you gave with consent to updates.
@@ -92,12 +92,12 @@ export function DataSharing({
             </Item>
           )}
           <Item icon={Globe2} title="Your models and connected apps">
-            Your model services receive your conversation and what Nod reads. By default, managed
+            Your model services receive your conversation and what Wea reads. By default, managed
             app calls pass through n8n&apos;s connection service and Composio, including email
             content.
           </Item>
           <Item icon={LockKeyhole} title="Saved passwords and cards">
-            Encrypted in Vault on your Nod computer or server. Nod fills secret values on websites
+            Encrypted in Vault on your Wea computer or server. Wea fills secret values on websites
             for sign-ins and payments you allow. Tools that fill saved values do not return them to
             the model. Private content visible in screenshots can still reach your model services.
           </Item>

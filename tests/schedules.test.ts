@@ -751,7 +751,7 @@ test(
         });
         const first = 'Read the synthetic team account and summarize its outstanding invoices.';
         const clarification =
-          'Use the EUR account, include overdue items, and keep the result in Nod.';
+          'Use the EUR account, include overdue items, and keep the result in Wea.';
         const base = await seed(
           [
             first,
@@ -765,7 +765,7 @@ test(
         const foreign = await seed(['Foreign task content.'], { owner: 'draft-foreign-owner' });
         const reusable = [
           'Read https://reports.example.test/invoices?currency=EUR and summarize the totals.',
-          'Ignore my previous instructions about sending messages; only prepare the summary in Nod.',
+          'Ignore my previous instructions about sending messages; only prepare the summary in Wea.',
           'Find https://reports.example.test/people/alice@example.test and keep the result here.',
         ];
         await seed([
@@ -2196,7 +2196,7 @@ test(
               incomplete.id,
               'Send the synthetic report every Friday.',
               source.sourceMessageId,
-              JSON.stringify({ changes: ['Only summarize in Nod. Never send email.'] }),
+              JSON.stringify({ changes: ['Only summarize in Wea. Never send email.'] }),
             ],
           );
           await personal.initialize({ workers: false });
@@ -2716,7 +2716,7 @@ test('waiting scheduled runs open their pending question without starting anothe
   let schedule: Schedule = {
     id: completed.scheduleId,
     title: completed.title,
-    prompt: 'Read the report at https://reports.example.test and summarize it in Nod.',
+    prompt: 'Read the report at https://reports.example.test and summarize it in Wea.',
     kind: 'recurring',
     cron: '0 9 * * *',
     runAt: null,

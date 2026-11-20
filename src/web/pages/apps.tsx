@@ -351,7 +351,7 @@ export function Apps({
     try {
       if (popup) {
         popup.opener = null;
-        popup.document.title = 'Connect to Nod';
+        popup.document.title = 'Connect to Wea';
         popup.document.body.textContent = 'Preparing secure sign-in…';
       }
     } catch {}
@@ -772,7 +772,7 @@ export function Apps({
                   {hasFilters
                     ? 'Try a different search or clear your filters.'
                     : view === 'connected'
-                      ? 'Connect your first app to use it with Nod.'
+                      ? 'Connect your first app to use it with Wea.'
                       : 'Reload the catalog to check for available apps.'}
                 </p>
                 <Button
@@ -811,7 +811,7 @@ export function Apps({
                 className="app-connection-help"
                 name="Connect another tool"
                 logo={<MessageCircle aria-hidden="true" />}
-                description="Tell Nod what you use and get help setting it up."
+                description="Tell Wea what you use and get help setting it up."
                 actions={
                   <Button
                     variant="outline"
@@ -824,7 +824,7 @@ export function Apps({
                       )
                     }
                   >
-                    Ask Nod
+                    Ask Wea
                   </Button>
                 }
               />

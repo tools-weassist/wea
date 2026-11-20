@@ -6,7 +6,7 @@ export function desktopTrash(): Trash {
   return {
     ready: async () => Boolean(request),
     put: async (path, signal) => {
-      if (!request) throw new Error('The Trash needs Nod desktop.');
+      if (!request) throw new Error('The Trash needs Wea desktop.');
       await request({ path }, signal);
     },
   };

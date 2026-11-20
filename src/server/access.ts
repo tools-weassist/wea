@@ -22,7 +22,7 @@ async function localKey(
   }
   const info = await lstat(path);
   const key = info.isFile() ? await readFile(path, 'utf8') : '';
-  if (!token.test(key)) throw new Error(`Delete ${path} and restart Nod.`);
+  if (!token.test(key)) throw new Error(`Delete ${path} and restart Wea.`);
   if (info.mode & 0o077) await chmod(path, 0o600);
   return key;
 }
@@ -146,10 +146,10 @@ export function registerLocalAccess(
     )
       return reply.code(401).send({
         error: desktop
-          ? 'Open Nod in the desktop app.'
+          ? 'Open Wea in the desktop app.'
           : access.bearer
             ? 'Enter your server authentication token.'
-            : 'Open Nod from the link in your terminal.',
+            : 'Open Wea from the link in your terminal.',
       });
     if (
       request.headers['sec-fetch-site'] === 'cross-site' &&

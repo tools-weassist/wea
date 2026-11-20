@@ -35,12 +35,12 @@ const providers = [
   {
     id: 'telegram' as const,
     name: 'Telegram',
-    description: 'Chat with Nod in Telegram.',
+    description: 'Chat with Wea in Telegram.',
   },
   {
     id: 'whatsapp' as const,
     name: 'WhatsApp',
-    description: 'Chat with Nod in WhatsApp.',
+    description: 'Chat with Wea in WhatsApp.',
   },
 ];
 const channelStatus = {
@@ -198,7 +198,7 @@ function ChannelSetupStep({
     <>
       <p>
         Use these same callback settings in Meta, then subscribe the app to messages. Expose only
-        this route; keep the rest of Nod private.
+        this route; keep the rest of Wea private.
       </p>
       <Field
         label="Public HTTPS callback"
@@ -335,7 +335,7 @@ function ChannelCard({
                   <DialogTitle>Finish {provider.name} setup</DialogTitle>
                   <DialogDescription>
                     {setup?.webhookStatus === 'registration_pending'
-                      ? 'Restart Nod to retry the saved setup.'
+                      ? 'Restart Wea to retry the saved setup.'
                       : 'Finish the callback in Meta and subscribe to messages.'}
                   </DialogDescription>
                   {setup?.webhookUrl && (
@@ -567,7 +567,7 @@ export function Channels() {
       <header className="page-heading secondary-heading">
         <PageTitle path="/channels" />
         <p className="channel-runtime-note">
-          Nod must be running to receive messages. If Nod runs on this computer, keep the computer
+          Wea must be running to receive messages. If Wea runs on this computer, keep the computer
           awake.
         </p>
       </header>
@@ -634,7 +634,7 @@ export function Channels() {
         >
           <DialogTitle>Disconnect {removing === 'whatsapp' ? 'WhatsApp' : 'Telegram'}?</DialogTitle>
           <DialogDescription>
-            Nod will stop receiving messages here. You can connect again later.
+            Wea will stop receiving messages here. You can connect again later.
           </DialogDescription>
           {removeError && <Notice>{removeError}</Notice>}
           <div className="channel-remove-actions">
@@ -817,7 +817,7 @@ export function Channels() {
               </DialogTitle>
               <DialogDescription>
                 {selected?.setup?.connectionState === 'connected'
-                  ? 'Keep Nod running to receive messages.'
+                  ? 'Keep Wea running to receive messages.'
                   : 'Link an account with a QR code.'}
               </DialogDescription>
               <WhatsAppSetup
@@ -850,7 +850,7 @@ export function Channels() {
               <DialogTitle>{whatsappSteps[step]}</DialogTitle>
               <DialogDescription>
                 {step === 0
-                  ? 'Connect in a few small steps. Nod checks your credentials before saving.'
+                  ? 'Connect in a few small steps. Wea checks your credentials before saving.'
                   : 'Credentials stay in this secure form, outside the conversation.'}
               </DialogDescription>
               {error && <Notice>{error}</Notice>}
