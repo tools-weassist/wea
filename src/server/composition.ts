@@ -115,6 +115,7 @@ import { createImageAnalysis } from './images.ts';
 import { createPiModelBackend } from '../providers/pi/models.ts';
 import { createModelService, endpointAddress, modelKeyCredential } from './models.ts';
 import { weassistDefault, weassistLimits } from './weassist-default.ts';
+import { registerSupportLink } from './support.ts';
 import { createIntegrationBrowser } from './integration-browser.ts';
 import { createIntegrationIdentityCheckpoint } from './integration-identity.ts';
 import { createPiAgent } from '../providers/pi/index.ts';
@@ -3600,6 +3601,7 @@ async function initializeApplication(
     analytics: captureAnalytics,
   });
   registerPrivacyNotice(app, privacyNotice);
+  registerSupportLink(app);
   createAccountSession({
     analytics,
     model: () => adapters.model,

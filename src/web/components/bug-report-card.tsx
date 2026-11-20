@@ -7,6 +7,8 @@ import { feedbackErrorsAvailable, feedbackErrorsSnapshot } from '../lib/feedback
 import { sessionStore } from '../lib/session';
 import { readUiPreference, writeUiPreference } from '../lib/ui-preferences';
 import { ActionCard } from './action-card';
+import { supportLinkTarget } from '../../shared/support';
+import { useSupportLink } from '../hooks/use-support-link';
 import { FeedbackDiagnostics, feedbackReportData } from './feedback-diagnostics';
 import { AlertCircle, Bug, Check, Send } from './icons';
 import { Button } from './ui';
@@ -26,6 +28,7 @@ export function BugReportCard({
   title: string;
   summary: string;
 }) {
+  const support = useSupportLink();
   const ownerId = useSyncExternalStore(sessionStore.subscribe, sessionStore.getSnapshot).session
     ?.user?.id;
   const reportKey = `nod.feedback.report.${ownerId ?? ''}` as const;
@@ -241,7 +244,13 @@ export function BugReportCard({
               </p>
             )}
             {draft && !draft.enabled && (
-              <p className="bug-report-card-note">Sending isn’t enabled in this build.</p>
+              <p className="bug-report-card-note">
+                Sending isn’t enabled in this build. Contact{' '}
+                <a href={support.url} {...supportLinkTarget(support)}>
+                  {support.label}
+                </a>{' '}
+                instead.
+              </p>
             )}
             <Button type="button" disabled={busy || !draft?.enabled} onClick={() => void send()}>
               <Send size={16} aria-hidden="true" />

@@ -38,6 +38,8 @@ import { FeedbackAttachments } from './feedback-attachments';
 import { FeedbackDiagnostics, feedbackReportData } from './feedback-diagnostics';
 import { FeedbackEditor, type FeedbackEditorHandle } from './feedback-editor';
 import { Button, Dialog, DialogContent, DialogTitle } from './ui';
+import { supportLinkTarget } from '../../shared/support';
+import { useSupportLink } from '../hooks/use-support-link';
 
 const categories = [
   { id: 'bug', title: 'Bug', icon: Bug },
@@ -87,6 +89,7 @@ function FeedbackDraftDialog({
   screenshot,
   onDraftCleared,
 }: FeedbackDialogProps) {
+  const support = useSupportLink();
   const storageKey = `nod.feedback.pending.${ownerId}`;
   const reportKey = `nod.feedback.report.${ownerId}` as const;
   const [pendingId, setPendingId] = useState(() => readFeedbackPending(storageKey));
@@ -961,7 +964,17 @@ function FeedbackDraftDialog({
             )}
             {(contextError || (context && !context.enabled)) && (
               <div className="feedback-send-notice" role={contextError ? 'alert' : 'status'}>
-                <span>{contextError || 'Sending isn’t enabled in this build.'}</span>
+                <span>
+                  {contextError || (
+                    <>
+                      Sending isn’t enabled in this build. Contact{' '}
+                      <a href={support.url} {...supportLinkTarget(support)}>
+                        {support.label}
+                      </a>{' '}
+                      instead.
+                    </>
+                  )}
+                </span>
                 {contextError && (
                   <button
                     type="button"
