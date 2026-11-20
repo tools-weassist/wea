@@ -1391,8 +1391,11 @@ export function createModelService(options: {
         state.connections = state.connections.filter(
           (row) => !row.managed || options.bootstrap?.credentials[row.provider],
         );
-        if (!state.connections.some((row) => row.id === state.selection?.connectionId))
+        if (!state.connections.some((row) => row.id === state.selection?.connectionId)) {
           state.selection = null;
+          /* Wea: when the selected connection is gone, the hosted pilot connection can take over. */
+          if (options.bootstrap?.weassistDefault) state.selectionSet = false;
+        }
         for (const row of state.connections) {
           try {
             if (!credential(row)) row.status = 'reconnect';

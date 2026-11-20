@@ -173,3 +173,54 @@ test(
     }
   },
 );
+
+test(
+  'the hosted connection takes over when a previously selected server connection is gone',
+  { skip: !process.env.TEST_DATABASE_URL, timeout: 30_000 },
+  async (t) => {
+    const { createModelService } = await import('../src/server/models.ts');
+    const { createPiModelBackend } = await import('../src/providers/pi/models.ts');
+    const schema = `test_wea_takeover_${randomUUID().replaceAll('-', '')}`;
+    const root = new pg.Pool({ connectionString: process.env.TEST_DATABASE_URL });
+    await root.query(`CREATE SCHEMA ${schema}`);
+    const database = new pg.Pool({
+      connectionString: process.env.TEST_DATABASE_URL,
+      options: `-c search_path=${schema}`,
+      max: 2,
+    });
+    const key = randomBytes(32);
+    const base = createPiModelBackend({ fetch: async () => Response.json({ data: [] }) });
+    const backend = {
+      ...base,
+      catalog: async (provider: Parameters<typeof base.catalog>[0]) =>
+        base.catalog(provider, 'api_key'),
+    };
+    const services: ReturnType<typeof createModelService>[] = [];
+    const create = async (bootstrap: Parameters<typeof createModelService>[0]['bootstrap']) => {
+      const service = createModelService({
+        database,
+        ownerId: 'fixture-wea-upgrade-owner',
+        keyStore: { id: 'fixture', configured: true, getKey: async () => key },
+        backend,
+        origin: 'http://127.0.0.1:4310',
+        bootstrap,
+      });
+      await service.initialize();
+      services.push(service);
+      return service;
+    };
+    t.after(async () => {
+      for (const service of services) await service.close();
+      await database.end();
+      await root.query(`DROP SCHEMA ${schema} CASCADE`);
+      await root.end();
+    });
+    const before = await create(modelEnvironment({ OPENAI_API_KEY: 'fixture-old-server-key' }));
+    assert.equal(before.view().selection?.connectionId, before.view().connections[0].id);
+    await before.close();
+    const after = await create(modelEnvironment({ WEA_DEFAULT_OPENROUTER_API_KEY: hostedKey }));
+    const [hosted] = after.view().connections;
+    assert.equal(hosted.hosted, true);
+    assert.equal(after.view().selection?.connectionId, hosted.id);
+  },
+);
